@@ -73,7 +73,7 @@ const AboutPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-warm-white mb-10 leading-tight">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-warm-white mb-10 leading-[1.05]">
             I turn complex logic<br />
             into usable systems.
           </h1>
@@ -94,7 +94,7 @@ const AboutPage = () => {
       </section>
 
       {/* The Lead Designer of One Section */}
-      <section className="container mx-auto px-6 py-10">
+      <section className="container mx-auto px-6 py-8 md:py-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ const AboutPage = () => {
           transition={{ duration: 0.8 }}
           className="bg-[#2a2a2a] border border-warm-white/[0.03] rounded-3xl p-8 md:p-16"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left: Story Text */}
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-bold text-white">
@@ -133,7 +133,7 @@ const AboutPage = () => {
       </section>
 
       {/* How I Work Section */}
-      <section className="container mx-auto px-6 py-10">
+      <section className="container mx-auto px-6 py-8 md:py-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -144,7 +144,7 @@ const AboutPage = () => {
             How I Work
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {howIWork.map((item, index) => (
               <motion.div
                 key={index}
@@ -170,7 +170,7 @@ const AboutPage = () => {
       </section>
 
       {/* What I'm Working On Section */}
-      <section className="container mx-auto px-6 py-10">
+      <section className="container mx-auto px-6 py-8 md:py-10">
         <div className="max-w-6xl">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             What I’m Working On
@@ -179,7 +179,7 @@ const AboutPage = () => {
             What I’m learning and building today
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {growthMoments.map((moment) => (
               <div
                 key={moment.title}
@@ -196,7 +196,7 @@ const AboutPage = () => {
       </section>
 
       {/* Books That Shaped How I Think */}
-      <section className="container mx-auto px-6 py-10 border-t border-warm-white/5 mt-10">
+      <section className="container mx-auto px-6 py-8 md:py-10 border-t border-warm-white/5 mt-8 md:mt-10">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
           Books That Shaped How I Think
         </h2>
@@ -216,7 +216,7 @@ const AboutPage = () => {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="container mx-auto px-6 pt-24 pb-32 border-t border-warm-white/5">
+      <section className="container mx-auto px-6 pt-14 md:pt-24 pb-20 md:pb-32 border-t border-warm-white/5">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

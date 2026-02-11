@@ -64,10 +64,10 @@ const HomePage = () => {
           transition={{ duration: 0.8 }}
           className="max-w-5xl"
         >
-          <p className="text-orange-accent text-sm md:text-base mb-4 md:mb-6">
+          <p className="text-orange-accent text-base md:text-lg font-medium tracking-wide mb-4">
             Product Designer at Autobahn Security GmbH.
           </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-6 md:mb-8 leading-[0.95] tracking-tight">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-6 md:mb-8 leading-[1.05] md:leading-[0.95] tracking-tight">
             I design logic first,<br />
             then I build the interface.
           </h1>
@@ -80,7 +80,7 @@ const HomePage = () => {
       </section>
 
       {/* Selected Work Section */}
-      <section id="selected-systems" className="container mx-auto px-6 py-28 md:py-32">
+      <section id="selected-systems" className="container mx-auto px-6 py-16 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +96,7 @@ const HomePage = () => {
               <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {projects.length > 0 ? (
                 projects.map((project, index) => (
                   <motion.div
@@ -125,8 +125,8 @@ const HomePage = () => {
       </section>
 
       {/* My Operating System Section */}
-      <section className="container mx-auto px-6 py-28 md:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <section className="container mx-auto px-6 py-16 md:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -168,7 +168,7 @@ const HomePage = () => {
       </section>
 
       {/* Preview of "The Brain Garden" Section */}
-      <section className="container mx-auto px-6 py-28 md:py-32">
+      <section className="container mx-auto px-6 py-16 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -184,7 +184,7 @@ const HomePage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
             {posts.length > 0 ? (
               posts.map((post, index) => (
                 <motion.div
@@ -228,7 +228,7 @@ const HomePage = () => {
       </section>
 
       {/* Strong Closing Section */}
-      <section className="container mx-auto px-6 py-40 border-t border-warm-white/5">
+      <section className="container mx-auto px-6 py-14 md:py-40 border-t border-warm-white/5">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

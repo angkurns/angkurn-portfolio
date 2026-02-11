@@ -47,7 +47,7 @@ const TheBrainGarden = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-28 md:py-32">
+      <section className="container mx-auto px-6 py-16 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,8 +73,8 @@ const TheBrainGarden = () => {
                 key={tag}
                 onClick={() => setSelectedTag(tag === 'All' ? null : tag)}
                 className={`text-xs uppercase tracking-widest px-4 py-2 rounded-full border transition-all duration-300 ${(selectedTag === tag || (tag === 'All' && !selectedTag))
-                    ? 'bg-orange-accent text-charcoal-dark border-orange-accent'
-                    : 'border-warm-white/10 text-warm-white/40 hover:border-warm-white/30 hover:text-warm-white/60'
+                  ? 'bg-orange-accent text-charcoal-dark border-orange-accent'
+                  : 'border-warm-white/10 text-warm-white/40 hover:border-warm-white/30 hover:text-warm-white/60'
                   }`}
               >
                 {tag}
@@ -89,13 +89,13 @@ const TheBrainGarden = () => {
       </section>
 
       {/* Archive Section */}
-      <section className="container mx-auto px-6 pb-24">
+      <section className="container mx-auto px-6 pb-16 md:pb-24">
         {loading ? (
           <div className="flex justify-center py-20">
             <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
             {filteredArticles.length > 0 ? (
               filteredArticles.map((article, index) => (
                 <motion.article
@@ -150,7 +150,7 @@ const TheBrainGarden = () => {
       </section>
 
       {/* Closing Section */}
-      <section className="container mx-auto px-6 pb-32 border-t border-warm-white/5 pt-24">
+      <section className="container mx-auto px-6 pb-20 md:pb-32 border-t border-warm-white/5 pt-14 md:pt-24">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
