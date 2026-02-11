@@ -1,0 +1,6 @@
+## Pages
+- [- Angkurn](/casestudydetail): No description available
+- [- The Brain Garden](/braingardendetail): No description available
+- [About - Angkurn](/about): Hi, I
+- [Angkurn - Logic-First Designer](/home): I design logic first, then I build the interface. Translating deep technical logic into intuitive, high-impact systems.
+- [The Brain Garden - Angkurn](/thebraingarden): Insights on design, AI workflows, and systems thinking from Angkurn.

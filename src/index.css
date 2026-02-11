@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&display=swap');
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-charcoal-dark text-warm-white;
+    font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+
+  /* Hover Lift Effect */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+
+  .hover-lift:hover {
+    @apply transform -translate-y-2 shadow-lift;
+  }
+
+  .hover-lift-lg:hover {
+    @apply transform -translate-y-3 shadow-lift-lg;
+  }
+
+  /* Text Gradient Utility (only for special cases) */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #FF8C42 0%, #FF9D5C 100%);
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-charcoal-light;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-orange-accent rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-orange-accent/80;
+  }
+}
+
+/* Responsive Typography Scaling */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Remove default focus outline and add custom */
+*:focus-visible {
+  @apply outline-none ring-2 ring-orange-accent ring-offset-2 ring-offset-charcoal-dark;
+}
+
+/* Brain Garden Editorial System */
+.article-header {
+  margin-top: 0;
+  margin-bottom: 48px;
+}
+
+.article-subtitle {
+  font-size: 22px;
+  color: #9a9a9a;
+  margin-top: 24px;
+  margin-bottom: 40px;
+  max-width: 760px;
+}
+
+.article-content {
+  max-width: 760px;
+  margin: 120px auto;
+  padding: 0 24px;
+}
+
+.article-content p {
+  font-size: 20px;
+  line-height: 1.8;
+  margin-bottom: 22px;
+  color: #d6d6d6;
+}
+
+.article-content h2 {
+  font-size: 28px;
+  margin-top: 56px;
+  margin-bottom: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.article-content ul {
+  margin: 32px 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.article-content li {
+  font-size: 20px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  color: #d6d6d6;
+}
+
+.article-content blockquote {
+  margin: 48px 0;
+  padding-left: 24px;
+  border-left: 3px solid #ff8a3d;
+  font-size: 22px;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.article-content a {
+  color: #ff8a3d;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 138, 61, 0.4);
+}
+
+.article-content a:hover {
+  border-bottom: 1px solid #ff8a3d;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-orange-accent/30 text-warm-white;
+}
