@@ -64,9 +64,15 @@ const HomePage = () => {
           transition={{ duration: 0.8 }}
           className="max-w-5xl"
         >
-          <p className="text-orange-accent text-base md:text-lg font-medium tracking-wide mb-4">
-            Product Designer at Autobahn Security GmbH.
-          </p>
+          <div className="mb-6">
+            <p className="text-base md:text-lg font-medium text-white mb-1">
+              Angga Kurnia Aryantika — Product Designer
+            </p>
+            <p className="text-sm md:text-base text-neutral-400">
+              Autobahn Security GmbH
+            </p>
+          </div>
+
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-6 md:mb-8 leading-[1.1] md:leading-[0.95] tracking-tight">
             I design logic first,<br />
             then I build the interface.
