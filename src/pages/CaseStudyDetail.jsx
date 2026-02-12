@@ -45,10 +45,7 @@ const CaseStudyDetail = () => {
       <div className="bg-charcoal-dark min-h-screen flex flex-col items-center justify-center text-warm-white">
         <h2 className="text-2xl font-bold mb-4">System Not Found</h2>
         <p className="text-warm-white/60 mb-8">{error || "The logic for this system seems to be missing."}</p>
-        <Link
-          to="/"
-          className="text-orange-accent hover:text-orange-accent/80 flex items-center gap-2"
-        >
+        <Link to="/" className="text-orange-accent hover:text-orange-accent/80 flex items-center gap-2">
           <ArrowLeft size={20} />
           Back to Home
         </Link>
@@ -57,88 +54,127 @@ const CaseStudyDetail = () => {
   }
 
   return (
-    <div className="bg-charcoal-dark min-h-screen">
+    <div className="bg-charcoal-dark min-h-screen text-warm-white font-dm-sans">
       <Helmet>
-        <title>{caseStudy.title} - Angkurn</title>
-        <meta name="description" content={`Case Study: ${caseStudy.title}`} />
+        <title>{caseStudy.title} — Angkurn</title>
+        <meta name="description" content={caseStudy.short_description} />
       </Helmet>
 
-      <div className="container mx-auto px-6 py-10 md:py-20">
+      {/* Hero Section */}
+      <header className="container mx-auto px-6 py-12 md:py-24 max-w-[1100px]">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-warm-white/60 hover:text-orange-accent transition-colors mb-8 md:mb-12"
+          className="inline-flex items-center gap-2 text-warm-white/40 hover:text-orange-accent transition-colors mb-12"
         >
-          <ArrowLeft size={20} />
-          Back to Home
+          <ArrowLeft size={16} />
+          <span className="text-sm uppercase tracking-widest">Back to Systems</span>
         </Link>
 
-        <motion.article
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
-          {/* Header */}
-          <div className="max-w-4xl">
-            <span className="inline-block bg-orange-accent/20 text-orange-accent px-4 py-1 rounded-full text-sm font-medium mb-6">
-              {caseStudy.category}
-            </span>
-            <h1 className="text-3xl md:text-6xl font-bold text-warm-white mb-6 md:mb-8 leading-tight">
-              {caseStudy.title}
-            </h1>
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            {caseStudy.category?.split(',').map((tag, i) => (
+              <span key={i} className="bg-orange-accent/10 border border-orange-accent/20 text-orange-accent px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold">
+                {tag.trim()}
+              </span>
+            ))}
           </div>
 
-          {/* Hero Image / Thumbnail Placeholder */}
-          <div className="w-full h-56 md:h-96 bg-charcoal-light rounded-2xl md:rounded-3xl mb-10 md:mb-16 overflow-hidden flex items-center justify-center border border-warm-white/5">
-            {caseStudy.thumbnail_url ? (
-              <img
-                src={caseStudy.thumbnail_url}
-                alt={caseStudy.title}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="text-warm-white/20 text-6xl md:text-8xl font-bold">
-                {caseStudy.title.charAt(0)}
-              </div>
-            )}
-          </div>
+          <h1 className="text-4xl md:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
+            {caseStudy.title}
+          </h1>
 
-          {/* Executive Summary */}
-          {caseStudy.summary && (
-            <section className="max-w-3xl mx-auto mb-10 md:mb-16 px-5 py-6 md:px-6 md:py-8 bg-warm-white/5 border-l-4 border-orange-accent rounded-r-2xl">
-              <p className="text-lg md:text-2xl text-warm-white leading-relaxed font-medium italic">
-                {caseStudy.summary}
-              </p>
-            </section>
-          )}
+          <p className="text-xl md:text-2xl text-warm-white/60 max-w-2xl leading-relaxed mb-12">
+            {caseStudy.short_description}
+          </p>
 
-          {/* Summary Block */}
-          <div className="max-w-3xl mx-auto mb-16 border-b border-warm-white/10 pb-10">
-            <div className="flex flex-wrap justify-between gap-y-8 gap-x-4">
-              <div className="min-w-[120px]">
-                <span className="block text-warm-white/40 uppercase tracking-widest text-[10px] md:text-xs mb-3">Role</span>
-                <span className="text-base md:text-lg font-medium text-warm-white">{caseStudy.role}</span>
-              </div>
-              <div className="min-w-[120px]">
-                <span className="block text-warm-white/40 uppercase tracking-widest text-[10px] md:text-xs mb-3">Focus</span>
-                <span className="text-base md:text-lg font-medium text-warm-white">{caseStudy.focus}</span>
-              </div>
-              <div className="min-w-[120px]">
-                <span className="block text-warm-white/40 uppercase tracking-widest text-[10px] md:text-xs mb-3">Environment</span>
-                <span className="text-base md:text-lg font-medium text-warm-white">{caseStudy.environment}</span>
-              </div>
-              <div className="min-w-[120px]">
-                <span className="block text-warm-white/40 uppercase tracking-widest text-[10px] md:text-xs mb-3">Year</span>
-                <span className="text-base md:text-lg font-medium text-warm-white">{caseStudy.year}</span>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-y border-warm-white/5">
+            <div>
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Role</span>
+              <span className="text-base font-medium">{caseStudy.role}</span>
+            </div>
+            <div>
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Platform</span>
+              <span className="text-base font-medium">{caseStudy.platform || caseStudy.environment || "Web & Mobile"}</span>
+            </div>
+            <div>
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Focus</span>
+              <span className="text-base font-medium">{caseStudy.focus || "System Design"}</span>
+            </div>
+            <div>
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Year</span>
+              <span className="text-base font-medium">{caseStudy.year}</span>
             </div>
           </div>
+        </motion.div>
+      </header>
 
-          {/* Content */}
-          <div className="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:text-warm-white prose-p:text-warm-white/80 prose-a:text-orange-accent prose-strong:text-orange-accent">
-            <div dangerouslySetInnerHTML={{ __html: caseStudy.content }} />
+      {/* Main Content Area */}
+      {caseStudy.sections && caseStudy.sections.length > 0 && (
+        <main className="container mx-auto px-6 pb-32 max-w-[1100px]">
+          <div className="md:grid md:grid-cols-[220px_1fr] md:gap-16 items-start">
+            {/* Left Column: Sticky Navigation */}
+            <aside className="hidden md:block sticky top-32 h-fit">
+              <nav className="space-y-3">
+                {caseStudy.sections.map((section, index) => {
+                  const formattedNumber = String(index + 1).padStart(2, '0');
+                  return (
+                    <a
+                      key={section.id}
+                      href={`#section-${section.Order}`}
+                      className="block text-sm text-neutral-500 hover:text-orange-400 transition-colors"
+                    >
+                      {formattedNumber} — {section.Title}
+                    </a>
+                  );
+                })}
+              </nav>
+            </aside>
+
+            {/* Right Column: Case Study Sections */}
+            <div className="max-w-[720px] space-y-24">
+              {caseStudy.sections.map((section, index) => {
+                const formattedNumber = String(index + 1).padStart(2, '0');
+                return (
+                  <section
+                    key={section.id}
+                    id={`section-${section.Order}`}
+                    className="space-y-4 scroll-mt-32"
+                  >
+                    <div className="flex items-baseline gap-4">
+                      <span className="text-sm text-orange-400 font-mono">
+                        {formattedNumber} —
+                      </span>
+                      <h2 className="text-2xl font-semibold text-white">
+                        {section.Title}
+                      </h2>
+                    </div>
+
+                    <div
+                      className="text-zinc-400 leading-relaxed space-y-6"
+                      dangerouslySetInnerHTML={{ __html: section.Description }}
+                    />
+                  </section>
+                );
+              })}
+            </div>
           </div>
-        </motion.article>
-      </div>
+        </main>
+      )}
+
+      {/* Final Closing */}
+      <footer className="container mx-auto px-6 py-24 border-t border-warm-white/5 text-center">
+        <Link
+          to="/"
+          className="inline-block bg-orange-accent text-charcoal-dark px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent/80 transition-all duration-300 transform hover:scale-105"
+        >
+          View More Systems
+        </Link>
+      </footer>
     </div>
   );
 };

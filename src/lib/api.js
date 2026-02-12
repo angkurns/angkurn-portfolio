@@ -22,21 +22,36 @@ export const fetchFeaturedCaseStudies = async () => {
   }
 };
 
-// Fetch single case study by slug
+// Fetch single case study by slug (including its structured sections)
 export const fetchCaseStudyBySlug = async (slug) => {
   try {
-    const { data, error } = await supabase
+    // 1. Get the base case study
+    const { data: caseStudy, error: caseStudyError } = await supabase
       .from('case_studies')
       .select('*')
       .eq('slug', slug)
       .single();
 
-    if (error) {
-      console.error(`Error fetching case study with slug "${slug}":`, error);
+    if (caseStudyError) {
+      console.error(`Error fetching case study with slug "${slug}":`, caseStudyError);
       return null;
     }
 
-    return data;
+    // 2. Fetch related sections
+    const { data: sections, error: sectionsError } = await supabase
+      .from('case_study_sections')
+      .select('*')
+      .eq('case_study_id', caseStudy.id)
+      .order('Order', { ascending: true });
+
+    if (sectionsError) {
+      console.error('Error fetching sections:', sectionsError);
+    }
+
+    return {
+      ...caseStudy,
+      sections: sections || []
+    };
   } catch (err) {
     console.error('Unexpected error in fetchCaseStudyBySlug:', err);
     return null;

@@ -32,10 +32,17 @@ const ProjectCard = ({ category, title, description, image }) => {
 
       {/* Content */}
       <div className="p-8 md:p-10">
-        {/* Category Tag */}
-        <span className="inline-block bg-orange-accent/25 text-orange-accent px-4 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold mb-4">
-          {category}
-        </span>
+        {/* Category Tags */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {category.split(',').map((tag, index) => (
+            <span
+              key={index}
+              className="inline-block bg-orange-accent/25 text-orange-accent px-4 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold"
+            >
+              {tag.trim()}
+            </span>
+          ))}
+        </div>
 
         {/* Title */}
         <h3 className="text-2xl md:text-3xl font-bold text-warm-white mb-3 group-hover:text-orange-accent transition-colors">
