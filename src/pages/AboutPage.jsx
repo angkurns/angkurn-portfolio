@@ -106,9 +106,9 @@ const AboutPage = () => {
           transition={{ duration: 0.8 }}
           className="bg-[#2a2a2a] border border-warm-white/[0.03] rounded-3xl p-8 md:p-16"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             {/* Left: Story Text */}
-            <div className="space-y-8">
+            <div className="max-w-xl space-y-8">
               <h2 className="text-3xl md:text-5xl font-bold text-white">
                 The Lead Designer of One
               </h2>
@@ -125,12 +125,13 @@ const AboutPage = () => {
               </div>
             </div>
 
-            {/* Right: Circular Profile Image Placeholder */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-orange-accent/10 to-charcoal-dark border border-orange-accent/20 flex items-center justify-center shadow-2xl relative overflow-hidden group">
-                <div className="absolute inset-0 bg-orange-accent/5 mix-blend-overlay"></div>
-                <div className="text-orange-accent/40 text-8xl font-bold">A</div>
-              </div>
+            {/* Right: Circular Profile Image */}
+            <div className="w-80 h-80 rounded-full overflow-hidden flex-shrink-0 shadow-2xl border border-warm-white/5">
+              <img
+                src="/angga.jpeg"
+                alt="Angga Kurnia Aryantika"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </motion.div>
