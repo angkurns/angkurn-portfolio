@@ -43,65 +43,65 @@ export const fetchCaseStudyBySlug = async (slug) => {
   }
 };
 
-// Fetch featured brain garden articles (limit to 2 for homepage preview)
-export const fetchFeaturedBrainGardenArticles = async () => {
+// Fetch featured notes (limit to 2 for homepage preview)
+export const fetchFeaturedNotes = async () => {
   try {
     const { data, error } = await supabase
-      .from('brain_garden')
+      .from('notes')
       .select('*')
       .eq('featured', true)
       .order('published_date', { ascending: false })
       .limit(2);
 
     if (error) {
-      console.error('Error fetching featured brain garden articles:', error);
+      console.error('Error fetching featured notes:', error);
       throw error;
     }
 
     return data || [];
   } catch (err) {
-    console.error('Unexpected error in fetchFeaturedBrainGardenArticles:', err);
+    console.error('Unexpected error in fetchFeaturedNotes:', err);
     return [];
   }
 };
 
-// Fetch all brain garden articles for the archive page
-export const fetchAllBrainGardenArticles = async () => {
+// Fetch all notes for the archive page
+export const fetchAllNotes = async () => {
   try {
     const { data, error } = await supabase
-      .from('brain_garden')
+      .from('notes')
       .select('*')
       .order('published_date', { ascending: false });
 
     if (error) {
-      console.error('Error fetching all brain garden articles:', error);
+      console.error('Error fetching all notes:', error);
       throw error;
     }
 
     return data || [];
   } catch (err) {
-    console.error('Unexpected error in fetchAllBrainGardenArticles:', err);
+    console.error('Unexpected error in fetchAllNotes:', err);
     return [];
   }
 };
 
-// Fetch single brain garden article by slug
-export const fetchBrainGardenBySlug = async (slug) => {
+// Fetch single note by slug
+export const fetchNoteBySlug = async (slug) => {
   try {
     const { data, error } = await supabase
-      .from('brain_garden')
+      .from('notes')
       .select('*')
       .eq('slug', slug)
       .single();
 
     if (error) {
-      console.error(`Error fetching brain garden article with slug "${slug}":`, error);
+      console.error(`Error fetching note with slug "${slug}":`, error);
       return null;
     }
 
     return data;
   } catch (err) {
-    console.error('Unexpected error in fetchBrainGardenBySlug:', err);
+    console.error('Unexpected error in fetchNoteBySlug:', err);
     return null;
   }
 };

@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useContactModal } from '@/context/ContactModalContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openModal } = useContactModal();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -32,8 +34,12 @@ const Header = () => {
                 Home
               </NavLink>
               <span className="text-warm-white/10 px-1">▪</span>
-              <NavLink to="/the-brain-garden" className={navLinkStyles}>
-                Brain Garden
+              <a href="/#work" className="px-4 py-2 rounded-full transition-all duration-300 text-warm-white/80 hover:text-warm-white">
+                Work
+              </a>
+              <span className="text-warm-white/10 px-1">▪</span>
+              <NavLink to="/notes" className={navLinkStyles}>
+                Notes
               </NavLink>
               <span className="text-warm-white/10 px-1">▪</span>
               <NavLink to="/about" className={navLinkStyles}>
@@ -42,13 +48,13 @@ const Header = () => {
             </div>
           </div>
 
-          {/* CTA Button - Desktop */}
-          <a
-            href="/#selected-systems"
+          {/* Modal Trigger - Desktop */}
+          <button
+            onClick={openModal}
             className="hidden md:block bg-orange-accent/90 text-charcoal-dark px-5 py-1.5 rounded-full text-sm font-bold hover:scale-105 hover:bg-orange-accent hover:shadow-lg transition-all duration-300"
           >
-            View Selected Work
-          </a>
+            Let’s Talk
+          </button>
 
           {/* Mobile Menu Button */}
           <button
@@ -78,12 +84,19 @@ const Header = () => {
                 >
                   Home
                 </NavLink>
+                <a
+                  href="/#work"
+                  className="px-4 py-2 rounded-full text-warm-white/80"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Work
+                </a>
                 <NavLink
-                  to="/the-brain-garden"
+                  to="/notes"
                   className={navLinkStyles}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Brain Garden
+                  Notes
                 </NavLink>
                 <NavLink
                   to="/about"
@@ -92,13 +105,15 @@ const Header = () => {
                 >
                   About
                 </NavLink>
-                <a
-                  href="/#selected-systems"
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    openModal();
+                  }}
                   className="bg-orange-accent text-charcoal-dark px-6 py-2 rounded-full font-semibold text-center hover:scale-105 hover:shadow-lg transition-all duration-300 mt-2"
-                  onClick={() => setIsMenuOpen(false)}
                 >
-                  View Selected Work
-                </a>
+                  Let’s Talk
+                </button>
               </div>
             </motion.div>
           )}

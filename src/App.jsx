@@ -11,27 +11,41 @@ import CaseStudyDetail from '@/pages/CaseStudyDetail';
 import BrainGardenDetail from '@/pages/BrainGardenDetail';
 import { Toaster } from '@/components/ui/toaster';
 
+import { ContactModalProvider, useContactModal } from '@/context/ContactModalContext';
+import ContactModal from '@/components/ContactModal';
+
+function AppContent() {
+  const { isOpen, closeModal } = useContactModal();
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/notes" element={<TheBrainGarden />} />
+
+          {/* Dynamic Routes */}
+          <Route path="/systems/:slug" element={<CaseStudyDetail />} />
+          <Route path="/notes/:slug" element={<BrainGardenDetail />} />
+        </Routes>
+      </main>
+      <Footer />
+      <ContactModal isOpen={isOpen} onClose={closeModal} />
+    </div>
+  );
+}
+
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/the-brain-garden" element={<TheBrainGarden />} />
-            
-            {/* Dynamic Routes */}
-            <Route path="/systems/:slug" element={<CaseStudyDetail />} />
-            <Route path="/brain-garden/:slug" element={<BrainGardenDetail />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-      <Toaster />
-    </Router>
+    <ContactModalProvider>
+      <Router>
+        <ScrollToTop />
+        <AppContent />
+        <Toaster />
+      </Router>
+    </ContactModalProvider>
   );
 }
 

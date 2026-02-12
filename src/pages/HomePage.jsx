@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import ProjectCard from '@/components/ProjectCard';
-import { fetchFeaturedCaseStudies, fetchFeaturedBrainGardenArticles } from '@/lib/api';
+import { fetchFeaturedCaseStudies, fetchFeaturedNotes } from '@/lib/api';
 
 const HomePage = () => {
   const [projects, setProjects] = useState([]);
@@ -17,7 +17,7 @@ const HomePage = () => {
       try {
         const [caseStudiesData, postsData] = await Promise.all([
           fetchFeaturedCaseStudies(),
-          fetchFeaturedBrainGardenArticles()
+          fetchFeaturedNotes()
         ]);
         setProjects(caseStudiesData);
         setPosts(postsData);
@@ -75,12 +75,11 @@ const HomePage = () => {
             I define states, flows, and edge cases before opening Figma.
           </p>
 
-
         </motion.div>
       </section>
 
-      {/* Selected Work Section */}
-      <section id="selected-systems" className="container mx-auto px-6 py-12 md:py-32">
+      {/* Work Section */}
+      <section id="work" className="container mx-auto px-6 py-12 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +87,7 @@ const HomePage = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-10 md:mb-16">
-            Selected Work
+            Work
           </h2>
 
           {loading ? (
@@ -167,7 +166,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Preview of "The Brain Garden" Section */}
+      {/* Preview of "Notes" Section */}
       <section className="container mx-auto px-6 py-12 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -177,7 +176,7 @@ const HomePage = () => {
         >
           <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-warm-white">
-              Brain Garden
+              Notes
             </h2>
             <p className="text-warm-white/60 mt-2 text-base md:text-lg max-w-xl">
               Where I document systems, AI experiments, and design thinking.
@@ -195,7 +194,7 @@ const HomePage = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Link
-                    to={`/brain-garden/${post.slug}`}
+                    to={`/notes/${post.slug}`}
                     className="block group bg-charcoal-light/30 border border-warm-white/5 p-8 rounded-3xl hover:bg-charcoal-light/50 transition-all duration-300 h-full"
                   >
                     <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-accent transition-colors">
@@ -217,37 +216,13 @@ const HomePage = () => {
 
           <div className="flex justify-start">
             <Link
-              to="/the-brain-garden"
+              to="/notes"
               className="text-warm-white/60 font-semibold hover:text-orange-accent transition-colors flex items-center gap-2"
             >
               View all notes
               <span className="text-xl">→</span>
             </Link>
           </div>
-        </motion.div>
-      </section>
-
-      {/* Strong Closing Section */}
-      <section className="container mx-auto px-6 py-14 md:py-40 border-t border-warm-white/5">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-6xl font-bold text-warm-white mb-6 md:mb-8">
-            Complex systems deserve clear thinking.
-          </h2>
-          <p className="text-xl md:text-2xl text-warm-white/40 mb-12">
-            If you care about how things work, not just how they look, we should talk.
-          </p>
-          <a
-            href="#selected-systems"
-            className="inline-flex items-center bg-orange-accent/90 text-charcoal-dark px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent hover:scale-105 hover:shadow-[0_0_30px_rgba(255,140,66,0.3)] transition-all duration-300"
-          >
-            View Selected Work
-          </a>
         </motion.div>
       </section>
     </div>

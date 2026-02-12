@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
+import { useContactModal } from '@/context/ContactModalContext';
 
 const AboutPage = () => {
   const howIWork = [
@@ -38,9 +39,9 @@ const AboutPage = () => {
         "Working in cybersecurity means dealing with complicated systems. My job is to make them understandable."
     },
     {
-      title: "The Brain Garden",
+      title: "Notes",
       description:
-        "The Brain Garden is where I write things down. It helps me think more clearly."
+        "Notes is where I write things down. It helps me think more clearly."
     }
   ];
 
@@ -59,6 +60,8 @@ const AboutPage = () => {
     }
   ];
 
+  const { openModal } = useContactModal();
+
   return (
     <div className="bg-charcoal-dark min-h-screen">
       <Helmet>
@@ -73,7 +76,7 @@ const AboutPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-warm-white mb-8 md:mb-10 leading-[1.1] md:leading-[1.05]">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-8 md:mb-10 leading-[1.1] md:leading-[0.95] tracking-tight">
             I turn complex logic<br />
             into usable systems.
           </h1>
@@ -81,10 +84,11 @@ const AboutPage = () => {
           {/* Intro Text */}
           <div className="max-w-4xl space-y-6">
             <p className="text-xl md:text-2xl text-warm-white/90 leading-[1.5]">
-              Hi, I’m Angga. I design complex systems and make them usable.
+              Hi, I’m Angga.
             </p>
             <p className="text-lg md:text-xl text-warm-white/60 leading-[1.5] max-w-3xl">
-              Most of my work sits between product and engineering. Before designing screens, I clarify how the system should work.
+              I like starting with the system.<br />
+              Once that’s clear, the interface becomes simple.
             </p>
             <p className="text-xl md:text-2xl text-orange-accent/90 font-bold italic leading-tight pt-4">
               I care about clarity. Not just how something looks, but how it behaves.
@@ -227,12 +231,12 @@ const AboutPage = () => {
           <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-8">
             If your product is complex, let’s make it understandable.
           </h2>
-          <a
-            href="mailto:angkurns@gmail.com"
+          <button
+            onClick={openModal}
             className="inline-block bg-orange-accent/90 text-charcoal-dark px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent hover:scale-105 hover:shadow-[0_0_30px_rgba(255,140,66,0.3)] transition-all duration-300"
           >
             Let’s Talk
-          </a>
+          </button>
         </motion.div>
       </section>
     </div>

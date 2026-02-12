@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2 } from 'lucide-react';
-import { fetchBrainGardenBySlug } from '@/lib/api';
+import { fetchNoteBySlug } from '@/lib/api';
 
 const BrainGardenDetail = () => {
   const { slug } = useParams();
@@ -16,7 +16,7 @@ const BrainGardenDetail = () => {
     const loadData = async () => {
       try {
         setLoading(true);
-        const data = await fetchBrainGardenBySlug(slug);
+        const data = await fetchNoteBySlug(slug);
         if (!data) {
           setError("Article not found");
         } else {
@@ -63,11 +63,11 @@ const BrainGardenDetail = () => {
         <h2 className="text-2xl font-bold mb-4">Article Not Found</h2>
         <p className="text-warm-white/60 mb-8">{error || "This thought seems to have withered."}</p>
         <Link
-          to="/the-brain-garden"
+          to="/notes"
           className="text-orange-accent hover:text-orange-accent/80 flex items-center gap-2"
         >
           <ArrowLeft size={20} />
-          Back to Brain Garden
+          Back to Notes
         </Link>
       </div>
     );
@@ -76,18 +76,18 @@ const BrainGardenDetail = () => {
   return (
     <div className="bg-charcoal-dark min-h-screen">
       <Helmet>
-        <title>{article.title} - The Brain Garden</title>
+        <title>{article.title} - Notes</title>
         <meta name="description" content={article.summary || article.short_description} />
       </Helmet>
 
       <div className="container mx-auto px-6">
         <div className="max-w-[760px] mx-auto pt-8 md:pt-16 px-6">
           <Link
-            to="/the-brain-garden"
+            to="/notes"
             className="inline-flex items-center gap-2 text-warm-white/40 hover:text-orange-accent transition-colors mb-6 md:mb-10"
           >
             <ArrowLeft size={16} />
-            <span className="text-sm tracking-wide">Back to Garden</span>
+            <span className="text-sm tracking-wide">Back to Notes</span>
           </Link>
         </div>
 

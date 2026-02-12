@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Loader2, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { fetchAllBrainGardenArticles } from '@/lib/api';
+import { fetchAllNotes } from '@/lib/api';
 
 const TheBrainGarden = () => {
   const [articles, setArticles] = useState([]);
@@ -14,7 +14,7 @@ const TheBrainGarden = () => {
   useEffect(() => {
     const loadArticles = async () => {
       try {
-        const data = await fetchAllBrainGardenArticles();
+        const data = await fetchAllNotes();
         setArticles(data);
       } catch (error) {
         console.error("Failed to load articles:", error);
@@ -42,7 +42,7 @@ const TheBrainGarden = () => {
   return (
     <div className="bg-charcoal-dark min-h-screen">
       <Helmet>
-        <title>Brain Garden - Angkurn</title>
+        <title>Notes - Angkurn</title>
         <meta name="description" content="A public notebook where I refine systems, document AI workflows, and break down product thinking." />
       </Helmet>
 
@@ -55,7 +55,7 @@ const TheBrainGarden = () => {
           className="max-w-4xl"
         >
           <h1 className="text-4xl md:text-7xl font-bold text-warm-white mb-6 md:mb-8">
-            Brain Garden
+            Notes
           </h1>
           <div className="space-y-4 mb-12">
             <p className="text-lg md:text-2xl text-warm-white/70 leading-relaxed italic border-l-4 border-orange-accent/30 pl-6 md:pl-8">
@@ -121,7 +121,7 @@ const TheBrainGarden = () => {
                       )}
                     </div>
 
-                    <Link to={`/brain-garden/${article.slug}`}>
+                    <Link to={`/notes/${article.slug}`}>
                       <h2 className={`text-2xl md:text-4xl font-bold mb-4 group-hover:text-orange-accent transition-colors leading-tight ${index === 0 && !selectedTag ? 'text-white' : 'text-warm-white'}`}>
                         {article.title}
                       </h2>
@@ -133,7 +133,7 @@ const TheBrainGarden = () => {
 
                     <div className="mt-auto">
                       <Link
-                        to={`/brain-garden/${article.slug}`}
+                        to={`/notes/${article.slug}`}
                         className="text-orange-accent font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                       >
                         Read note <span className="text-xl">→</span>
@@ -147,27 +147,6 @@ const TheBrainGarden = () => {
             )}
           </div>
         )}
-      </section>
-
-      {/* Closing Section */}
-      <section className="container mx-auto px-6 pb-20 md:pb-32 border-t border-warm-white/5 pt-14 md:pt-24">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="max-w-2xl"
-        >
-          <h2 className="text-2xl md:text-3xl font-bold text-warm-white mb-6">Structured thinking, publicly documented.</h2>
-          <div className="space-y-6 text-warm-white/50 text-lg leading-relaxed">
-            <p>
-              These are not polished case studies.<br />
-              They are how I think in public.
-            </p>
-            <p>
-              If you would like to build something thoughtful, <a href="mailto:angkurns@gmail.com" className="text-orange-accent hover:underline">let’s connect</a>.
-            </p>
-          </div>
-        </motion.div>
       </section>
     </div>
   );
