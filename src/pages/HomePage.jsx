@@ -67,7 +67,7 @@ const HomePage = () => {
           <p className="text-orange-accent text-base md:text-lg font-medium tracking-wide mb-4">
             Product Designer at Autobahn Security GmbH.
           </p>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-6 md:mb-8 leading-[1.05] md:leading-[0.95] tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-6 md:mb-8 leading-[1.1] md:leading-[0.95] tracking-tight">
             I design logic first,<br />
             then I build the interface.
           </h1>
@@ -80,14 +80,14 @@ const HomePage = () => {
       </section>
 
       {/* Selected Work Section */}
-      <section id="selected-systems" className="container mx-auto px-6 py-16 md:py-32">
+      <section id="selected-systems" className="container mx-auto px-6 py-12 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-warm-white mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-10 md:mb-16">
             Selected Work
           </h2>
 
@@ -125,7 +125,7 @@ const HomePage = () => {
       </section>
 
       {/* My Operating System Section */}
-      <section className="container mx-auto px-6 py-16 md:py-32">
+      <section className="container mx-auto px-6 py-12 md:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -133,7 +133,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-warm-white leading-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white leading-tight">
               My Operating<br />System
             </h2>
           </motion.div>
@@ -147,7 +147,7 @@ const HomePage = () => {
           >
             {operatingSystem.map((item, index) => (
               <div key={index} className="relative">
-                <div className="absolute -left-6 -top-6 text-9xl md:text-[10rem] font-bold text-warm-white/[0.03] select-none">
+                <div className="absolute -left-6 -top-6 text-8xl md:text-[10rem] font-bold text-warm-white/[0.03] select-none">
                   {item.number}
                 </div>
                 <div className="relative z-10">
@@ -168,18 +168,18 @@ const HomePage = () => {
       </section>
 
       {/* Preview of "The Brain Garden" Section */}
-      <section className="container mx-auto px-6 py-16 md:py-32">
+      <section className="container mx-auto px-6 py-12 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-warm-white">
+          <div className="mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-warm-white">
               Brain Garden
             </h2>
-            <p className="text-warm-white/60 mt-3 text-lg max-w-xl">
+            <p className="text-warm-white/60 mt-2 text-base md:text-lg max-w-xl">
               Where I document systems, AI experiments, and design thinking.
             </p>
           </div>
@@ -236,7 +236,7 @@ const HomePage = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-warm-white mb-8">
+          <h2 className="text-3xl md:text-6xl font-bold text-warm-white mb-6 md:mb-8">
             Complex systems deserve clear thinking.
           </h2>
           <p className="text-xl md:text-2xl text-warm-white/40 mb-12">

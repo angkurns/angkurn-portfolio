@@ -81,10 +81,10 @@ const BrainGardenDetail = () => {
       </Helmet>
 
       <div className="container mx-auto px-6">
-        <div className="max-w-[760px] mx-auto pt-16">
+        <div className="max-w-[760px] mx-auto pt-8 md:pt-16 px-6">
           <Link
             to="/the-brain-garden"
-            className="inline-flex items-center gap-2 text-warm-white/40 hover:text-orange-accent transition-colors mb-10"
+            className="inline-flex items-center gap-2 text-warm-white/40 hover:text-orange-accent transition-colors mb-6 md:mb-10"
           >
             <ArrowLeft size={16} />
             <span className="text-sm tracking-wide">Back to Garden</span>
@@ -102,15 +102,15 @@ const BrainGardenDetail = () => {
               {article.note_type || 'SYSTEM NOTE'}
             </span>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-warm-white leading-tight mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold text-warm-white leading-tight mb-4 md:mb-6">
               {article.title}
             </h1>
 
-            <p className="article-subtitle !mb-10">
+            <p className="article-subtitle !text-lg md:!text-2xl !mb-8 md:!mb-10">
               {article.summary || article.short_description}
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-warm-white/30 border-t border-warm-white/5 pt-8">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs md:text-sm text-warm-white/30 border-t border-warm-white/5 pt-6 md:pt-8">
               <span>{formatDate(article.published_date)}</span>
               <span>·</span>
               <span>{calculateReadingTime(article.content)} min read</span>
@@ -132,7 +132,7 @@ const BrainGardenDetail = () => {
           {/* Optional System Breakdown Block */}
           {article.system_breakdown && (
             <div className="max-w-[760px] mx-auto px-6 mb-16">
-              <div className="bg-white/[0.02] border border-warm-white/5 rounded-2xl p-8">
+              <div className="bg-white/[0.02] border border-warm-white/5 rounded-2xl p-6 md:p-8">
                 <span className="block text-[10px] uppercase tracking-widest text-warm-white/20 mb-4">System Flow Overview</span>
                 <div className="font-mono text-sm md:text-base text-orange-accent/80 leading-relaxed">
                   {article.system_breakdown}

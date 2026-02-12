@@ -20,7 +20,7 @@ const ProjectCard = ({ category, title, description, image }) => {
       className="bg-[#2a2a2a] rounded-3xl overflow-hidden border border-warm-white/[0.03] hover:border-orange-accent/30 hover:shadow-[0_20px_40px_-15px_rgba(255,140,66,0.15)] transition-all duration-300 group"
     >
       {/* Thumbnail Image Placeholder */}
-      <div className="relative h-64 bg-gradient-to-br from-charcoal-dark to-charcoal-light/50 flex items-center justify-center">
+      <div className="relative h-56 md:h-64 bg-gradient-to-br from-charcoal-dark to-charcoal-light/50 flex items-center justify-center">
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover" />
         ) : (
@@ -31,7 +31,7 @@ const ProjectCard = ({ category, title, description, image }) => {
       </div>
 
       {/* Content */}
-      <div className="p-10">
+      <div className="p-8 md:p-10">
         {/* Category Tag */}
         <span className="inline-block bg-orange-accent/25 text-orange-accent px-4 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold mb-4">
           {category}

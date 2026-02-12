@@ -4,7 +4,7 @@ import { Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-charcoal-dark border-t border-charcoal-light/10 py-12">
+    <footer className="bg-charcoal-dark border-t border-charcoal-light/10 py-10 md:py-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Left Column - Location */}

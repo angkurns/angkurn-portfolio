@@ -63,10 +63,10 @@ const CaseStudyDetail = () => {
         <meta name="description" content={`Case Study: ${caseStudy.title}`} />
       </Helmet>
 
-      <div className="container mx-auto px-6 py-12 md:py-20">
+      <div className="container mx-auto px-6 py-10 md:py-20">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-warm-white/60 hover:text-orange-accent transition-colors mb-12"
+          className="inline-flex items-center gap-2 text-warm-white/60 hover:text-orange-accent transition-colors mb-8 md:mb-12"
         >
           <ArrowLeft size={20} />
           Back to Home
@@ -82,13 +82,13 @@ const CaseStudyDetail = () => {
             <span className="inline-block bg-orange-accent/20 text-orange-accent px-4 py-1 rounded-full text-sm font-medium mb-6">
               {caseStudy.category}
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold text-warm-white mb-8 leading-tight">
+            <h1 className="text-3xl md:text-6xl font-bold text-warm-white mb-6 md:mb-8 leading-tight">
               {caseStudy.title}
             </h1>
           </div>
 
           {/* Hero Image / Thumbnail Placeholder */}
-          <div className="w-full h-64 md:h-96 bg-charcoal-light rounded-3xl mb-16 overflow-hidden flex items-center justify-center border border-warm-white/5">
+          <div className="w-full h-56 md:h-96 bg-charcoal-light rounded-2xl md:rounded-3xl mb-10 md:mb-16 overflow-hidden flex items-center justify-center border border-warm-white/5">
             {caseStudy.thumbnail_url ? (
               <img
                 src={caseStudy.thumbnail_url}
@@ -104,8 +104,8 @@ const CaseStudyDetail = () => {
 
           {/* Executive Summary */}
           {caseStudy.summary && (
-            <section className="max-w-3xl mx-auto mb-16 px-6 py-8 bg-warm-white/5 border-l-4 border-orange-accent rounded-r-2xl">
-              <p className="text-xl md:text-2xl text-warm-white leading-relaxed font-medium italic">
+            <section className="max-w-3xl mx-auto mb-10 md:mb-16 px-5 py-6 md:px-6 md:py-8 bg-warm-white/5 border-l-4 border-orange-accent rounded-r-2xl">
+              <p className="text-lg md:text-2xl text-warm-white leading-relaxed font-medium italic">
                 {caseStudy.summary}
               </p>
             </section>

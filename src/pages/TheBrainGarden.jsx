@@ -47,27 +47,27 @@ const TheBrainGarden = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-16 md:py-32">
+      <section className="container mx-auto px-6 py-12 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-warm-white mb-8">
+          <h1 className="text-4xl md:text-7xl font-bold text-warm-white mb-6 md:mb-8">
             Brain Garden
           </h1>
           <div className="space-y-4 mb-12">
-            <p className="text-xl md:text-2xl text-warm-white/70 leading-relaxed italic border-l-4 border-orange-accent/30 pl-8">
+            <p className="text-lg md:text-2xl text-warm-white/70 leading-relaxed italic border-l-4 border-orange-accent/30 pl-6 md:pl-8">
               A public notebook where I think through systems, document AI workflows, and break down product logic.
             </p>
-            <p className="text-sm md:text-base text-warm-white/30 pl-9">
+            <p className="text-xs md:text-base text-warm-white/30 pl-7 md:pl-9">
               Working notes on logic, systems, and collaboration.
             </p>
           </div>
 
           {/* Filter Chips */}
-          <div className="flex flex-wrap items-center gap-3 pl-9 mb-8">
+          <div className="flex flex-wrap items-center gap-3 pl-7 md:pl-9 mb-8">
             {['All', 'AI', 'Systems', 'Collaboration'].map((tag) => (
               <button
                 key={tag}
@@ -82,7 +82,7 @@ const TheBrainGarden = () => {
             ))}
           </div>
 
-          <div className="text-sm text-warm-white/30 tracking-wide pl-9">
+          <div className="text-xs md:text-sm text-warm-white/30 tracking-wide pl-7 md:pl-9">
             {articles.length} notes so far.
           </div>
         </motion.div>
@@ -106,7 +106,7 @@ const TheBrainGarden = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group"
                 >
-                  <div className={`block h-full bg-[#2a2a2a] border rounded-3xl p-10 md:p-12 hover:bg-[#2f2f2f] transition-all duration-300 ${index === 0 && !selectedTag ? 'border-orange-accent/20' : 'border-warm-white/[0.03]'}`}>
+                  <div className={`block h-full bg-[#2a2a2a] border rounded-3xl p-8 md:p-12 hover:bg-[#2f2f2f] transition-all duration-300 ${index === 0 && !selectedTag ? 'border-orange-accent/20' : 'border-warm-white/[0.03]'}`}>
                     <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                       <div className="flex flex-wrap gap-4">
                         <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-warm-white/40">
@@ -157,7 +157,7 @@ const TheBrainGarden = () => {
           viewport={{ once: true }}
           className="max-w-2xl"
         >
-          <h2 className="text-3xl font-bold text-warm-white mb-6">Structured thinking, publicly documented.</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-warm-white mb-6">Structured thinking, publicly documented.</h2>
           <div className="space-y-6 text-warm-white/50 text-lg leading-relaxed">
             <p>
               These are not polished case studies.<br />

@@ -112,23 +112,45 @@
 
 .article-content {
   max-width: 760px;
-  margin: 120px auto;
+  margin: 60px auto;
   padding: 0 24px;
 }
 
+@media (min-width: 768px) {
+  .article-content {
+    margin: 120px auto;
+  }
+}
+
 .article-content p {
-  font-size: 20px;
-  line-height: 1.8;
-  margin-bottom: 22px;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 20px;
   color: #d6d6d6;
 }
 
+@media (min-width: 768px) {
+  .article-content p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+  }
+}
+
 .article-content h2 {
-  font-size: 28px;
-  margin-top: 56px;
-  margin-bottom: 24px;
+  font-size: 24px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   font-weight: 600;
   color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .article-content h2 {
+    font-size: 28px;
+    margin-top: 56px;
+    margin-bottom: 24px;
+  }
 }
 
 .article-content ul {

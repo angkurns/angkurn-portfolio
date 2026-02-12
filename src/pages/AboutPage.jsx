@@ -73,7 +73,7 @@ const AboutPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-warm-white mb-10 leading-[1.05]">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-warm-white mb-8 md:mb-10 leading-[1.1] md:leading-[1.05]">
             I turn complex logic<br />
             into usable systems.
           </h1>
@@ -94,7 +94,7 @@ const AboutPage = () => {
       </section>
 
       {/* The Lead Designer of One Section */}
-      <section className="container mx-auto px-6 py-8 md:py-10">
+      <section className="container mx-auto px-6 py-6 md:py-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left: Story Text */}
             <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-white">
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
                 The Lead Designer of One
               </h2>
               <div className="space-y-6 text-warm-white/70 text-lg leading-[1.5]">
@@ -133,14 +133,14 @@ const AboutPage = () => {
       </section>
 
       {/* How I Work Section */}
-      <section className="container mx-auto px-6 py-8 md:py-10">
+      <section className="container mx-auto px-6 py-10 md:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-10 md:mb-12">
             How I Work
           </h2>
 
@@ -170,9 +170,9 @@ const AboutPage = () => {
       </section>
 
       {/* What I'm Working On Section */}
-      <section className="container mx-auto px-6 py-8 md:py-10">
+      <section className="container mx-auto px-6 py-10 md:py-12">
         <div className="max-w-6xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-3">
             What I’m Working On
           </h2>
           <p className="text-warm-white/40 mb-12 text-lg">
@@ -196,15 +196,15 @@ const AboutPage = () => {
       </section>
 
       {/* Books That Shaped How I Think */}
-      <section className="container mx-auto px-6 py-8 md:py-10 border-t border-warm-white/5 mt-8 md:mt-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
+      <section className="container mx-auto px-6 py-10 md:py-14 border-t border-warm-white/5 mt-8 md:mt-10">
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 md:mb-12">
           Books That Shaped How I Think
         </h2>
 
         <div className="max-w-3xl space-y-10">
           {shapedThinking.map((book, index) => (
             <div key={index} className="group">
-              <h3 className="text-2xl md:text-3xl font-bold text-warm-white mb-2 group-hover:text-orange-accent transition-colors">
+              <h3 className="text-xl md:text-3xl font-bold text-warm-white mb-2 group-hover:text-orange-accent transition-colors">
                 {book.title}
               </h3>
               <p className="text-warm-white/50 text-lg leading-[1.5]">
