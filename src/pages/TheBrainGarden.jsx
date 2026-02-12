@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Loader2, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchAllNotes } from '@/lib/api';
+import { calculateReadingTime } from '@/lib/utils';
 
 const TheBrainGarden = () => {
   const [articles, setArticles] = useState([]);
@@ -110,7 +111,7 @@ const TheBrainGarden = () => {
                     <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                       <div className="flex flex-wrap gap-4">
                         <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-warm-white/40">
-                          {formatDate(article.published_date)} · 3 min read
+                          {formatDate(article.published_date)} · {calculateReadingTime(article.content)} min read
                         </div>
                       </div>
 

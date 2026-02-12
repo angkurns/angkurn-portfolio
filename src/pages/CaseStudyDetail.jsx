@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Loader2, Link as LinkIcon } from 'lucide-react';
 import { fetchCaseStudyBySlug } from '@/lib/api';
 
 const CaseStudyDetail = () => {
@@ -11,6 +11,13 @@ const CaseStudyDetail = () => {
   const [caseStudy, setCaseStudy] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   useEffect(() => {
     const loadData = async () => {
@@ -92,22 +99,48 @@ const CaseStudyDetail = () => {
             {caseStudy.short_description}
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-y border-warm-white/5">
-            <div>
-              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Role</span>
-              <span className="text-base font-medium">{caseStudy.role}</span>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-y border-warm-white/5 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-grow">
+              <div>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Role</span>
+                <span className="text-base font-medium">{caseStudy.role}</span>
+              </div>
+              <div>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Platform</span>
+                <span className="text-base font-medium">{caseStudy.platform || caseStudy.environment || "Web & Mobile"}</span>
+              </div>
+              <div>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Focus</span>
+                <span className="text-base font-medium">{caseStudy.focus || "System Design"}</span>
+              </div>
+              <div>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Year</span>
+                <span className="text-base font-medium">{caseStudy.year}</span>
+              </div>
             </div>
-            <div>
-              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Platform</span>
-              <span className="text-base font-medium">{caseStudy.platform || caseStudy.environment || "Web & Mobile"}</span>
-            </div>
-            <div>
-              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Focus</span>
-              <span className="text-base font-medium">{caseStudy.focus || "System Design"}</span>
-            </div>
-            <div>
-              <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Year</span>
-              <span className="text-base font-medium">{caseStudy.year}</span>
+
+            <div className="relative self-end md:self-auto">
+              <AnimatePresence>
+                {copied && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="absolute bottom-full right-0 mb-2 px-2 py-1 bg-neutral-800 border border-neutral-700 rounded-md text-xs text-neutral-200 whitespace-nowrap pointer-events-none"
+                  >
+                    Link copied
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <button
+                onClick={handleCopy}
+                className="text-neutral-500 hover:text-white transition-all duration-300 p-2 rounded-md focus-visible:ring-1 focus-visible:ring-orange-accent/50 hover:scale-105"
+                aria-label="Copy case study link"
+                title="Copy link"
+              >
+                <LinkIcon className="w-4 h-4 md:w-[18px] md:h-[18px]" />
+              </button>
             </div>
           </div>
         </motion.div>
