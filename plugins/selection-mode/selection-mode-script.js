@@ -1,8 +1,6 @@
 const ALLOWED_PARENT_ORIGINS = [
-	'https://horizons.hostinger.com',
-	'https://horizons.hostinger.dev',
-	'https://horizons-frontend-local.hostinger.dev',
-	'http://localhost:4000',
+	'https://angkurn-portfolio.vercel.app',
+	'http://localhost:5173',
 ];
 
 const IMPORTANT_STYLES = [
@@ -162,7 +160,7 @@ function getPathToElement(element) {
 
 function getComputedStyles(element) {
 	const computedStyles = window.getComputedStyle(element);
-	
+
 	return Object.fromEntries(IMPORTANT_STYLES.map((style) => {
 		const styleValue = computedStyles.getPropertyValue(style)?.trim();
 
@@ -170,7 +168,7 @@ function getComputedStyles(element) {
 			? [style, styleValue]
 			: null;
 	})
-	.filter(Boolean));
+		.filter(Boolean));
 }
 
 function extractDOMContext(element) {
@@ -183,8 +181,8 @@ function extractDOMContext(element) {
 	return {
 		outerHTML: element.outerHTML,
 		selector: getPathToElement(element),
-		attributes: (element.attributes && element.attributes.length > 0) 
-		? Object.fromEntries(Array.from(element.attributes).map((attr) => [attr.name, attr.value]))
+		attributes: (element.attributes && element.attributes.length > 0)
+			? Object.fromEntries(Array.from(element.attributes).map((attr) => [attr.name, attr.value]))
 			: {},
 		computedStyles: getComputedStyles(element),
 		textContent: (textContent && textContent.length > 0 && textContent.length < TEXT_CONTEXT_MAX_LENGTH)
