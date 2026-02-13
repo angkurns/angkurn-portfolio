@@ -3,26 +3,30 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Loader2, Link as LinkIcon } from 'lucide-react';
+import { ArrowLeft, Loader2, Link as LinkIcon, Share2 } from 'lucide-react';
 import { fetchNoteBySlug } from '@/lib/api';
 import { calculateReadingTime } from '@/lib/utils';
+import { useToast } from '@/components/ui/use-toast';
 
 const BrainGardenDetail = () => {
   const { slug } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
 
-  const handleCopy = () => {
+  const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    toast({
+      title: "Link copied",
+      duration: 2000,
+    });
   };
 
   useEffect(() => {
     const loadData = async () => {
       if (!slug) return;
+
       try {
         setLoading(true);
         const data = await fetchNoteBySlug(slug);
@@ -43,7 +47,7 @@ const BrainGardenDetail = () => {
   }, [slug]);
 
   const formatDate = (dateString) => {
-    if (!dateString) return '';
+    if (!dateString) return 'Recent';
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -69,116 +73,80 @@ const BrainGardenDetail = () => {
           className="text-orange-accent hover:text-orange-accent/80 flex items-center gap-2"
         >
           <ArrowLeft size={18} />
-          Back to Notes Archive
+          Back to Notes
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="bg-charcoal-dark min-h-screen text-warm-white font-dm-sans">
+    <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
       <Helmet>
         <title>{article.title} — Notes</title>
         <meta name="description" content={article.summary || article.short_description} />
       </Helmet>
 
-      <main className="container mx-auto px-6 py-12 md:py-20 max-w-4xl">
-        {/* Back Link */}
-        <div className="mb-8">
+      {/* Header Container */}
+      <header className="container mx-auto px-6 pt-32 pb-12 max-w-3xl">
+        <div className="mb-6">
           <Link
             to="/notes"
-            className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
+            className="text-[12px] text-warm-white/50 hover:text-warm-white transition-colors uppercase tracking-widest font-bold"
           >
-            <ArrowLeft size={16} />
-            Back to Notes
+            ← Notes
           </Link>
         </div>
 
-        {/* Header */}
-        <header className="mb-10 space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-neutral-400 flex items-center gap-2">
+        <div className="space-y-5">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-warm-white/30">
+              <span className="text-orange-accent/80">{article.tags?.[0] || 'Note'}</span>
+              <span className="opacity-20">/</span>
               <span>{formatDate(article.published_date)}</span>
-              <span>·</span>
-              <span>{calculateReadingTime(article.content)} min read</span>
-              <span>·</span>
-              <span className="uppercase tracking-widest text-[10px] font-bold text-orange-accent/60">
-                {article.note_type || 'System Note'}
-              </span>
+              <span className="opacity-20">/</span>
+              <span>{calculateReadingTime(article.content)} MIN READ</span>
             </div>
 
-            <div className="relative">
-              <AnimatePresence>
-                {copied && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-neutral-800 border border-neutral-700 rounded text-[10px] text-white whitespace-nowrap pointer-events-none"
-                  >
-                    Link copied
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <button
-                onClick={handleCopy}
-                className="text-neutral-500 hover:text-white transition-colors p-1 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-accent/50"
-                aria-label="Copy link"
-                title="Copy note link"
-              >
-                <LinkIcon size={16} />
-              </button>
-            </div>
+            <button
+              onClick={handleShare}
+              className="p-2 hover:bg-warm-white/5 rounded-full transition-all text-warm-white/20 hover:text-white"
+              title="Copy Link"
+            >
+              <LinkIcon size={18} />
+            </button>
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-warm-white leading-tight tracking-tight">
             {article.title}
           </h1>
 
           {article.summary && (
-            <p className="text-lg text-neutral-400 leading-relaxed max-w-2xl">
-              {article.summary}
-            </p>
+            <div className="mb-2">
+              <p className="text-lg md:text-xl text-warm-white/40 leading-relaxed font-medium italic border-l-2 border-orange-accent/30 pl-8">
+                {article.summary}
+              </p>
+            </div>
           )}
-        </header>
+        </div>
+      </header>
 
-        {/* Note Container */}
-        <article className="bg-neutral-900/40 border border-neutral-800 border-l-2 border-l-orange-500/40 rounded-xl overflow-hidden shadow-2xl">
-          <div className="p-6 md:p-10">
-            {/* Main Content */}
-            <div
-              className="prose prose-neutral prose-invert max-w-none 
-                prose-p:text-base prose-p:leading-relaxed prose-p:text-neutral-300 prose-p:mb-6
-                prose-headings:text-white prose-headings:font-bold
-                prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
-                prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
-                prose-blockquote:border-l-2 prose-blockquote:border-orange-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-neutral-300 prose-blockquote:my-8 prose-blockquote:bg-transparent
-                prose-ul:text-neutral-300 prose-li:mb-2
-                prose-a:text-orange-accent prose-a:no-underline hover:prose-a:underline
-              "
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+      {/* Main Content */}
+      <main className="container mx-auto px-6 pb-20 max-w-3xl">
+        <article
+          className="article-content !m-0 !p-0 !max-w-none 
+            [&_p]:!text-[15px] [&_p]:md:!text-[16px] [&_p]:!text-warm-white/70 [&_p]:!leading-[1.65] [&_p]:!mb-5
+            [&_h2]:!text-lg [&_h2]:md:!text-xl [&_h2]:!text-warm-white [&_h2]:!mt-10 [&_h2]:!mb-4
+            [&_blockquote]:!border-l-2 [&_blockquote]:!border-orange-accent/40 [&_blockquote]:!pl-6 [&_blockquote]:!italic [&_blockquote]:!text-warm-white/50 [&_blockquote]:!my-8 [&_blockquote]:!bg-transparent
+            [&_ul]:!text-warm-white/70 [&_li]:!mb-3 [&_li]:!text-[15px]
+            [&_a]:!text-orange-accent [&_a]:!no-underline hover:[&_a]:!underline
+          "
+          dangerouslySetInnerHTML={{ __html: article.content }}
+        />
 
-            {/* Why This Matters Section (Optional) */}
-            {article.why_matters && article.why_matters.length > 0 && (
-              <div className="mt-12 pt-8 border-t border-neutral-800">
-                <h2 className="text-xl font-bold text-white mb-6 uppercase tracking-widest text-[10px] opacity-40">Context & Logic</h2>
-                <ul className="space-y-4">
-                  {article.why_matters.map((point, i) => (
-                    <li key={i} className="flex gap-4 text-base text-neutral-300">
-                      <span className="text-orange-500/60 font-mono">→</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </article>
-
-        <footer className="mt-24 text-xs text-neutral-500">
-          <div>Refining systems since 2024.</div>
+        <footer className="mt-16 pt-8 border-t border-warm-white/[0.05]">
+          <p className="text-[12px] text-warm-white/40 tracking-wider">
+            Angga — System Notes
+          </p>
         </footer>
       </main>
     </div>

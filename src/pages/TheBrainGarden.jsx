@@ -1,154 +1,355 @@
 
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { Loader2, Calendar, Tag } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Loader2, X, Clock, Calendar, ArrowRight, Link as LinkIcon, Pin } from 'lucide-react';
 import { fetchAllNotes } from '@/lib/api';
 import { calculateReadingTime } from '@/lib/utils';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useToast } from '@/components/ui/use-toast';
+
+const CATEGORIES = [
+  'All',
+  'AI',
+  'Product Design',
+  'Design System',
+  'UI/UX',
+  'Collaboration',
+  'Leadership',
+  'Systems Thinking',
+  'Security'
+];
 
 const TheBrainGarden = () => {
   const [articles, setArticles] = useState([]);
-  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     const loadArticles = async () => {
       try {
         const data = await fetchAllNotes();
-        setArticles(data);
+        setArticles(data || []);
       } catch (error) {
         console.error("Failed to load articles:", error);
       } finally {
         setLoading(false);
       }
     };
-
     loadArticles();
   }, []);
 
   const formatDate = (dateString) => {
-    if (!dateString) return 'Thinking Lab';
+    if (!dateString) return 'Recent';
     return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
     });
   };
 
-  const filteredArticles = selectedTag
-    ? articles.filter(article => article.tags?.includes(selectedTag))
-    : articles;
+  const getCategoryCount = (category) => {
+    if (category === 'All') return articles.length;
+    return articles.filter(article => article.category === category).length;
+  };
+
+  const filteredArticles = articles
+    .filter(article => {
+      const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
+      const matchesSearch = searchQuery === '' ||
+        (article.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          article.summary?.toLowerCase().includes(searchQuery.toLowerCase()));
+      return matchesCategory && matchesSearch;
+    })
+    .sort((a, b) => {
+      // Pinned notes always first (among those matching search/category)
+      if (a.is_pinned && !b.is_pinned) return -1;
+      if (!a.is_pinned && b.is_pinned) return 1;
+      // Secondary sort: most recent first
+      return new Date(b.published_date) - new Date(a.published_date);
+    });
+
+  const openModal = (article) => {
+    setSelectedArticle(article);
+    window.history.pushState(null, '', `/notes/${article.slug}`);
+  };
+
+  const closeModal = () => {
+    setSelectedArticle(null);
+    window.history.history.pushState(null, '', '/notes');
+  };
+
+  const handleShare = (e, article) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    const url = `${window.location.origin}/notes/${article.slug}`;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        toast({
+          title: "Link copied",
+          duration: 2000,
+        });
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    } else {
+      toast({
+        title: "Copy failed",
+        duration: 2000,
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') closeModal();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
+  useEffect(() => {
+    if (selectedArticle) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [selectedArticle]);
 
   return (
-    <div className="bg-charcoal-dark min-h-screen">
+    <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
       <Helmet>
         <title>Notes - Angkurn</title>
         <meta name="description" content="A public notebook where I refine systems, document AI workflows, and break down product thinking." />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-6 py-12 md:py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl"
-        >
-          <h1 className="text-4xl md:text-7xl font-bold text-warm-white mb-6 md:mb-8">
-            Notes
-          </h1>
-          <div className="space-y-4 mb-12">
-            <p className="text-lg md:text-2xl text-warm-white/70 leading-relaxed italic border-l-4 border-orange-accent/30 pl-6 md:pl-8">
-              A public notebook where I think through systems, document AI workflows, and break down product logic.
+      <div className="container mx-auto px-6 pt-40 pb-24">
+        {/* HERO SECTION */}
+        <header className="mb-24 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-bold text-warm-white mb-6 tracking-tight">
+              Notes
+            </h1>
+            <p className="text-xl md:text-2xl text-warm-white/40 leading-relaxed font-medium">
+              A public notebook where I think through systems and product logic.
             </p>
-            <p className="text-xs md:text-base text-warm-white/30 pl-7 md:pl-9">
-              Working notes on logic, systems, and collaboration.
-            </p>
-          </div>
+          </motion.div>
+        </header>
 
-          {/* Filter Chips */}
-          <div className="flex flex-wrap items-center gap-3 pl-7 md:pl-9 mb-8">
-            {['All', 'AI', 'Systems', 'Collaboration'].map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag === 'All' ? null : tag)}
-                className={`text-xs uppercase tracking-widest px-4 py-2 rounded-full border transition-all duration-300 ${(selectedTag === tag || (tag === 'All' && !selectedTag))
-                  ? 'bg-orange-accent text-charcoal-dark border-orange-accent'
-                  : 'border-warm-white/10 text-warm-white/40 hover:border-warm-white/30 hover:text-warm-white/60'
-                  }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+        <div className="flex flex-col md:flex-row gap-16">
 
-          <div className="text-xs md:text-sm text-warm-white/30 tracking-wide pl-7 md:pl-9">
-            {articles.length} notes so far.
-          </div>
-        </motion.div>
-      </section>
+          {/* LEFT SIDEBAR */}
+          <aside className="w-full md:w-[240px] md:sticky md:top-32 self-start">
+            <h2 className="text-[10px] uppercase tracking-[0.3em] text-warm-white/20 font-bold mb-8">
+              Topics
+            </h2>
+            <nav className="flex flex-col gap-1">
+              {CATEGORIES.map((category) => {
+                const isActive = selectedCategory === category;
+                const count = getCategoryCount(category);
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`group flex items-center justify-between px-3 py-2.5 rounded-[8px] overflow-hidden transition-all duration-200 text-sm ${isActive
+                      ? 'bg-orange-accent/10 text-orange-accent font-semibold'
+                      : 'text-warm-white/40 hover:text-warm-white hover:bg-warm-white/[0.03]'
+                      }`}
+                  >
+                    <span className="relative z-10">{category}</span>
+                    <span className={`relative z-10 text-[10px] font-bold px-1.5 py-0.5 rounded-md border transition-colors ${isActive
+                      ? 'border-orange-accent/30 text-orange-accent bg-orange-accent/5'
+                      : 'border-warm-white/5 text-warm-white/20 group-hover:border-warm-white/10 group-hover:text-warm-white/40'
+                      }`}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </nav>
+          </aside>
 
-      {/* Archive Section */}
-      <section className="container mx-auto px-6 pb-16 md:pb-24">
-        {loading ? (
-          <div className="flex justify-center py-20">
-            <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-            {filteredArticles.length > 0 ? (
-              filteredArticles.map((article, index) => (
-                <motion.article
-                  key={article.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group"
-                >
-                  <div className={`block h-full bg-[#2a2a2a] border rounded-3xl p-8 md:p-12 hover:bg-[#2f2f2f] transition-all duration-300 ${index === 0 && !selectedTag ? 'border-orange-accent/20' : 'border-warm-white/[0.03]'}`}>
-                    <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                      <div className="flex flex-wrap gap-4">
-                        <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-warm-white/40">
-                          {formatDate(article.published_date)} · {calculateReadingTime(article.content)} min read
+          {/* RIGHT CONTENT GRID */}
+          <main className="flex-1">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-6">
+              <div className="text-[11px] uppercase tracking-widest text-warm-white/30 font-bold">
+                {articles.length} notes. Growing weekly.
+              </div>
+
+              {/* Search Feature */}
+              <div className="relative w-full sm:w-[280px]">
+                <input
+                  type="text"
+                  placeholder="Search notes..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full h-[42px] bg-transparent border border-white/[0.08] rounded-[10px] px-[14px] text-sm text-warm-white placeholder:text-white/35 focus:ring-2 focus:ring-orange-accent/15 focus:border-orange-accent outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            {loading ? (
+              <div className="flex items-center justify-center py-32">
+                <Loader2 className="w-8 h-8 text-orange-accent/40 animate-spin" />
+              </div>
+            ) : (
+              <>
+                {filteredArticles.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+                    {filteredArticles.map((article) => (
+                      <div
+                        key={article.id}
+                        onClick={() => openModal(article)}
+                        className={`group relative flex flex-col bg-[#161616] border border-warm-white/[0.03] rounded-xl p-6 hover:border-warm-white/10 hover:bg-[#1a1a1a] transition-all duration-300 cursor-pointer shadow-sm hover:shadow-2xl hover:-translate-y-1 ${article.is_pinned ? 'border-orange-accent/10 hover:border-orange-accent/30' : ''}`}
+                      >
+                        {article.is_pinned && (
+                          <div className="absolute top-5 right-5 text-orange-accent group-hover:rotate-12 transition-all duration-300 opacity-40 group-hover:opacity-100">
+                            <Pin size={16} fill="currentColor" strokeWidth={2.5} />
+                          </div>
+                        )}
+
+                        <div className="mb-4">
+                          <span className="text-[10px] uppercase tracking-[0.2em] text-warm-white/30 font-bold group-hover:text-warm-white/50 transition-colors">
+                            {article.category || 'Note'}
+                          </span>
+                        </div>
+
+                        <h3 className="text-base font-bold text-warm-white mb-3 line-clamp-2 leading-snug group-hover:text-orange-accent transition-colors">
+                          {article.title}
+                        </h3>
+
+                        <p className="text-[13px] text-warm-white/40 line-clamp-2 mb-8 leading-relaxed">
+                          {article.summary || article.short_description || "Click to read more about this system-thinking note."}
+                        </p>
+
+                        <div className="mt-auto pt-4 border-t border-warm-white/[0.03] flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-[10px] text-warm-white/30 font-medium tracking-wide">
+                            <span>{formatDate(article.published_date)}</span>
+                            <span>·</span>
+                            <span>{calculateReadingTime(article.content)} MIN</span>
+                          </div>
+                          <span className="text-[10px] font-bold text-orange-accent group-hover:translate-x-1 transition-transform flex items-center gap-1 opacity-0 group-hover:opacity-100 uppercase tracking-wider">
+                            Read more <ArrowRight size={10} />
+                          </span>
                         </div>
                       </div>
-
-                      {index === 0 && !selectedTag && (
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-accent/60">
-                          Latest
-                        </span>
-                      )}
-                    </div>
-
-                    <Link to={`/notes/${article.slug}`}>
-                      <h2 className={`text-2xl md:text-4xl font-bold mb-4 group-hover:text-orange-accent transition-colors leading-tight ${index === 0 && !selectedTag ? 'text-white' : 'text-warm-white'}`}>
-                        {article.title}
-                      </h2>
-                    </Link>
-
-                    <p className="text-warm-white/60 text-lg md:text-xl mb-8 line-clamp-3 leading-relaxed">
-                      {article.summary || article.short_description}
-                    </p>
-
-                    <div className="mt-auto">
-                      <Link
-                        to={`/notes/${article.slug}`}
-                        className="text-orange-accent font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform"
-                      >
-                        Read note <span className="text-xl">→</span>
-                      </Link>
-                    </div>
+                    ))}
                   </div>
-                </motion.article>
-              ))
-            ) : (
-              <p className="text-warm-white/60">No notes found matching this tag.</p>
+                ) : (
+                  <div className="flex flex-col items-center justify-center py-20 text-center">
+                    <p className="text-warm-white/20 text-sm font-medium mt-10">No notes found.</p>
+                  </div>
+                )}
+              </>
             )}
+          </main>
+        </div>
+      </div>
+
+      {/* MODAL PREVIEW */}
+      <AnimatePresence>
+        {selectedArticle && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                closeModal();
+              }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-[6px]"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98, y: 10 }}
+              transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-[720px] max-h-[90vh] bg-[#121212] border border-warm-white/[0.08] rounded-2xl shadow-3xl overflow-hidden flex flex-col"
+            >
+              {/* Modal Header */}
+              <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-6 bg-[#121212]/80 backdrop-blur-xl border-b border-warm-white/[0.05]">
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-orange-accent/80 px-2 py-0.5 rounded bg-orange-accent/5 border border-orange-accent/20">
+                    {selectedArticle.category || 'Note'}
+                  </span>
+                  <div className="h-4 w-px bg-warm-white/10 hidden sm:block"></div>
+                  <div className="text-[10px] text-warm-white/30 font-bold tracking-widest hidden sm:block">
+                    {formatDate(selectedArticle.published_date)} · {calculateReadingTime(selectedArticle.content)} MIN READ
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={(e) => handleShare(e, selectedArticle)}
+                    className="p-2 hover:bg-warm-white/5 rounded-full transition-all text-warm-white/40 hover:text-white relative z-20"
+                    title="Copy Link"
+                  >
+                    <LinkIcon size={16} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeModal();
+                    }}
+                    className="p-2 hover:bg-warm-white/5 rounded-full transition-all text-warm-white/40 hover:text-white relative z-20"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Modal Content */}
+              <div className="flex-1 overflow-y-auto custom-scrollbar">
+                <div className="pt-10 pb-10 px-8 md:px-12">
+                  <h2 className="text-2xl md:text-3xl font-bold text-warm-white mb-4 leading-tight tracking-tight">
+                    {selectedArticle.title}
+                  </h2>
+
+                  {selectedArticle.summary && (
+                    <div className="mb-6">
+                      <p className="text-base md:text-lg text-warm-white/70 opacity-80 leading-[1.5] italic border-l-2 border-orange-accent/30 pl-8">
+                        {selectedArticle.summary}
+                      </p>
+                    </div>
+                  )}
+
+                  <div
+                    className="article-content !m-0 !p-0 !max-w-none 
+                      [&_p]:!text-[15px] [&_p]:md:!text-[16px] [&_p]:!text-warm-white/70 [&_p]:!leading-[1.6] [&_p]:!mb-4
+                      [&_h2]:!text-lg [&_h2]:md:!text-xl [&_h2]:!text-warm-white [&_h2]:!mt-7 [&_h2]:!mb-3
+                      [&_blockquote]:!border-l-2 [&_blockquote]:!border-orange-accent/40 [&_blockquote]:!pl-6 [&_blockquote]:!italic [&_blockquote]:!text-warm-white/50 [&_blockquote]:!my-8 [&_blockquote]:!bg-transparent
+                      [&_ul]:!text-warm-white/70 [&_ul]:!mb-4 [&_li]:!mb-0 [&_li]:!text-[15px] [&_li]:!leading-[1.6]
+                      [&_a]:!text-orange-accent [&_a]:!no-underline hover:[&_a]:!underline
+                    "
+                    dangerouslySetInnerHTML={{ __html: selectedArticle.content }}
+                  />
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="px-8 py-5 bg-[#161616] border-t border-warm-white/[0.05] flex items-center justify-between">
+                <div className="text-[10px] uppercase tracking-widest text-warm-white/20 font-bold">
+                  Angga — System Notes
+                </div>
+              </div>
+            </motion.div>
           </div>
         )}
-      </section>
+      </AnimatePresence>
     </div>
   );
 };
