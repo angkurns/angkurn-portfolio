@@ -131,13 +131,14 @@ const AboutPage = () => {
 
             {/* Right Column: Content */}
             <div className="max-w-[640px]">
-              <div className="mb-10 space-y-4">
-                <span className="text-orange-accent/60 font-mono text-sm tracking-widest uppercase">
-                  Context
+              <div className="mb-10">
+                <span className="text-[12px] uppercase tracking-[0.2em] text-neutral-500 font-bold block">
+                  CONTEXT
                 </span>
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
                   What Changed For Me
                 </h2>
+                <div className="w-[48px] h-[2px] bg-orange-accent mt-5"></div>
               </div>
 
               <div className="space-y-5 text-warm-white text-lg leading-[1.8]">
