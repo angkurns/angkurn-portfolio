@@ -250,7 +250,7 @@ const AboutPage = () => {
       </section>
 
       {/* SECTION 5 — A BIT OF CONTEXT */}
-      <section className="w-full bg-white/[0.01] border-y border-white/[0.05] py-20 md:py-32 mb-20">
+      <section className="w-full bg-white/[0.01] py-20 md:py-32">
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-24 items-start">
             {/* Left side: Heading */}
@@ -342,7 +342,7 @@ const AboutPage = () => {
       </section>
 
       {/* SECTION 6 — CTA */}
-      <section className="container mx-auto px-6 py-24 md:py-32 border-t border-warm-white/5">
+      <section className="container mx-auto px-6 py-24 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

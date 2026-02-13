@@ -25,6 +25,7 @@ const TheBrainGarden = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
+  const [isTopicMenuOpen, setIsTopicMenuOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const { toast } = useToast();
 
@@ -129,9 +130,9 @@ const TheBrainGarden = () => {
         <meta name="description" content="A public notebook where I refine systems, document AI workflows, and break down product thinking." />
       </Helmet>
 
-      <div className="container mx-auto px-6 pt-40 pb-24">
+      <div className="container mx-auto px-6 pt-24 md:pt-40 pb-24">
         {/* HERO SECTION */}
-        <header className="mb-24 max-w-4xl">
+        <header className="mb-12 md:mb-24 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -146,14 +147,66 @@ const TheBrainGarden = () => {
           </motion.div>
         </header>
 
-        <div className="flex flex-col md:flex-row gap-16">
-
-          {/* LEFT SIDEBAR */}
-          <aside className="w-full md:w-[240px] md:sticky md:top-32 self-start">
-            <h2 className="text-[10px] uppercase tracking-[0.3em] text-warm-white/20 font-bold mb-8">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-16">
+          {/* TOPICS SIDEBAR */}
+          <aside className="w-full md:w-[240px] md:sticky md:top-32 self-start z-20">
+            <h2 className="text-[10px] uppercase tracking-[0.3em] text-warm-white/20 font-bold mb-2 md:mb-8">
               Topics
             </h2>
-            <nav className="flex flex-col gap-1">
+
+            {/* Mobile Dropdown */}
+            <div className="md:hidden relative">
+              <button
+                onClick={() => setIsTopicMenuOpen(!isTopicMenuOpen)}
+                className="w-full flex items-center justify-between px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-warm-white font-medium focus:outline-none"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-orange-accent text-xs font-mono">[{getCategoryCount(selectedCategory)}]</span>
+                  <span>{selectedCategory}</span>
+                </div>
+                <motion.div
+                  animate={{ rotate: isTopicMenuOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Clock className="w-4 h-4 text-warm-white/40 rotate-90" /> {/* Using Clock as a temporary technical icon placeholder or import Chevron */}
+                </motion.div>
+              </button>
+
+              <AnimatePresence>
+                {isTopicMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full left-0 right-0 mt-2 bg-[#1a1a1a] border border-white/10 rounded-xl overflow-hidden shadow-2xl z-30"
+                  >
+                    <div className="p-2 grid grid-cols-1 gap-1">
+                      {CATEGORIES.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            setSelectedCategory(category);
+                            setIsTopicMenuOpen(false);
+                          }}
+                          className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm transition-all ${selectedCategory === category
+                            ? 'bg-orange-accent text-charcoal-dark font-bold'
+                            : 'text-warm-white/60 hover:bg-white/5'
+                            }`}
+                        >
+                          <span>{category}</span>
+                          <span className={`text-[10px] font-mono ${selectedCategory === category ? 'text-charcoal-dark' : 'text-warm-white/20'}`}>
+                            {getCategoryCount(category).toString().padStart(2, '0')}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Desktop List */}
+            <nav className="hidden md:flex flex-col gap-1">
               {CATEGORIES.map((category) => {
                 const isActive = selectedCategory === category;
                 const count = getCategoryCount(category);
