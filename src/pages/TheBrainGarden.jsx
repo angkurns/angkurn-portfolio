@@ -11,7 +11,7 @@ import { useToast } from '@/components/ui/use-toast';
 const CATEGORIES = [
   'All',
   'AI',
-  'Product Design',
+  'Product Strategy',
   'Design System',
   'UI/UX',
   'Collaboration',
