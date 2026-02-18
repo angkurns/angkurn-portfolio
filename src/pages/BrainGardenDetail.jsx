@@ -145,7 +145,7 @@ const BrainGardenDetail = () => {
 
         <footer className="mt-16 pt-8 border-t border-warm-white/[0.05]">
           <p className="text-[12px] text-warm-white/40 tracking-wider">
-            Angga — System Notes
+            Angga ⚉ System Notes
           </p>
         </footer>
       </main>

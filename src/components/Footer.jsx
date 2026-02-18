@@ -14,7 +14,7 @@ const Footer = () => {
 
           {/* Center - Contact */}
           <div className="flex items-center justify-center whitespace-nowrap">
-            <span>Let’s build logic together —&nbsp;</span>
+            <span>Let’s build logic together ⚉&nbsp;</span>
             <a
               href="mailto:angkurns@gmail.com"
               className="hover:text-warm-white/80 transition-colors"

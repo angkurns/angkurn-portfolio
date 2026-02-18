@@ -38,42 +38,42 @@ const AboutPage = () => {
     {
       title: "Enterprise systems",
       icon: ShieldCheck,
-      description: "Designing for multi-layer permissions, state complexity, and scalability in enterprise environments."
+      description: "Handling deep permissions and complex states where 'simple' doesn't exist."
     },
     {
       title: "Design systems and governance",
       icon: Layers,
-      description: "Building production-grade systems with tokens, documentation, and adoption strategy across teams."
+      description: "Not just UI kits. I build tokens and documentation that teams actually use and maintain."
     },
     {
       title: "Complex workflows",
       icon: GitBranch,
-      description: "Clarifying edge cases, multi-step flows, and decision states before interface design begins."
+      description: "Breaking down multi-step flows and edge cases before I even touch the UI."
     },
     {
       title: "Multi-role products",
       icon: Users,
-      description: "Designing for admins, operators, and executives within the same structured ecosystem."
+      description: "Designing one system that works for admins, operators, and users without breaking the logic."
     },
     {
       title: "Product strategy alignment",
       icon: Target,
-      description: "Connecting user flows to business priorities and long-term product direction."
+      description: "Making sure what we build actually moves the needle for the business, not just the user."
     },
     {
       title: "Clear decision frameworks",
       icon: FileText,
-      description: "Documenting states, transitions, and assumptions to reduce ambiguity between design and engineering."
+      description: "Mapping out transitions and assumptions so engineers don't have to guess my intent."
     },
     {
       title: "Cross-functional collaboration",
       icon: Share2,
-      description: "Working closely with lead engineers and product to align early and reduce handoff friction."
+      description: "Syncing with lead engineers early to find technical constraints before they become blockers."
     },
     {
       title: "Long-term maintainability",
       icon: LineChart,
-      description: "Designing systems that scale over time without creating design debt."
+      description: "Thinking about how this scales in two years, so we don't have to rebuild it in six months."
     }
   ];
 
@@ -145,7 +145,7 @@ const AboutPage = () => {
                 <p>Over the past few years, my role expanded beyond design execution.</p>
                 <p>In 2025, I found myself carrying more responsibility across product decisions, system structure, and documentation clarity.</p>
                 <p>It pushed me to think more carefully.</p>
-                <p>There was less room for assumptions. Less room for vague thinking. Every decision needed to be clear, documented, and realistic.</p>
+                <p>There was less room for guessing. I had to get specific. Every decision needed to be backed by clear logic and ready to build.</p>
                 <p>I worked closer with engineering. I rebuilt parts of the design system. I leaned more into system thinking. I used AI to question edge cases before they became problems.</p>
                 <p>It was challenging. But it made my thinking stronger.</p>
               </div>

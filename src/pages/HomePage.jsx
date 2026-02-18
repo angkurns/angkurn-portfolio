@@ -66,7 +66,7 @@ const HomePage = () => {
         >
           <div className="mb-6">
             <p className="text-base md:text-lg font-medium text-white mb-1">
-              Angga Kurnia Aryantika — Product Designer
+              Angga Kurnia Aryantika ⚉ Product Designer
             </p>
             <p className="text-sm md:text-base text-neutral-400">
               Autobahn Security GmbH

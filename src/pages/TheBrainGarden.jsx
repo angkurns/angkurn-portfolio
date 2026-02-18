@@ -396,7 +396,7 @@ const TheBrainGarden = () => {
               {/* Modal Footer */}
               <div className="px-8 py-5 bg-[#161616] border-t border-warm-white/[0.05] flex items-center justify-between">
                 <div className="text-[10px] uppercase tracking-widest text-warm-white/20 font-bold">
-                  Angga — System Notes
+                  Angga ⚉ System Notes
                 </div>
               </div>
             </motion.div>
