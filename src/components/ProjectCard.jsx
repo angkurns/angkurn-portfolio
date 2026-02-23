@@ -1,65 +1,65 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Pin } from 'lucide-react';
 
-const ProjectCard = ({ title, description, image }) => {
+const ProjectCard = ({ title, description, image, year, role }) => {
   return (
     <motion.div
       initial="initial"
       whileHover="hover"
-      className="relative flex flex-col h-full bg-[#161616] rounded-[32px] overflow-hidden border border-white/[0.05] cursor-pointer"
-      variants={{
-        initial: { y: 0, shadow: "0 10px 30px -15px rgba(0,0,0,0.3)" },
-        hover: { y: -8, shadow: "0 32px 64px -16px rgba(0,0,0,0.5)" }
-      }}
-      transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
+      className="block group bg-charcoal-light/30 border border-warm-white/5 p-8 rounded-3xl hover:bg-charcoal-light/50 transition-all duration-300 h-full relative overflow-hidden"
     >
-      {/* Thumbnail Container - Sharp Cut */}
-      <div className="relative h-56 md:h-64 overflow-hidden bg-[#121212] isolate">
-        <motion.div
-          variants={{
-            initial: { scale: 1 },
-            hover: { scale: 1.05 }
-          }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-          className="w-full h-full will-change-transform"
-        >
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Top Header */}
+        <div className="flex justify-between items-start mb-6">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-warm-white/30">
+            Case Study
+          </span>
+          {/* Subtle Pin icon for the "Selected" feel */}
+          <div className="opacity-20 group-hover:opacity-100 transition-opacity text-orange-accent/60">
+            <Pin size={14} fill="currentColor" className="rotate-45" />
+          </div>
+        </div>
+
+        {/* Dedicated Thumbnail Container */}
+        <div className="mb-6 aspect-[16/10] rounded-2xl overflow-hidden bg-charcoal-light/20 border border-white/[0.03] flex items-center justify-center relative group/img">
           {image ? (
             <img
               src={image}
               alt={title}
-              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#121212]">
-              <span className="text-warm-white/10 text-6xl font-bold font-montserrat tracking-tighter">
-                {title.charAt(0)}
-              </span>
+            <div className="flex flex-col items-center gap-3 opacity-10">
+              <div className="w-24 h-[1.5px] bg-warm-white rounded-full" />
+              <div className="w-16 h-[1.5px] bg-warm-white rounded-full" />
+              <div className="w-28 h-[1.5px] bg-orange-accent/50 rounded-full" />
             </div>
           )}
-        </motion.div>
-      </div>
+        </div>
 
-      {/* Content Area - Premium Editorial Spacing */}
-      <div className="p-8 md:p-10 flex flex-col flex-1">
-        <motion.h3
-          variants={{
-            initial: { color: "#f5f1e8" },
-            hover: { color: "#FF8C42" }
-          }}
-          className="text-2xl md:text-3xl font-bold mb-4 transition-colors duration-300 leading-tight"
-        >
-          {title}
-        </motion.h3>
+        {/* Content */}
+        <div className="mb-4 flex-1">
+          <h3 className="text-2xl font-bold text-warm-white mb-3 group-hover:text-orange-accent transition-colors">
+            {title}
+          </h3>
+        </div>
 
-        <p className="text-warm-white/40 text-base md:text-lg leading-relaxed mb-8 flex-1 font-medium">
-          {description}
-        </p>
+        {/* Divider */}
+        <div className="h-[1px] w-full bg-warm-white/5 mb-6" />
 
-        {/* Action Link */}
-        <div className="flex items-center gap-1 text-orange-accent font-bold text-sm tracking-wide transition-all group-hover:gap-2">
-          <span>Read case</span>
-          <ArrowRight size={18} />
+        {/* Footer */}
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3 text-warm-white/20 text-[10px] font-mono font-bold uppercase tracking-widest">
+            <span>{year || "2025"}</span>
+            <span className="opacity-10">•</span>
+            <span>{role || "System Design"}</span>
+          </div>
+
+          <div className="flex items-center gap-1.5 text-orange-accent font-bold text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+            <span>View Case Study</span>
+            <ArrowRight size={14} />
+          </div>
         </div>
       </div>
     </motion.div>

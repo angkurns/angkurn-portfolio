@@ -93,11 +93,11 @@ const HomePage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="mb-12 md:mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-6">
+          <div className="mb-6 md:mb-12">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white mb-6">
               Work
             </h2>
-            <p className="text-warm-white/40 text-lg md:text-xl max-w-2xl leading-relaxed">
+            <p className="text-warm-white/40 text-lg md:text-2xl max-w-2xl leading-relaxed">
               Selected case studies focused on system architecture, scalable UI, and cross-functional execution.
             </p>
           </div>
@@ -107,23 +107,78 @@ const HomePage = () => {
               <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
             </div>
           ) : (
-            <div className="space-y-0">
-              {/* All Case Studies - Alternating List (Z-pattern) */}
+            <div className="space-y-6 md:space-y-10">
+              {/* Flagship Case Study */}
               {projects.length > 0 && (
-                <div className="flex flex-col">
-                  {projects.map((project, index) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.1 }}
-                    >
-                      <Link to={`/systems/${project.slug}`} className="block">
-                        <FeaturedProjectCard project={project} index={index} />
-                      </Link>
-                    </motion.div>
-                  ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <Link to={`/systems/${projects[0].slug}`} className="block">
+                    <FeaturedProjectCard project={projects[0]} index={0} isFlagship={true} />
+                  </Link>
+                </motion.div>
+              )}
+
+              {/* Supporting Case Studies (2-Column Grid) */}
+              {projects.length > 1 && (
+                <div className="space-y-6">
+                  <h3 className="text-[11px] font-mono font-bold uppercase tracking-[0.4em] text-warm-white/20">
+                    Selected Projects
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    {projects.slice(1, 3).map((project, index) => (
+                      <motion.div
+                        key={project.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                      >
+                        <Link to={`/systems/${project.slug}`}>
+                          <ProjectCard
+                            title={project.title}
+                            description={project.short_description}
+                            image={project.thumbnail_url}
+                            year={project.year}
+                            role={project.role}
+                          />
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Remaining Archive (3-Column Grid) */}
+              {projects.length > 3 && (
+                <div className="space-y-10 pt-8 border-t border-white/[0.03]">
+                  <h3 className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-warm-white/10">
+                    Archive
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 opacity-60 hover:opacity-100 transition-opacity duration-500">
+                    {projects.slice(3).map((project, index) => (
+                      <motion.div
+                        key={project.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                      >
+                        <Link to={`/systems/${project.slug}`}>
+                          <ProjectCard
+                            title={project.title}
+                            description={project.short_description}
+                            image={project.thumbnail_url}
+                            year={project.year}
+                            role={project.role}
+                          />
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -186,11 +241,11 @@ const HomePage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-warm-white">
+          <div className="mb-10 md:mb-16">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white">
               Notes
             </h2>
-            <p className="text-warm-white/60 mt-2 text-base md:text-lg max-w-xl">
+            <p className="text-warm-white/60 mt-4 text-lg md:text-xl max-w-2xl">
               Where I document systems, AI experiments, and design thinking.
             </p>
           </div>

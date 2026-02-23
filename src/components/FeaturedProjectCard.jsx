@@ -2,21 +2,32 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
-const FeaturedProjectCard = ({ project, index }) => {
+const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
     if (!project) return null;
     const isReversed = index % 2 !== 0;
+
+    // Specific description for flagship as requested
+    const displayDescription = isFlagship
+        ? "Reduced implementation ambiguity by 40% by redesigning a multi-role permission system for a security platform."
+        : (project.short_description || "Defining the system architecture and logic before the interface.");
 
     return (
         <motion.div
             initial="initial"
             whileHover="hover"
-            className="relative w-full group py-12 md:py-20"
+            className={`relative w-full group ${isFlagship ? 'py-6 md:py-12' : 'py-6 md:py-10'}`}
         >
             <div className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 lg:gap-24 items-center`}>
                 {/* Content Island */}
                 <div className="flex-1 space-y-8">
                     <div className="space-y-6">
-                        <h3 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-warm-white leading-[1.05] tracking-tight group-hover:text-orange-accent transition-colors duration-500">
+                        {isFlagship && (
+                            <span className="text-[10px] md:text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-orange-accent/40 block mb-2">
+                                Featured Case Study
+                            </span>
+                        )}
+
+                        <h3 className={`font-bold text-warm-white leading-tight tracking-tight group-hover:text-orange-accent transition-colors duration-500 ${isFlagship ? 'text-2xl md:text-5xl' : 'text-xl md:text-4xl'}`}>
                             {project.title}
                         </h3>
 
@@ -25,13 +36,11 @@ const FeaturedProjectCard = ({ project, index }) => {
                             <span>{project.year || "2025"}</span>
                             <span className="opacity-20">|</span>
                             <span>{project.role || "Senior Product Designer"}</span>
-                            <span className="opacity-20">|</span>
-                            <span className="text-orange-accent/60">Logic-First</span>
                         </div>
                     </div>
 
-                    <p className="text-xl md:text-2xl text-warm-white/40 leading-relaxed max-w-2xl font-medium">
-                        {project.short_description || "Redefining how users interact with complex systems by leading with architectural clarity."}
+                    <p className={`${isFlagship ? 'text-xl md:text-2xl lg:text-3xl' : 'text-xl md:text-2xl'} text-warm-white/40 leading-relaxed max-w-2xl font-medium`}>
+                        {displayDescription}
                     </p>
 
                     <motion.div
@@ -46,8 +55,8 @@ const FeaturedProjectCard = ({ project, index }) => {
                     </motion.div>
                 </div>
 
-                {/* Visual Island - Simple Card (No big animations/shadows) */}
-                <div className="w-full md:w-[400px] lg:w-[540px] relative">
+                {/* Visual Island */}
+                <div className={`w-full ${isFlagship ? 'md:w-[450px] lg:w-[600px]' : 'md:w-[400px] lg:w-[540px]'} relative`}>
                     <motion.div
                         variants={{
                             initial: { y: 0 },
