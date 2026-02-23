@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import ProjectCard from '@/components/ProjectCard';
+import FeaturedProjectCard from '@/components/FeaturedProjectCard';
 import { fetchFeaturedCaseStudies, fetchFeaturedNotes } from '@/lib/api';
 
 const HomePage = () => {
@@ -92,36 +93,41 @@ const HomePage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-10 md:mb-16">
-            Work
-          </h2>
+          <div className="mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-6">
+              Work
+            </h2>
+            <p className="text-warm-white/40 text-lg md:text-xl max-w-2xl leading-relaxed">
+              Selected case studies focused on system architecture, scalable UI, and cross-functional execution.
+            </p>
+          </div>
 
           {loading ? (
             <div className="flex justify-center py-20">
               <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {projects.length > 0 ? (
-                projects.map((project, index) => (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <Link to={`/systems/${project.slug}`}>
-                      <ProjectCard
-                        category={project.category || "General"}
-                        title={project.title}
-                        description={project.short_description || "No description available."}
-                        image={project.thumbnail_url}
-                      />
-                    </Link>
-                  </motion.div>
-                ))
-              ) : (
+            <div className="space-y-0">
+              {/* All Case Studies - Alternating List (Z-pattern) */}
+              {projects.length > 0 && (
+                <div className="flex flex-col">
+                  {projects.map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: index * 0.1 }}
+                    >
+                      <Link to={`/systems/${project.slug}`} className="block">
+                        <FeaturedProjectCard project={project} index={index} />
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {projects.length === 0 && (
                 <p className="text-warm-white/60">No systems found at the moment.</p>
               )}
             </div>
