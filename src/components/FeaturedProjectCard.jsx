@@ -11,6 +11,31 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
         ? "Reduced implementation ambiguity by 40% by redesigning a multi-role permission system for a security platform."
         : (project.short_description || "Defining the system architecture and logic before the interface.");
 
+    const VisualContent = (
+        <motion.div
+            variants={{
+                initial: { y: 0 },
+                hover: { y: -4 }
+            }}
+            transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
+            className="relative aspect-[16/10] rounded-[32px] overflow-hidden bg-[#161616] border border-white/[0.05] flex items-center justify-center p-0 group/card"
+        >
+            {project.thumbnail_url ? (
+                <img
+                    src={project.thumbnail_url}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-90 transition-all duration-700"
+                />
+            ) : (
+                <div className="text-center space-y-5 opacity-20">
+                    <div className="w-40 h-1.5 bg-warm-white rounded-full mx-auto" />
+                    <div className="w-28 h-1.5 bg-warm-white rounded-full mx-auto" />
+                    <div className="w-48 h-1.5 bg-orange-accent/50 rounded-full mx-auto" />
+                </div>
+            )}
+        </motion.div>
+    );
+
     return (
         <motion.div
             initial="initial"
@@ -39,6 +64,11 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                         </div>
                     </div>
 
+                    {/* Mobile Visual Island - Visible only on small screens */}
+                    <div className="md:hidden w-full">
+                        {VisualContent}
+                    </div>
+
                     <p className={`${isFlagship ? 'text-xl md:text-2xl lg:text-3xl' : 'text-xl md:text-2xl'} text-warm-white/40 leading-relaxed max-w-2xl font-medium`}>
                         {displayDescription}
                     </p>
@@ -55,30 +85,9 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                     </motion.div>
                 </div>
 
-                {/* Visual Island */}
-                <div className={`w-full ${isFlagship ? 'md:w-[450px] lg:w-[600px]' : 'md:w-[400px] lg:w-[540px]'} relative`}>
-                    <motion.div
-                        variants={{
-                            initial: { y: 0 },
-                            hover: { y: -4 }
-                        }}
-                        transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
-                        className="relative aspect-[16/10] rounded-[32px] overflow-hidden bg-[#161616] border border-white/[0.05] flex items-center justify-center p-0 group/card"
-                    >
-                        {project.thumbnail_url ? (
-                            <img
-                                src={project.thumbnail_url}
-                                alt={project.title}
-                                className="w-full h-full object-cover opacity-90 transition-all duration-700"
-                            />
-                        ) : (
-                            <div className="text-center space-y-5 opacity-20">
-                                <div className="w-40 h-1.5 bg-warm-white rounded-full mx-auto" />
-                                <div className="w-28 h-1.5 bg-warm-white rounded-full mx-auto" />
-                                <div className="w-48 h-1.5 bg-orange-accent/50 rounded-full mx-auto" />
-                            </div>
-                        )}
-                    </motion.div>
+                {/* Desktop Visual Island - Hidden on mobile */}
+                <div className={`hidden md:block w-full ${isFlagship ? 'md:w-[450px] lg:w-[600px]' : 'md:w-[400px] lg:w-[540px]'} relative`}>
+                    {VisualContent}
                 </div>
             </div>
         </motion.div>
