@@ -142,12 +142,23 @@ const AboutPage = () => {
               </div>
 
               <div className="space-y-5 text-warm-white text-lg leading-[1.8]">
-                <p>Over the past few years, my role expanded beyond design execution.</p>
-                <p>In 2025, I found myself carrying more responsibility across product decisions, system structure, and documentation clarity.</p>
-                <p>It pushed me to think more carefully.</p>
-                <p>There was less room for guessing. I had to get specific. Every decision needed to be backed by clear logic and ready to build.</p>
-                <p>I worked closer with engineering. I rebuilt parts of the design system. I leaned more into system thinking. I used AI to question edge cases before they became problems.</p>
-                <p>It was challenging. But it made my thinking stronger.</p>
+                <p>Design used to be mostly about execution for me.</p>
+                <p>Now it’s about ownership.</p>
+                <p>In 2025, I found myself stepping into product decisions, system structure, and documentation clarity. Not because of title. But because it was needed.</p>
+                <p>
+                  I had to think further ahead.<br />
+                  Less assumptions. More logic.<br />
+                  Every decision needed to survive engineering review.
+                </p>
+                <p>
+                  I worked closely with our backend and frontend leads.<br />
+                  Refined the design system so it behaved properly in real use.<br />
+                  Used AI to challenge edge cases before they reached production.
+                </p>
+                <p className="font-bold">
+                  Not easy.<br />
+                  But necessary.
+                </p>
               </div>
             </div>
           </div>
