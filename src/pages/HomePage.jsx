@@ -124,31 +124,26 @@ const HomePage = () => {
 
               {/* Supporting Case Studies (2-Column Grid) */}
               {projects.length > 1 && (
-                <div className="space-y-6">
-                  <h3 className="text-[11px] font-mono font-bold uppercase tracking-[0.4em] text-warm-white/20">
-                    Selected Projects
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    {projects.slice(1, 3).map((project, index) => (
-                      <motion.div
-                        key={project.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                      >
-                        <Link to={`/systems/${project.slug}`}>
-                          <ProjectCard
-                            title={project.title}
-                            description={project.short_description}
-                            image={project.thumbnail_url}
-                            year={project.year}
-                            role={project.role}
-                          />
-                        </Link>
-                      </motion.div>
-                    ))}
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                  {projects.slice(1, 3).map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
+                      <Link to={`/systems/${project.slug}`}>
+                        <ProjectCard
+                          title={project.title}
+                          description={project.short_description}
+                          image={project.thumbnail_url}
+                          year={project.year}
+                          role={project.role}
+                        />
+                      </Link>
+                    </motion.div>
+                  ))}
                 </div>
               )}
 
@@ -292,7 +287,7 @@ const HomePage = () => {
           </div>
         </motion.div>
       </section>
-    </div>
+    </div >
   );
 };
 
