@@ -53,8 +53,8 @@ const HomePage = () => {
   return (
     <div className="bg-charcoal-dark min-h-screen">
       <Helmet>
-        <title>Angkurn - Logic-First Designer</title>
-        <meta name="description" content="I design logic first, then I build the interface. Translating deep technical logic into intuitive, high-impact systems." />
+        <title>Angkurn — Product Designer</title>
+        <meta name="description" content="I build clarity inside complex products. Designing systems, flows, and scalable interfaces." />
       </Helmet>
 
       {/* Hero Section */}

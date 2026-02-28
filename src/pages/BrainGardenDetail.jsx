@@ -82,7 +82,7 @@ const BrainGardenDetail = () => {
   return (
     <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
       <Helmet>
-        <title>{article.title} — Notes</title>
+        <title>{article.title} — Angkurn — Product Designer</title>
         <meta name="description" content={article.summary || article.short_description} />
       </Helmet>
 

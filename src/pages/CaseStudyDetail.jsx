@@ -63,7 +63,7 @@ const CaseStudyDetail = () => {
   return (
     <div className="bg-charcoal-dark min-h-screen text-warm-white font-dm-sans">
       <Helmet>
-        <title>{caseStudy.title} — Angkurn</title>
+        <title>{caseStudy.title} — Angkurn — Product Designer</title>
         <meta name="description" content={caseStudy.short_description} />
       </Helmet>
 

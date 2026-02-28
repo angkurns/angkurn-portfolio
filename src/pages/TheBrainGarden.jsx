@@ -126,8 +126,8 @@ const TheBrainGarden = () => {
   return (
     <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
       <Helmet>
-        <title>Notes - Angkurn</title>
-        <meta name="description" content="A public notebook where I refine systems, document AI workflows, and break down product thinking." />
+        <title>Notes — Angkurn — Product Designer</title>
+        <meta name="description" content="I build clarity inside complex products. Designing systems, flows, and scalable interfaces." />
       </Helmet>
 
       <div className="container mx-auto px-6 pt-24 md:pt-40 pb-24">

@@ -80,8 +80,8 @@ const AboutPage = () => {
   return (
     <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
       <Helmet>
-        <title>About - Angkurn</title>
-        <meta name="description" content="I build clarity inside complex products. Hi, I'm Angga. I work in systems." />
+        <title>About — Angkurn — Product Designer</title>
+        <meta name="description" content="I build clarity inside complex products. Designing systems, flows, and scalable interfaces." />
       </Helmet>
 
       {/* SECTION 1 — HERO */}
