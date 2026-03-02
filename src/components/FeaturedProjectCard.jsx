@@ -6,10 +6,7 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
     if (!project) return null;
     const isReversed = index % 2 !== 0;
 
-    // Specific description for flagship as requested
-    const displayDescription = isFlagship
-        ? "Reduced implementation ambiguity by 40% by redesigning a multi-role permission system for a security platform."
-        : (project.short_description || "Defining the system architecture and logic before the interface.");
+    const displayDescription = project.short_description;
 
     const VisualContent = (
         <motion.div
@@ -69,7 +66,7 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                         {VisualContent}
                     </div>
 
-                    <p className={`${isFlagship ? 'text-xl md:text-2xl lg:text-3xl' : 'text-xl md:text-2xl'} text-warm-white/40 leading-relaxed max-w-2xl font-medium`}>
+                    <p className={`${isFlagship ? 'text-lg md:text-xl' : 'text-base md:text-lg'} text-warm-white/40 leading-relaxed max-w-2xl font-medium`}>
                         {displayDescription}
                     </p>
 
