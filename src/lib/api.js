@@ -8,7 +8,7 @@ export const fetchFeaturedCaseStudies = async () => {
       .from('case_studies')
       .select('*')
       .eq('featured', true)
-      .order('created_at', { ascending: false });
+      .order('featured_order', { ascending: true });
 
     if (error) {
       console.error('Error fetching featured case studies:', error);

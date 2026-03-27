@@ -45,8 +45,8 @@ const HomePage = () => {
     },
     {
       number: "03",
-      title: "Brutal Documentation",
-      description: "A Figma link is not a handoff. I write comprehensive UX audits and logic flows. Engineers do not interpret my designs; they just implement the agreed facts."
+      title: "Clear Documentation",
+      description: "I document flows, states, and decisions clearly so engineers can build without ambiguity. No guessing, no rework."
     }
   ];
 
