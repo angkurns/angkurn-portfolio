@@ -15,13 +15,13 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                 hover: { y: -4 }
             }}
             transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
-            className="relative aspect-[16/10] rounded-[32px] overflow-hidden bg-[#161616] border border-white/[0.05] flex items-center justify-center p-0 group/card"
+            className="relative aspect-[16/10] rounded-[32px] overflow-hidden bg-[#161616] border border-white/10 flex items-center justify-center p-0 group/card shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
         >
             {project.thumbnail_url ? (
                 <img
                     src={project.thumbnail_url}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-90 transition-all duration-700"
+                    className="w-full h-full object-cover opacity-100 brightness-[1.05] contrast-[1.05] transition-all duration-700"
                 />
             ) : (
                 <div className="text-center space-y-5 opacity-20">
@@ -39,7 +39,7 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
             whileHover="hover"
             className={`relative w-full group ${isFlagship ? 'py-6 md:py-12' : 'py-6 md:py-10'}`}
         >
-            <div className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 lg:gap-24 items-center`}>
+            <div className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 lg:gap-32 items-start`}>
                 {/* Content Island */}
                 <div className="flex-1 space-y-8">
                     <div className="space-y-6">
@@ -83,7 +83,7 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                 </div>
 
                 {/* Desktop Visual Island - Hidden on mobile */}
-                <div className={`hidden md:block w-full ${isFlagship ? 'md:w-[450px] lg:w-[600px]' : 'md:w-[400px] lg:w-[540px]'} relative`}>
+                <div className={`hidden md:block w-full ${isFlagship ? 'md:w-[400px] lg:w-[540px]' : 'md:w-[360px] lg:w-[480px]'} relative`}>
                     {VisualContent}
                 </div>
             </div>

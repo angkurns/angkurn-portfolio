@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, X, Clock, Calendar, ArrowRight, Link as LinkIcon, Pin } from 'lucide-react';
 import { fetchAllNotes } from '@/lib/api';
@@ -125,10 +124,6 @@ const TheBrainGarden = () => {
 
   return (
     <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
-      <Helmet>
-        <title>Notes — Angkurn — Product Designer</title>
-        <meta name="description" content="I build clarity inside complex products. Designing systems, flows, and scalable interfaces." />
-      </Helmet>
 
       <div className="container mx-auto px-6 pt-24 md:pt-40 pb-24">
         {/* HERO SECTION */}

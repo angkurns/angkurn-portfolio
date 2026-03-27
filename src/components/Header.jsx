@@ -25,7 +25,7 @@ const Header = () => {
           <div className="flex items-center gap-12">
             {/* Logo */}
             <Link to="/" className="text-xl font-bold text-orange-accent hover:text-orange-accent/80 transition-colors tracking-tight">
-              Angkurn
+              Angga Kurnia Aryantika
             </Link>
 
             {/* Desktop Navigation */}

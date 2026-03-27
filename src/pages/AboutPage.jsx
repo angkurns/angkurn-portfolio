@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import {
   ShieldCheck,
@@ -79,10 +78,6 @@ const AboutPage = () => {
 
   return (
     <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
-      <Helmet>
-        <title>About — Angkurn — Product Designer</title>
-        <meta name="description" content="I build clarity inside complex products. Designing systems, flows, and scalable interfaces." />
-      </Helmet>
 
       {/* SECTION 1 — HERO */}
       <section className="container mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-[120px]">

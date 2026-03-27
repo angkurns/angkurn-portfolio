@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Loader2, FileText, Download, X } from 'lucide-react';
@@ -8,22 +7,57 @@ import ProjectCard from '@/components/ProjectCard';
 import FeaturedProjectCard from '@/components/FeaturedProjectCard';
 import { fetchFeaturedCaseStudies, fetchFeaturedNotes } from '@/lib/api';
 
+const ImagePreviewModal = ({ src, onClose }) => {
+  if (!src) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-charcoal-dark/95 backdrop-blur-md p-4 md:p-12 cursor-zoom-out"
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative max-w-full max-h-full flex flex-col items-center"
+      >
+        <button
+          onClick={onClose}
+          className="absolute -top-14 right-0 text-warm-white/40 hover:text-orange-accent p-2 transition-colors flex items-center gap-2 group"
+        >
+          <span className="text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
+          <X className="w-6 h-6" />
+        </button>
+        <div className="rounded-xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] border border-white/5">
+          <img
+            src={src}
+            alt="Preview"
+            className="max-w-full max-h-[80vh] md:max-h-[85vh] object-contain"
+          />
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const HomePage = () => {
   const [projects, setProjects] = useState([]);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isSneakPeekOpen, setIsSneakPeekOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    if (isSneakPeekOpen) {
+    if (isSneakPeekOpen || selectedImage) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isSneakPeekOpen]);
+  }, [isSneakPeekOpen, selectedImage]);
 
   useEffect(() => {
     const loadContent = async () => {
@@ -64,33 +98,29 @@ const HomePage = () => {
 
   return (
     <div className="bg-charcoal-dark min-h-screen">
-      <Helmet>
-        <title>Angkurn — Product Designer</title>
-        <meta name="description" content="I build clarity inside complex products. Designing systems, flows, and scalable interfaces." />
-      </Helmet>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-16 md:py-32">
+      <section className="container mx-auto px-6 pt-12 md:pt-20 pb-8 md:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="max-w-5xl"
         >
-          <div className="mb-6">
-            <p className="text-base md:text-lg font-medium text-white mb-1">
-              Angga Kurnia Aryantika ⚉ Product Designer
+          <div className="mb-4">
+            <p className="text-base md:text-lg font-medium text-white mb-0.5">
+              ⚉ Product Designer
             </p>
-            <p className="text-sm md:text-base text-neutral-400">
+            <p className="text-sm md:text-base text-neutral-500 font-medium">
               Autobahn Security | Reduce Hackability
             </p>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-6 md:mb-8 leading-[1.1] md:leading-[0.95] tracking-tight">
-            I design logic first,<br />
-            then I build the interface.
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-4 md:mb-6 leading-[1.15] md:leading-[1.05] tracking-tight">
+            I design logic first.<br />
+            Then I build the interface.
           </h1>
-          <p className="text-xl md:text-2xl text-warm-white/80 max-w-3xl leading-snug">
+          <p className="text-xl md:text-2xl text-warm-white/60 max-w-3xl leading-snug font-medium">
             I define states, flows, and edge cases before opening Figma.
           </p>
 
@@ -98,7 +128,7 @@ const HomePage = () => {
       </section>
 
       {/* Featured Book Section */}
-      <section className="container mx-auto px-6 pt-12 md:pt-24 pb-0">
+      <section className="container mx-auto px-6 pt-6 md:pt-12 pb-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,49 +142,49 @@ const HomePage = () => {
             <div className="absolute -left-[6.5px] top-6 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
 
             {/* Main Content Area */}
-            <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] xl:grid-cols-[35%_65%] gap-10 lg:gap-16 items-start">
-              
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+
               {/* Image Column */}
-              <div className="relative w-full flex justify-start">
-                <div className="w-full max-w-[320px] rounded-r-xl overflow-hidden shadow-[15px_15px_40px_-10px_rgba(0,0,0,0.8)] border border-white/[0.05] transition-transform duration-500 hover:scale-[1.02] bg-charcoal-dark">
-                  <img 
-                    src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Books%20The%20lost%20designer.webp" 
-                    alt="The Lost Designer Book Mockup" 
+              <div className="relative w-full flex justify-start lg:justify-center">
+                <div className="w-full max-w-[420px] rounded-r-xl overflow-hidden shadow-[20px_20px_50px_-10px_rgba(0,0,0,0.9)] border border-white/[0.05] transition-transform duration-500 hover:scale-[1.02] bg-charcoal-dark">
+                  <img
+                    src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Books%20The%20lost%20designer.webp"
+                    alt="The Lost Designer Book Mockup"
                     className="w-full h-auto object-cover"
                   />
                 </div>
               </div>
 
               {/* Text Column */}
-              <div className="flex flex-col justify-center space-y-6 pt-2 lg:pt-6">
+              <div className="flex flex-col justify-start space-y-6 pt-2 lg:pt-0">
                 <div>
-                  <span className="text-white/40 font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
-                    Sep 2026
+                  <span className="text-orange-accent/80 font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
+                    THE LOST DESIGNER: A SURVIVAL GUIDE
                   </span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white leading-tight mb-4">
-                    The Lost Designer
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white leading-tight mb-6">
+                    For designers tired of just making things look good.
                   </h2>
                   <p className="text-warm-white/70 text-base md:text-lg leading-[1.8] max-w-xl font-medium">
-                    Over ten years of design lessons and mistakes, currently in the real world of cybersecurity. A survival guide for designers tired of just 'making things look good' and ready to back their work with solid logic.
+                    Over ten years of lessons, mistakes, and real-world work in cybersecurity. Built to help designers think in logic, not just visuals.
                   </p>
-                  <p className="text-warm-white/40 text-sm mt-3 font-medium tracking-wide">
+                  <p className="text-warm-white/30 text-[10px] font-bold mt-4 uppercase tracking-widest">
                     Available in ID & EN.
                   </p>
                 </div>
 
                 {/* Action Row */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                  <button 
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+                  <button
                     onClick={() => setIsSneakPeekOpen(true)}
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 text-orange-accent hover:text-charcoal-dark border border-orange-accent hover:bg-orange-accent px-6 py-3 rounded-full font-bold text-base transition-all duration-300"
+                    className="flex-1 sm:flex-none flex items-center justify-center gap-3 text-orange-accent hover:text-charcoal-dark border border-orange-accent hover:bg-orange-accent px-8 py-4 rounded-full font-bold text-base transition-all duration-300"
                   >
                     <FileText className="w-4 h-4" />
                     <span>Sneak peek</span>
                   </button>
-                  
-                  <button 
+
+                  <button
                     disabled
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-white/[0.03] border border-white/10 text-white/30 px-6 py-3 rounded-full font-bold text-base cursor-not-allowed"
+                    className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-transparent border border-white/5 text-white/20 px-8 py-4 rounded-full font-bold text-base cursor-not-allowed opacity-50"
                   >
                     <Download className="w-4 h-4" />
                     <span>Coming Soon</span>
@@ -177,67 +207,39 @@ const HomePage = () => {
         >
           <div className="relative pl-6 md:pl-12 border-l border-white/10 h-full pt-12 md:pt-24">
             <div className="mb-6 md:mb-12">
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white mb-6">
-              Work
-            </h2>
-            <p className="text-warm-white/40 text-lg md:text-2xl max-w-2xl leading-relaxed">
-              Selected case studies focused on system architecture, scalable UI, and cross-functional execution.
-            </p>
-          </div>
-
-          {loading ? (
-            <div className="flex justify-center py-20">
-              <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white mb-6">
+                Work
+              </h2>
+              <p className="text-warm-white/40 text-lg md:text-2xl max-w-2xl leading-relaxed uppercase tracking-[0.2em] font-mono">
+                The Evidence of Logic
+              </p>
             </div>
-          ) : (
-            <div className="space-y-6 md:space-y-10">
-              {/* Flagship Case Study */}
-              {projects.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <Link to={`/systems/${projects[0].slug}`} className="block">
-                    <FeaturedProjectCard project={projects[0]} index={0} isFlagship={true} />
-                  </Link>
-                </motion.div>
-              )}
 
-              {/* Supporting Case Studies (2-Column Grid) */}
-              {projects.length > 1 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                  {projects.slice(1, 3).map((project, index) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <Link to={`/systems/${project.slug}`}>
-                        <ProjectCard
-                          title={project.title}
-                          description={project.short_description}
-                          image={project.thumbnail_url}
-                          year={project.year}
-                          role={project.role}
-                        />
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
+            {loading ? (
+              <div className="flex justify-center py-20">
+                <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
+              </div>
+            ) : (
+              <div className="space-y-12 md:space-y-24">
+                {/* Flagship Case Study */}
+                {projects.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="pb-4 md:pb-12"
+                  >
+                    <Link to={`/systems/${projects[0].slug}`} className="block">
+                      <FeaturedProjectCard project={projects[0]} index={0} isFlagship={true} />
+                    </Link>
+                  </motion.div>
+                )}
 
-              {/* Remaining Archive (3-Column Grid) */}
-              {projects.length > 3 && (
-                <div className="space-y-10 pt-8 border-t border-white/[0.03]">
-                  <h3 className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-warm-white/10">
-                    Archive
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 opacity-60 hover:opacity-100 transition-opacity duration-500">
-                    {projects.slice(3).map((project, index) => (
+                {/* Supporting Case Studies (2-Column Grid) */}
+                {projects.length > 1 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    {projects.slice(1, 3).map((project, index) => (
                       <motion.div
                         key={project.id}
                         initial={{ opacity: 0, y: 20 }}
@@ -257,21 +259,190 @@ const HomePage = () => {
                       </motion.div>
                     ))}
                   </div>
-                </div>
-              )}
+                )}
 
-              {projects.length === 0 && (
-                <p className="text-warm-white/60">No systems found at the moment.</p>
-              )}
+                {/* Remaining Archive (3-Column Grid) */}
+                {projects.length > 3 && (
+                  <div className="space-y-10 pt-8 border-t border-white/[0.03]">
+                    <h3 className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-warm-white/10">
+                      Archive
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 opacity-60 hover:opacity-100 transition-opacity duration-500">
+                      {projects.slice(3).map((project, index) => (
+                        <motion.div
+                          key={project.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
+                          <Link to={`/systems/${project.slug}`}>
+                            <ProjectCard
+                              title={project.title}
+                              description={project.short_description}
+                              image={project.thumbnail_url}
+                              year={project.year}
+                              role={project.role}
+                            />
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {projects.length === 0 && (
+                  <p className="text-warm-white/60">No systems found at the moment.</p>
+                )}
+              </div>
+            )}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Retrospective Section */}
+      <section id="retrospective" className="container mx-auto px-6 py-12 md:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto"
+        >
+          <div className="relative pl-6 md:pl-12 border-l border-white/[0.03]">
+            <div className="mb-16 md:mb-24">
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white mb-2">
+                Retrospective
+              </h2>
+              <p className="text-orange-accent font-mono text-sm tracking-widest uppercase opacity-80">
+                Evolution & Scaling Decisions
+              </p>
             </div>
-          )}
+
+            <div className="space-y-24 md:space-y-40">
+              {/* Item 1: GMF AeroAsia */}
+              <div className="relative">
+                <div className="absolute -left-[30.5px] md:-left-[54.5px] top-2 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
+                <div className="space-y-8">
+                  <div>
+                    <span className="text-white/40 font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
+                      Sep 2018
+                    </span>
+                    <h3 className="text-2xl md:text-4xl font-bold text-warm-white mb-4">
+                      3 Canteen System Design – GMF AeroAsia
+                    </h3>
+                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed max-w-3xl">
+                      Led end-to-end execution across design, engineering, budgeting, and production for 3 operational facilities. Before focusing on digital products, I led physical system design projects where I learned how to think in flows, constraints, and real-world operations.
+                    </p>
+                  </div>
+                  
+                  {/* GMF Images (Horizontal Row - No Stacking) */}
+                  <div className="flex gap-4 overflow-x-auto pb-4 md:pb-0 md:grid md:grid-cols-4 md:gap-4 custom-scrollbar">
+                    {[
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/GMF%201.webp",
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/GMF%202.webp",
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/GMF%203.webp",
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/GMF%204.webp"
+                    ].map((src, i) => (
+                      <div 
+                        key={i} 
+                        onClick={() => setSelectedImage(src)}
+                        className="cursor-zoom-in min-w-[240px] md:min-w-0 aspect-[4/3] rounded-xl overflow-hidden border border-white/5 group"
+                      >
+                        <img 
+                          src={src} 
+                          alt="Retrospective item" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Item 2: Visual Foundations */}
+              <div className="relative">
+                <div className="absolute -left-[30.5px] md:-left-[54.5px] top-2 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
+                <div className="space-y-8">
+                  <div>
+                    <span className="text-white/40 font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
+                      Sep 2016–2018
+                    </span>
+                    <h3 className="text-2xl md:text-4xl font-bold text-warm-white mb-4">
+                      Visual Design Foundations
+                    </h3>
+                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed max-w-3xl">
+                      Before focusing on systems and product design, I developed a strong foundation in visual composition, storytelling, and creative exploration.
+                    </p>
+                  </div>
+                  
+                  {/* Visual Images (Expressive Grid) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl">
+                    {[
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Superimpose.webp",
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Cinematic.webp"
+                    ].map((src, i) => (
+                      <div 
+                        key={i} 
+                        onClick={() => setSelectedImage(src)}
+                        className="cursor-zoom-in aspect-video rounded-xl overflow-hidden border border-white/5 group"
+                      >
+                        <img 
+                          src={src} 
+                          alt="Visual Design" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Item 3: Early Product Design */}
+              <div className="relative">
+                <div className="absolute -left-[30.5px] md:-left-[54.5px] top-2 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
+                <div className="space-y-8">
+                  <div>
+                    <span className="text-white/40 font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
+                      Sep 2015–2021
+                    </span>
+                    <h3 className="text-2xl md:text-4xl font-bold text-warm-white mb-4">
+                      Early Product Design Experience
+                    </h3>
+                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed max-w-3xl">
+                      Early in my career, I designed and shipped mobile products across travel, loyalty, and commerce. This shaped my understanding of product flows, user behavior, and real-world constraints that still guide my work today.
+                    </p>
+                  </div>
+                  
+                  {/* Mobile Images (Balanced Row) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+                    {[
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Mobiles%201.webp",
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Mobiles%202.webp"
+                    ].map((src, i) => (
+                      <div 
+                        key={i} 
+                        onClick={() => setSelectedImage(src)}
+                        className="cursor-zoom-in aspect-[16/10] rounded-xl overflow-hidden border border-white/5 group"
+                      >
+                        <img 
+                          src={src} 
+                          alt="Early Product Design" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>
 
       {/* How I Execute Section */}
       <section className="container mx-auto px-6 py-12 md:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 lg:gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -377,16 +548,16 @@ const HomePage = () => {
         {isSneakPeekOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 overflow-hidden">
             {/* Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsSneakPeekOpen(false)}
               className="absolute inset-0 bg-black/60 backdrop-blur-[6px] cursor-pointer"
             />
-            
+
             {/* Modal Content */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.98, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: 10 }}
@@ -401,7 +572,7 @@ const HomePage = () => {
                     SNEAK PEEK | EST. 2 MIN READ
                   </span>
                 </div>
-                <button 
+                <button
                   onClick={() => setIsSneakPeekOpen(false)}
                   className="p-2 hover:bg-warm-white/5 rounded-full transition-all text-warm-white/40 hover:text-white"
                 >
@@ -472,6 +643,9 @@ const HomePage = () => {
               </div>
             </motion.div>
           </div>
+        )}
+        {selectedImage && (
+          <ImagePreviewModal src={selectedImage} onClose={() => setSelectedImage(null)} />
         )}
       </AnimatePresence>
     </div >

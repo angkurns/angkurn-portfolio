@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Loader2, Link as LinkIcon, Share2 } from 'lucide-react';
 import { fetchNoteBySlug } from '@/lib/api';
@@ -81,10 +80,6 @@ const BrainGardenDetail = () => {
 
   return (
     <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
-      <Helmet>
-        <title>{article.title} — Angkurn — Product Designer</title>
-        <meta name="description" content={article.summary || article.short_description} />
-      </Helmet>
 
       {/* Header Container */}
       <header className="container mx-auto px-6 pt-32 pb-12 max-w-3xl">
