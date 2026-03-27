@@ -35,18 +35,18 @@ const HomePage = () => {
   const operatingSystem = [
     {
       number: "01",
-      title: "Logic-First Architecture",
-      description: "I define flows, states, and edge cases before opening Figma so engineers know exactly what to build."
+      title: "Logic Before Canvas",
+      description: "I map out states, flows, and brutal edge cases before opening Figma. Engineers get exact logic, not guessing games."
     },
     {
       number: "02",
-      title: "AI-Augmented Workflow",
-      description: "I use AI to test ideas, find edge cases, and challenge assumptions early."
+      title: "AI as a Sparring Partner",
+      description: "I do not use AI to generate UI. I use it to break my logic, find hidden edge cases, and challenge assumptions before development starts."
     },
     {
       number: "03",
-      title: "Sync-Driven Collaboration",
-      description: "I write things down clearly so engineers do not have to interpret. They implement."
+      title: "Brutal Documentation",
+      description: "A Figma link is not a handoff. I write comprehensive UX audits and logic flows. Engineers do not interpret my designs; they just implement the agreed facts."
     }
   ];
 
@@ -67,10 +67,10 @@ const HomePage = () => {
         >
           <div className="mb-6">
             <p className="text-base md:text-lg font-medium text-white mb-1">
-              Angga Kurnia Aryantika ⚉ Product Designer
+              Angga Kurnia Aryantika ⚉ Senior Product Designer
             </p>
             <p className="text-sm md:text-base text-neutral-400">
-              Autobahn Security GmbH
+              Autobahn Security | Reduce Hackability
             </p>
           </div>
 
@@ -185,7 +185,7 @@ const HomePage = () => {
         </motion.div>
       </section>
 
-      {/* My Operating System Section */}
+      {/* How I Execute Section */}
       <section className="container mx-auto px-6 py-12 md:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <motion.div
@@ -195,7 +195,7 @@ const HomePage = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white leading-tight">
-              My Operating<br />System
+              How I<br />Execute
             </h2>
           </motion.div>
 
