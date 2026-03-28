@@ -148,8 +148,8 @@ const HomePage = () => {
               <div className="relative w-full flex justify-start lg:justify-center">
                 <div className="w-full max-w-[420px] rounded-r-xl overflow-hidden shadow-[20px_20px_50px_-10px_rgba(0,0,0,0.9)] border border-white/[0.05] transition-transform duration-500 hover:scale-[1.02] bg-charcoal-dark">
                   <img
-                    src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Books%20The%20lost%20designer.webp"
-                    alt="The Lost Designer Book Mockup"
+                    src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Defensive%20designer%20cover.webp"
+                    alt="Defensive Designer Book Mockup"
                     className="w-full h-auto object-cover"
                   />
                 </div>
@@ -159,7 +159,7 @@ const HomePage = () => {
               <div className="flex flex-col justify-start space-y-6 pt-2 lg:pt-0">
                 <div>
                   <span className="text-orange-accent/80 font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
-                    THE LOST DESIGNER: A SURVIVAL GUIDE
+                    DEFENSIVE DESIGNER: A SURVIVAL GUIDE
                   </span>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white leading-tight mb-6">
                     For designers tired of just making things look good.
@@ -417,8 +417,8 @@ const HomePage = () => {
                   {/* Mobile Images (Balanced Row) */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
                     {[
-                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Mobiles%201.webp",
-                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Mobiles%202.webp"
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Exp%20porto%201.webp",
+                      "https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Exp%20porto%202.webp"
                     ].map((src, i) => (
                       <div 
                         key={i} 
