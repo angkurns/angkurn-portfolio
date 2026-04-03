@@ -17,7 +17,7 @@
   }
 
   body {
-    @apply bg-charcoal-dark text-warm-white;
+    @apply bg-white text-gray-900;
     font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -66,7 +66,7 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-charcoal-light;
+    @apply bg-gray-100;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -99,7 +99,7 @@
 
 /* Remove default focus outline and add custom */
 *:focus-visible {
-  @apply outline-none ring-2 ring-orange-accent ring-offset-2 ring-offset-charcoal-dark;
+  @apply outline-none ring-2 ring-orange-accent ring-offset-2 ring-offset-white;
 }
 
 /* Brain Garden Editorial System */
@@ -132,7 +132,7 @@
   font-size: 18px;
   line-height: 1.7;
   margin-bottom: 20px;
-  color: #d6d6d6;
+  color: #4b5563;
 }
 
 @media (min-width: 768px) {
@@ -148,7 +148,7 @@
   margin-top: 40px;
   margin-bottom: 20px;
   font-weight: 600;
-  color: #ffffff;
+  color: #111827;
 }
 
 @media (min-width: 768px) {
@@ -169,7 +169,7 @@
   font-size: 20px;
   line-height: 1.8;
   margin-bottom: 12px;
-  color: #d6d6d6;
+  color: #4b5563;
 }
 
 .article-content blockquote {
@@ -178,7 +178,7 @@
   border-left: 3px solid #ff8a3d;
   font-size: 22px;
   line-height: 1.6;
-  color: #ffffff;
+  color: #111827;
   font-weight: 500;
 }
 
@@ -194,7 +194,7 @@
 
 /* Selection color */
 ::selection {
-  @apply bg-orange-accent/30 text-warm-white;
+  @apply bg-orange-accent/30 text-gray-900;
 }
 
 /* Case Study Insight Block */
@@ -205,7 +205,6 @@
   padding-left: 20px;
   margin-top: 32px;
   margin-bottom: 32px;
-  color: #f4f4f5;
-  /* zinc-100/warm-white brightness */
+  color: #111827;
   font-weight: 500;
 }

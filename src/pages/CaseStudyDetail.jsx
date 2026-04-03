@@ -40,7 +40,7 @@ const CaseStudyDetail = () => {
 
   if (loading) {
     return (
-      <div className="bg-charcoal-dark min-h-screen flex items-center justify-center">
+      <div className="bg-white min-h-screen flex items-center justify-center">
         <Loader2 className="text-orange-accent animate-spin w-12 h-12" />
       </div>
     );
@@ -48,9 +48,9 @@ const CaseStudyDetail = () => {
 
   if (error || !caseStudy) {
     return (
-      <div className="bg-charcoal-dark min-h-screen flex flex-col items-center justify-center text-warm-white">
+      <div className="bg-white min-h-screen flex flex-col items-center justify-center text-gray-900">
         <h2 className="text-2xl font-bold mb-4">System Not Found</h2>
-        <p className="text-warm-white/60 mb-8">{error || "The logic for this system seems to be missing."}</p>
+        <p className="text-gray-500 mb-8">{error || "The logic for this system seems to be missing."}</p>
         <Link to="/" className="text-orange-accent hover:text-orange-accent/80 flex items-center gap-2">
           <ArrowLeft size={20} />
           Back to Home
@@ -60,13 +60,13 @@ const CaseStudyDetail = () => {
   }
 
   return (
-    <div className="bg-charcoal-dark min-h-screen text-warm-white font-dm-sans">
+    <div className="bg-white min-h-screen text-gray-900 font-dm-sans">
 
       {/* Hero Section */}
       <header className="container mx-auto px-6 py-12 md:py-24 max-w-[1100px]">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-warm-white/40 hover:text-orange-accent transition-colors mb-12"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-orange-accent transition-colors mb-12"
         >
           <ArrowLeft size={16} />
           <span className="text-sm uppercase tracking-widest">Back to Systems</span>
@@ -90,26 +90,26 @@ const CaseStudyDetail = () => {
             {caseStudy.title}
           </h1>
 
-          <p className="text-xl md:text-2xl text-warm-white/60 max-w-2xl leading-relaxed mb-12">
+          <p className="text-xl md:text-2xl text-gray-500 max-w-2xl leading-relaxed mb-12">
             {caseStudy.short_description}
           </p>
 
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-y border-warm-white/5 gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-y border-gray-100 gap-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-grow">
               <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Role</span>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Role</span>
                 <span className="text-base font-medium">{caseStudy.role}</span>
               </div>
               <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Platform</span>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Platform</span>
                 <span className="text-base font-medium">{caseStudy.platform || caseStudy.environment || "Web & Mobile"}</span>
               </div>
               <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Focus</span>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Focus</span>
                 <span className="text-base font-medium">{caseStudy.focus || "System Design"}</span>
               </div>
               <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-warm-white/30 mb-2">Year</span>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Year</span>
                 <span className="text-base font-medium">{caseStudy.year}</span>
               </div>
             </div>
@@ -130,7 +130,7 @@ const CaseStudyDetail = () => {
 
               <button
                 onClick={handleCopy}
-                className="text-neutral-500 hover:text-white transition-all duration-300 p-2 rounded-md focus-visible:ring-1 focus-visible:ring-orange-accent/50 hover:scale-105"
+                className="text-gray-400 hover:text-gray-900 transition-all duration-300 p-2 rounded-md focus-visible:ring-1 focus-visible:ring-orange-accent/50 hover:scale-105"
                 aria-label="Copy case study link"
                 title="Copy link"
               >
@@ -177,13 +177,13 @@ const CaseStudyDetail = () => {
                       <span className="text-sm text-orange-400 font-mono">
                         {formattedNumber} —
                       </span>
-                      <h2 className="text-2xl font-semibold text-white">
+                      <h2 className="text-2xl font-semibold text-gray-900">
                         {section.Title}
                       </h2>
                     </div>
 
                     <div
-                      className="text-zinc-400 leading-relaxed space-y-6"
+                      className="text-gray-600 leading-relaxed space-y-6"
                       dangerouslySetInnerHTML={{ __html: section.Description }}
                     />
                   </section>
@@ -195,10 +195,10 @@ const CaseStudyDetail = () => {
       )}
 
       {/* Final Closing */}
-      <footer className="container mx-auto px-6 py-24 border-t border-warm-white/5 text-center">
+      <footer className="container mx-auto px-6 py-24 border-t border-gray-100 text-center">
         <Link
           to="/"
-          className="inline-block bg-orange-accent text-charcoal-dark px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent/80 transition-all duration-300 transform hover:scale-105"
+          className="inline-block bg-orange-accent text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent/80 transition-all duration-300 transform hover:scale-105"
         >
           View More Systems
         </Link>

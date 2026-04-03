@@ -77,7 +77,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="bg-charcoal-dark min-h-screen text-warm-white font-inter">
+    <div className="bg-gray-50 min-h-screen text-gray-900 font-inter">
 
       {/* SECTION 1 — HERO */}
       <section className="container mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-[120px]">
@@ -87,15 +87,15 @@ const AboutPage = () => {
           transition={{ duration: 0.8 }}
           className="max-w-5xl"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-warm-white mb-8 leading-[1.1] md:leading-[0.95] tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-gray-900 mb-8 leading-[1.1] md:leading-[0.95] tracking-tight">
             I build clarity inside<br />complex products.
           </h1>
 
-          <p className="text-xl md:text-2xl text-warm-white/90 font-medium mb-4">
+          <p className="text-xl md:text-2xl text-gray-800 font-medium mb-4">
             Hi, I'm Angga.
           </p>
 
-          <p className="text-lg md:text-xl text-warm-white/60 leading-relaxed max-w-3xl mb-6">
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mb-6">
             I work in systems. When things get complicated, I help teams slow down, think clearly, and make decisions that hold up over time.
           </p>
 
@@ -115,7 +115,7 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             {/* Left Column: Photo */}
             <div className="flex justify-center md:justify-start">
-              <div className="w-56 h-56 md:w-80 md:h-80 rounded-full overflow-hidden border border-white/[0.08] shadow-2xl">
+              <div className="w-56 h-56 md:w-80 md:h-80 rounded-full overflow-hidden border border-gray-200 shadow-xl">
                 <img
                   src="/angga.jpeg"
                   alt="Angga"
@@ -130,13 +130,13 @@ const AboutPage = () => {
                 <span className="text-[12px] uppercase tracking-[0.2em] text-neutral-500 font-bold block">
                   CONTEXT
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-4">
                   What Changed For Me
                 </h2>
                 <div className="w-[48px] h-[2px] bg-orange-accent mt-5"></div>
               </div>
 
-              <div className="space-y-5 text-warm-white text-lg leading-[1.8]">
+              <div className="space-y-5 text-gray-700 text-lg leading-[1.8]">
                 <p>Design used to be mostly about execution for me.</p>
                 <p>Now it’s about ownership.</p>
                 <p>In 2025, I found myself stepping into product decisions, system structure, and documentation clarity. Not because of title. But because it was needed.</p>
@@ -171,10 +171,10 @@ const AboutPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white leading-tight">
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 How I Work
               </h2>
-              <p className="text-warm-white/40 mt-4 text-lg md:text-xl max-w-sm">
+              <p className="text-gray-500 mt-4 text-lg md:text-xl max-w-sm">
                 The principles behind how I approach complex products.
               </p>
             </motion.div>
@@ -185,23 +185,23 @@ const AboutPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="divide-y divide-white/[0.08]"
+              className="divide-y divide-gray-200"
             >
               {howIWork.map((item, index) => (
                 <div key={index} className="relative py-12 first:pt-0 last:pb-0 group">
                   {/* Subtle Background Number */}
-                  <div className="absolute -left-4 top-1/2 -translate-y-1/2 text-8xl md:text-[10rem] font-bold text-warm-white/[0.04] select-none pointer-events-none group-hover:text-warm-white/[0.07] transition-colors duration-500">
+                  <div className="absolute -left-4 top-1/2 -translate-y-1/2 text-8xl md:text-[10rem] font-bold text-gray-100 select-none pointer-events-none group-hover:text-gray-200 transition-colors duration-500">
                     {item.number}
                   </div>
 
                   <div className="relative z-10">
                     <div className="mb-4">
                       <span className="text-orange-accent/60 text-lg md:text-xl font-mono font-bold">{item.number}</span>
-                      <h3 className="text-2xl md:text-3xl font-bold text-white mt-1">
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mt-1">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-warm-white/50 text-lg md:text-xl leading-relaxed max-w-2xl">
+                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-2xl">
                       {item.description}
                     </p>
                   </div>
@@ -213,7 +213,7 @@ const AboutPage = () => {
       </section>
 
       {/* SECTION 4 — WHAT I FOCUS ON */}
-      <section className="container mx-auto px-8 md:px-16 py-12 md:py-32 border-t border-warm-white/5">
+      <section className="container mx-auto px-8 md:px-16 py-12 md:py-32 border-t border-gray-100">
         <div className="">
           {/* Section Heading */}
           <motion.div
@@ -223,10 +223,10 @@ const AboutPage = () => {
             transition={{ duration: 0.8 }}
             className="mb-16 md:mb-24"
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-warm-white leading-tight mb-6">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
               What I Focus On
             </h2>
-            <p className="text-warm-white/40 text-lg md:text-xl max-w-2xl">
+            <p className="text-gray-500 text-lg md:text-xl max-w-2xl">
               Areas where I spend most of my energy.
             </p>
           </motion.div>
@@ -242,11 +242,11 @@ const AboutPage = () => {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="group"
               >
-                <item.icon className="w-5 h-5 text-warm-white/20 group-hover:text-orange-accent transition-colors duration-300 mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-bold text-warm-white group-hover:text-warm-white transition-colors mb-2">
+                <item.icon className="w-5 h-5 text-gray-400 group-hover:text-orange-accent transition-colors duration-300 mb-4" strokeWidth={1.5} />
+                <h3 className="text-lg font-bold text-gray-900 transition-colors mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-warm-white/40 leading-relaxed">
+                <p className="text-sm text-gray-500 leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -256,7 +256,7 @@ const AboutPage = () => {
       </section>
 
       {/* SECTION 5 — A BIT OF CONTEXT */}
-      <section className="w-full bg-white/[0.01] py-20 md:py-32">
+      <section className="w-full bg-white py-20 md:py-32">
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-24 items-start">
             {/* Left side: Heading */}
@@ -268,7 +268,7 @@ const AboutPage = () => {
               className="space-y-4"
             >
               <span className="text-orange-accent/60 font-mono text-sm tracking-widest uppercase">Background Log</span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 A Bit Of Context
               </h2>
             </motion.div>
@@ -280,16 +280,16 @@ const AboutPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="relative pl-8 md:pl-12 border-l border-white/10 space-y-20 py-4">
+              <div className="relative pl-8 md:pl-12 border-l border-gray-200 space-y-20 py-4">
                 {/* Point 1: The Beginning */}
                 <div className="relative">
                   <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
                   <div className="space-y-4">
-                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed">
+                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
                       I’ve been doing this for over 11 years. At the beginning, I focused on making things look good. That was the job.
                     </p>
                     <div className="space-y-2">
-                      <p className="text-warm-white text-lg md:text-xl font-medium">But over time I realized I care more about what people don’t see.</p>
+                      <p className="text-gray-800 text-lg md:text-xl font-medium">But over time I realized I care more about what people don’t see.</p>
                       <p className="text-orange-accent/80 font-mono text-base md:text-lg">_The logic.</p>
                       <p className="text-orange-accent/80 font-mono text-base md:text-lg">_The rules behind the screen.</p>
                     </div>
@@ -300,13 +300,13 @@ const AboutPage = () => {
                 <div className="relative">
                   <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
                   <div className="space-y-4">
-                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed">
+                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
                       Most of my work is in complex products. Enterprise cybersecurity, lots of edge cases, lots of constraints.
                     </p>
-                    <p className="text-warm-white text-lg md:text-xl font-medium">
+                    <p className="text-gray-800 text-lg md:text-xl font-medium">
                       It’s not always fun. But I enjoy it.
                     </p>
-                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed">
+                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
                       For me, a good UI only matters if the logic underneath makes sense first.
                     </p>
                   </div>
@@ -316,15 +316,15 @@ const AboutPage = () => {
                 <div className="relative">
                   <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
                   <div className="space-y-4">
-                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed">
-                      The <span className="text-warm-white font-bold">Lead Triad</span> was not a big strategy idea. It started from conversations between me and two lead engineers.
+                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
+                      The <span className="text-gray-900 font-bold">Lead Triad</span> was not a big strategy idea. It started from conversations between me and two lead engineers.
                     </p>
-                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed">
+                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
                       We were spending too much time reviewing designs that were not clear yet. So instead of reviewing visuals, we talked through the logic first.
                     </p>
                     <div className="flex flex-wrap gap-4 pt-2">
-                      <span className="bg-white/5 border border-white/10 px-3 py-1 rounded font-mono text-sm text-orange-accent/80">Before Figma</span>
-                      <span className="bg-white/5 border border-white/10 px-3 py-1 rounded font-mono text-sm text-orange-accent/80">Before Visuals</span>
+                      <span className="bg-gray-100 border border-gray-200 px-3 py-1 rounded font-mono text-sm text-orange-accent/80">Before Figma</span>
+                      <span className="bg-gray-100 border border-gray-200 px-3 py-1 rounded font-mono text-sm text-orange-accent/80">Before Visuals</span>
                     </div>
                   </div>
                 </div>
@@ -333,10 +333,10 @@ const AboutPage = () => {
                 <div className="relative">
                   <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
                   <div className="space-y-6">
-                    <p className="text-warm-white/60 text-lg md:text-xl leading-relaxed">
+                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
                       It reduced confusion. It reduced rework. It made conversations easier.
                     </p>
-                    <p className="text-warm-white text-xl md:text-2xl font-bold border-l-2 border-orange-accent pl-6 py-2">
+                    <p className="text-gray-900 text-xl md:text-2xl font-bold border-l-2 border-orange-accent pl-6 py-2">
                       I’m not interested in decorating features. I just want things to make sense.
                     </p>
                   </div>
@@ -356,12 +356,12 @@ const AboutPage = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-warm-white max-w-4xl mx-auto mb-12 leading-[1.1] tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 max-w-4xl mx-auto mb-12 leading-[1.1] tracking-tight">
             If your product feels complex, let’s simplify it.
           </h2>
           <button
             onClick={openModal}
-            className="inline-block bg-orange-accent text-charcoal-dark px-12 py-5 rounded-full font-bold text-xl hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(255,140,66,0.3)] transition-all duration-300"
+            className="inline-block bg-orange-accent text-white px-12 py-5 rounded-full font-bold text-xl hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(255,140,66,0.3)] transition-all duration-300"
           >
             Let’s Talk
           </button>

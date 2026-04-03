@@ -95,7 +95,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="absolute inset-0 bg-charcoal-dark/90 backdrop-blur-sm"
+                        className="absolute inset-0 bg-white/90 backdrop-blur-sm"
                     />
 
                     {/* Modal Content */}
@@ -104,12 +104,12 @@ const ContactModal = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ type: 'spring', duration: 0.5, bounce: 0.3 }}
-                        className="relative w-full max-w-2xl bg-[#2a2a2a] border border-warm-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-2xl overflow-hidden"
+                        className="relative w-full max-w-2xl bg-white border border-gray-200 rounded-[2.5rem] p-8 md:p-12 shadow-2xl overflow-hidden"
                     >
                         {/* Close Button */}
                         <button
                             onClick={onClose}
-                            className="absolute top-6 right-6 p-2 text-warm-white/30 hover:text-orange-accent hover:bg-warm-white/5 rounded-full transition-all"
+                            className="absolute top-6 right-6 p-2 text-gray-400 hover:text-orange-accent hover:bg-gray-50 rounded-full transition-all"
                             aria-label="Close modal"
                         >
                             <X size={24} />
@@ -118,8 +118,8 @@ const ContactModal = ({ isOpen, onClose }) => {
                         {!isSubmitted ? (
                             <>
                                 <div className="mb-10">
-                                    <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-4">Let’s Talk</h2>
-                                    <p className="text-warm-white/60 text-lg leading-relaxed">
+                                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Let’s Talk</h2>
+                                    <p className="text-gray-600 text-lg leading-relaxed">
                                         If your product involves complexity, edge cases, or unclear logic, I’d love to understand what you’re building.
                                     </p>
                                 </div>
@@ -133,7 +133,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label htmlFor="fullName" className="text-xs uppercase tracking-widest text-warm-white/40 font-semibold block ml-1">
+                                            <label htmlFor="fullName" className="text-xs uppercase tracking-widest text-gray-500 font-semibold block ml-1">
                                                 Full Name <span className="text-orange-accent">*</span>
                                             </label>
                                             <input
@@ -143,12 +143,12 @@ const ContactModal = ({ isOpen, onClose }) => {
                                                 name="fullName"
                                                 value={formData.fullName}
                                                 onChange={handleChange}
-                                                className="w-full bg-charcoal-dark/50 border border-warm-white/5 rounded-2xl px-5 py-4 text-warm-white placeholder:text-warm-white/20 focus:outline-none focus:border-orange-accent/50 transition-colors"
+                                                className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-orange-accent/50 transition-colors"
                                                 placeholder="John Doe"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label htmlFor="email" className="text-xs uppercase tracking-widest text-warm-white/40 font-semibold block ml-1">
+                                            <label htmlFor="email" className="text-xs uppercase tracking-widest text-gray-500 font-semibold block ml-1">
                                                 Email <span className="text-orange-accent">*</span>
                                             </label>
                                             <input
@@ -158,15 +158,15 @@ const ContactModal = ({ isOpen, onClose }) => {
                                                 name="email"
                                                 value={formData.email}
                                                 onChange={handleChange}
-                                                className="w-full bg-charcoal-dark/50 border border-warm-white/5 rounded-2xl px-5 py-4 text-warm-white placeholder:text-warm-white/20 focus:outline-none focus:border-orange-accent/50 transition-colors"
+                                                className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-orange-accent/50 transition-colors"
                                                 placeholder="john@example.com"
                                             />
                                         </div>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="phone" className="text-xs uppercase tracking-widest text-warm-white/40 font-semibold block ml-1">
-                                            Mobile Phone <span className="text-warm-white/20">(Optional)</span>
+                                        <label htmlFor="phone" className="text-xs uppercase tracking-widest text-gray-500 font-semibold block ml-1">
+                                            Mobile Phone <span className="text-gray-400">(Optional)</span>
                                         </label>
                                         <input
                                             type="tel"
@@ -174,13 +174,13 @@ const ContactModal = ({ isOpen, onClose }) => {
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full bg-charcoal-dark/50 border border-warm-white/5 rounded-2xl px-5 py-4 text-warm-white placeholder:text-warm-white/20 focus:outline-none focus:border-orange-accent/50 transition-colors"
+                                            className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-orange-accent/50 transition-colors"
                                             placeholder="+62 ..."
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="message" className="text-xs uppercase tracking-widest text-warm-white/40 font-semibold block ml-1">
+                                        <label htmlFor="message" className="text-xs uppercase tracking-widest text-gray-500 font-semibold block ml-1">
                                             Message <span className="text-orange-accent">*</span>
                                         </label>
                                         <textarea
@@ -190,7 +190,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                                             rows={4}
                                             value={formData.message}
                                             onChange={handleChange}
-                                            className="w-full bg-charcoal-dark/50 border border-warm-white/5 rounded-2xl px-5 py-4 text-warm-white placeholder:text-warm-white/20 focus:outline-none focus:border-orange-accent/50 transition-colors resize-none"
+                                            className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-orange-accent/50 transition-colors resize-none"
                                             placeholder="Share a short overview of your product, the complexity you're dealing with, and the outcome you want to reach."
                                         />
                                     </div>
@@ -198,13 +198,13 @@ const ContactModal = ({ isOpen, onClose }) => {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full bg-orange-accent text-charcoal-dark py-5 rounded-2xl font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2 mt-4"
+                                        className="w-full bg-orange-accent text-white py-5 rounded-2xl font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2 mt-4"
                                     >
                                         {isSubmitting ? (
                                             <motion.div
                                                 animate={{ rotate: 360 }}
                                                 transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-                                                className="w-6 h-6 border-2 border-charcoal-dark/30 border-t-charcoal-dark rounded-full"
+                                                className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full"
                                             />
                                         ) : (
                                             'Start the Conversation'
@@ -223,13 +223,13 @@ const ContactModal = ({ isOpen, onClose }) => {
                                         <CheckCircle2 size={48} />
                                     </div>
                                 </div>
-                                <h2 className="text-3xl md:text-5xl font-bold text-warm-white mb-6">Message Sent</h2>
-                                <p className="text-warm-white/60 text-xl leading-relaxed max-w-md mx-auto">
+                                <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Message Sent</h2>
+                                <p className="text-gray-600 text-xl leading-relaxed max-w-md mx-auto">
                                     Thanks. I’ll review your message and get back to you shortly.
                                 </p>
                                 <button
                                     onClick={onClose}
-                                    className="mt-12 text-warm-white/40 hover:text-orange-accent transition-colors underline underline-offset-8 decoration-warm-white/10 hover:decoration-orange-accent/30 font-medium"
+                                    className="mt-12 text-gray-500 hover:text-orange-accent transition-colors underline underline-offset-8 decoration-gray-200 hover:decoration-orange-accent/30 font-medium"
                                 >
                                     Back to browsing
                                 </button>

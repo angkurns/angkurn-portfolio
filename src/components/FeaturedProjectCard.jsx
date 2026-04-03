@@ -15,7 +15,7 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                 hover: { y: -4 }
             }}
             transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
-            className="relative aspect-[16/10] rounded-[32px] overflow-hidden bg-[#161616] border border-white/10 flex items-center justify-center p-0 group/card shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+            className="relative aspect-[16/10] rounded-[32px] overflow-hidden bg-gray-50 border border-gray-200 flex items-center justify-center p-0 group/card shadow-xl"
         >
             {project.thumbnail_url ? (
                 <img
@@ -25,8 +25,8 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                 />
             ) : (
                 <div className="text-center space-y-5 opacity-20">
-                    <div className="w-40 h-1.5 bg-warm-white rounded-full mx-auto" />
-                    <div className="w-28 h-1.5 bg-warm-white rounded-full mx-auto" />
+                    <div className="w-40 h-1.5 bg-gray-400 rounded-full mx-auto" />
+                    <div className="w-28 h-1.5 bg-gray-400 rounded-full mx-auto" />
                     <div className="w-48 h-1.5 bg-orange-accent/50 rounded-full mx-auto" />
                 </div>
             )}
@@ -49,12 +49,12 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                             </span>
                         )}
 
-                        <h3 className={`font-bold text-warm-white leading-tight tracking-tight group-hover:text-orange-accent transition-colors duration-500 ${isFlagship ? 'text-2xl md:text-5xl' : 'text-xl md:text-4xl'}`}>
+                        <h3 className={`font-bold text-gray-900 leading-tight tracking-tight group-hover:text-orange-accent transition-colors duration-500 ${isFlagship ? 'text-2xl md:text-5xl' : 'text-xl md:text-4xl'}`}>
                             {project.title}
                         </h3>
 
                         {/* Metadata Row */}
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] md:text-sm font-mono font-bold uppercase tracking-widest text-warm-white/30">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] md:text-sm font-mono font-bold uppercase tracking-widest text-gray-500">
                             <span>{project.year || "2025"}</span>
                             <span className="opacity-20">|</span>
                             <span>{project.role || "Senior Product Designer"}</span>
@@ -66,7 +66,7 @@ const FeaturedProjectCard = ({ project, index, isFlagship = false }) => {
                         {VisualContent}
                     </div>
 
-                    <p className={`${isFlagship ? 'text-lg md:text-xl' : 'text-base md:text-lg'} text-warm-white/40 leading-relaxed max-w-2xl font-medium`}>
+                    <p className={`${isFlagship ? 'text-lg md:text-xl' : 'text-base md:text-lg'} text-gray-600 leading-relaxed max-w-2xl font-medium`}>
                         {displayDescription}
                     </p>
 

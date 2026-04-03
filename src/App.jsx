@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomePage from '@/pages/HomePage';
 import AboutPage from '@/pages/AboutPage';
+import ArchivePage from '@/pages/ArchivePage';
 import TheBrainGarden from '@/pages/TheBrainGarden';
 import CaseStudyDetail from '@/pages/CaseStudyDetail';
 import BrainGardenDetail from '@/pages/BrainGardenDetail';
@@ -24,6 +25,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/archive" element={<ArchivePage />} />
           <Route path="/notes" element={<TheBrainGarden />} />
 
           {/* Dynamic Routes */}
