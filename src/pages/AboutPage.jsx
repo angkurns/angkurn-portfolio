@@ -32,9 +32,9 @@ const AboutPage = () => {
             {/* Left Column */}
             <div className="md:col-span-4 flex flex-col gap-6">
               <img
-                src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Angga-Imagination.webp"
+                src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Ang%20-%20Sunlight%20and%20serenity%20in%20the%20city.webp"
                 alt="Angga Kurnia Aryantika"
-                className="w-120 h-120 rounded-2xl object-cover border border-gray-100 p-1 bg-white shadow-sm"
+                className="w-160 h-160 rounded-2xl object-cover border border-gray-100 p-1 bg-white shadow-sm"
               />
 
               <div className="flex flex-row items-center gap-4 mt-6 pl-4">
@@ -62,10 +62,10 @@ const AboutPage = () => {
                 I care about the parts most people skip.
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mt-4">
-                I focus on edge cases, messy flows, and things that don’t show up in design reviews. Most products don’t fail in the main flow, they fail in the details no one thought through.
+                I focus on <b>edge cases</b>, <b>messy flows</b>, and things that <b>don’t show up in design reviews</b>. Most products don’t fail in the main flow, they <b>fail in the details no one thought through</b>.
                 <br />
                 <br />
-                Over time, I moved from just executing UI to owning how things actually work, working closely with engineers to define logic, reduce assumptions, and make sure what we design holds up in production.
+                Over time, I moved from just executing UI to <b>owning how things actually work</b>, working closely with engineers to <b>define logic</b>, <b>reduce assumptions</b>, and <b>make sure what we design holds up in production</b>.
                 <br />
                 <i> Not easy. But necessary.</i>
               </p>
