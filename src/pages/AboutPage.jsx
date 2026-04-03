@@ -8,347 +8,222 @@ import {
   Target,
   FileText,
   Share2,
-  LineChart
+  LineChart,
+  Download
 } from 'lucide-react';
 import { useContactModal } from '@/context/ContactModalContext';
 
 const AboutPage = () => {
   const { openModal } = useContactModal();
 
-  const howIWork = [
-    {
-      number: "01",
-      title: "Start With The System",
-      description: "Before designing screens, I define how things should behave. Clear structure makes interface decisions easier."
-    },
-    {
-      number: "02",
-      title: "Documentation Matters",
-      description: "I treat documentation as part of the product. Clear logic reduces friction between design and engineering."
-    },
-    {
-      number: "03",
-      title: "AI As A Thinking Tool",
-      description: "I use AI to challenge assumptions, test logic, and explore edge cases. Not to replace thinking, but to improve it."
-    }
-  ];
-
-  const focusGrid = [
-    {
-      title: "Enterprise systems",
-      icon: ShieldCheck,
-      description: "Handling deep permissions and complex states where 'simple' doesn't exist."
-    },
-    {
-      title: "Design systems and governance",
-      icon: Layers,
-      description: "Not just UI kits. I build tokens and documentation that teams actually use and maintain."
-    },
-    {
-      title: "Complex workflows",
-      icon: GitBranch,
-      description: "Breaking down multi-step flows and edge cases before I even touch the UI."
-    },
-    {
-      title: "Multi-role products",
-      icon: Users,
-      description: "Designing one system that works for admins, operators, and users without breaking the logic."
-    },
-    {
-      title: "Product strategy alignment",
-      icon: Target,
-      description: "Making sure what we build actually moves the needle for the business, not just the user."
-    },
-    {
-      title: "Clear decision frameworks",
-      icon: FileText,
-      description: "Mapping out transitions and assumptions so engineers don't have to guess my intent."
-    },
-    {
-      title: "Cross-functional collaboration",
-      icon: Share2,
-      description: "Syncing with lead engineers early to find technical constraints before they become blockers."
-    },
-    {
-      title: "Long-term maintainability",
-      icon: LineChart,
-      description: "Thinking about how this scales in two years, so we don't have to rebuild it in six months."
-    }
-  ];
-
   return (
-    <div className="bg-gray-50 min-h-screen text-gray-900 font-inter">
+    <div className="bg-white min-h-screen text-gray-900 font-inter">
+      {/* Global Wrapper */}
+      <div className="max-w-6xl mx-auto py-24 px-6 flex flex-col gap-24">
 
-      {/* SECTION 1 — HERO */}
-      <section className="container mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-[120px]">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-5xl"
-        >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-gray-900 mb-8 leading-[1.1] md:leading-[0.95] tracking-tight">
-            I build clarity inside<br />complex products.
-          </h1>
-
-          <p className="text-xl md:text-2xl text-gray-800 font-medium mb-4">
-            Hi, I'm Angga.
-          </p>
-
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mb-6">
-            I work in systems. When things get complicated, I help teams slow down, think clearly, and make decisions that hold up over time.
-          </p>
-
-          <p className="text-lg md:text-xl text-orange-accent font-medium leading-tight">
-            I care about clarity. Not just how something looks, but how it works.
-          </p>
-        </motion.div>
-      </section>
-
-      <section className="container mx-auto px-8 md:px-16 py-12 md:py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            {/* Left Column: Photo */}
-            <div className="flex justify-center md:justify-start">
-              <div className="w-56 h-56 md:w-80 md:h-80 rounded-full overflow-hidden border border-gray-200 shadow-xl">
-                <img
-                  src="/angga.jpeg"
-                  alt="Angga"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Right Column: Content */}
-            <div className="max-w-[640px]">
-              <div className="mb-10">
-                <span className="text-[12px] uppercase tracking-[0.2em] text-neutral-500 font-bold block">
-                  CONTEXT
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-4">
-                  What Changed For Me
-                </h2>
-                <div className="w-[48px] h-[2px] bg-orange-accent mt-5"></div>
-              </div>
-
-              <div className="space-y-5 text-gray-700 text-lg leading-[1.8]">
-                <p>Design used to be mostly about execution for me.</p>
-                <p>Now it’s about ownership.</p>
-                <p>In 2025, I found myself stepping into product decisions, system structure, and documentation clarity. Not because of title. But because it was needed.</p>
-                <p>
-                  I had to think further ahead.<br />
-                  Less assumptions. More logic.<br />
-                  Every decision needed to survive engineering review.
-                </p>
-                <p>
-                  I worked closely with our backend and frontend leads.<br />
-                  Refined the design system so it behaved properly in real use.<br />
-                  Used AI to challenge edge cases before they reached production.
-                </p>
-                <p className="font-bold">
-                  Not easy.<br />
-                  But necessary.
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* SECTION 3 — HOW I WORK */}
-      <section className="container mx-auto px-8 md:px-16 py-12 md:py-32">
-        <div className="">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        {/* Section 1: Hero */}
+        <section>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start"
+          >
             {/* Left Column */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                How I Work
-              </h2>
-              <p className="text-gray-500 mt-4 text-lg md:text-xl max-w-sm">
-                The principles behind how I approach complex products.
+            <div className="md:col-span-4 flex flex-col gap-6">
+              <img
+                src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Angga%20Photo.webp"
+                alt="Angga Kurnia Aryantika"
+                className="w-48 h-48 rounded-2xl object-cover shadow-sm bg-gray-50 border border-gray-100"
+              />
+              <button
+                className="flex items-center justify-center gap-2.5 px-6 py-3 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors w-48 text-gray-700"
+              >
+                <Download className="w-4 h-4" />
+                Download CV
+              </button>
+            </div>
+
+            {/* Right Column */}
+            <div className="md:col-span-8 flex flex-col gap-6 text-left">
+              <p className="text-xl font-medium text-gray-500">
+                Hi, this is Angga.
               </p>
-            </motion.div>
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
+                I turn messy logic into buildable interfaces.
+              </h1>
+              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mt-4">
+                I’m a Senior Product Designer with nearly 5 years in cybersecurity. I started out as an Art Director, focused on aesthetics, but I quickly learned that beautiful UI is useless if the underlying logic is broken. Now, I operate as a Triad Lead—collaborating directly with engineers to map edge cases, stress-test workflows, and build systems that don't fail in production.
+              </p>
+            </div>
+          </motion.div>
+        </section>
 
-            {/* Right Column: Rows */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="divide-y divide-gray-200"
-            >
-              {howIWork.map((item, index) => (
-                <div key={index} className="relative py-12 first:pt-0 last:pb-0 group">
-                  {/* Subtle Background Number */}
-                  <div className="absolute -left-4 top-1/2 -translate-y-1/2 text-8xl md:text-[10rem] font-bold text-gray-100 select-none pointer-events-none group-hover:text-gray-200 transition-colors duration-500">
-                    {item.number}
-                  </div>
-
-                  <div className="relative z-10">
-                    <div className="mb-4">
-                      <span className="text-orange-accent/60 text-lg md:text-xl font-mono font-bold">{item.number}</span>
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mt-1">
-                        {item.title}
-                      </h3>
-                    </div>
-                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-2xl">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4 — WHAT I FOCUS ON */}
-      <section className="container mx-auto px-8 md:px-16 py-12 md:py-32 border-t border-gray-100">
-        <div className="">
-          {/* Section Heading */}
+        {/* Section 2: A Bit Of Context */}
+        <section className="border-t border-gray-100 pt-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-16 md:mb-24"
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
-              What I Focus On
-            </h2>
-            <p className="text-gray-500 text-lg md:text-xl max-w-2xl">
-              Areas where I spend most of my energy.
-            </p>
+            <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-6">
+              A BIT OF CONTEXT
+            </h3>
+            <div className="text-lg text-gray-700 leading-relaxed max-w-4xl space-y-6">
+              <p>
+                Design used to be mostly about execution for me. Now it’s about ownership.
+              </p>
+              <p>
+                In 2025, I found myself stepping into product decisions, system structure, and documentation clarity. Not because of title. But because it was needed.
+              </p>
+              <p>
+                I had to think further ahead.<br />
+                Less assumptions. More logic.<br />
+                Every decision needed to survive engineering review.
+              </p>
+              <p>
+                I worked closely with our backend and frontend leads.<br />
+                Refined the design system so it behaved properly in real use.<br />
+                Used AI to challenge edge cases before they reached production.
+              </p>
+              <p className="text-gray-900 font-bold">
+                Not easy. But necessary.
+              </p>
+            </div>
           </motion.div>
+        </section>
 
-          {/* Grid Below */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
-            {focusGrid.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group"
-              >
-                <item.icon className="w-5 h-5 text-gray-400 group-hover:text-orange-accent transition-colors duration-300 mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-bold text-gray-900 transition-colors mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5 — A BIT OF CONTEXT */}
-      <section className="w-full bg-white py-20 md:py-32">
-        <div className="container mx-auto px-8 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-24 items-start">
-            {/* Left side: Heading */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-4"
-            >
-              <span className="text-orange-accent/60 font-mono text-sm tracking-widest uppercase">Background Log</span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                A Bit Of Context
-              </h2>
-            </motion.div>
-
-            {/* Right side: Story Timeline */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="relative pl-8 md:pl-12 border-l border-gray-200 space-y-20 py-4">
-                {/* Point 1: The Beginning */}
-                <div className="relative">
-                  <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
-                  <div className="space-y-4">
-                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
-                      I’ve been doing this for over 11 years. At the beginning, I focused on making things look good. That was the job.
-                    </p>
-                    <div className="space-y-2">
-                      <p className="text-gray-800 text-lg md:text-xl font-medium">But over time I realized I care more about what people don’t see.</p>
-                      <p className="text-orange-accent/80 font-mono text-base md:text-lg">_The logic.</p>
-                      <p className="text-orange-accent/80 font-mono text-base md:text-lg">_The rules behind the screen.</p>
-                    </div>
-                  </div>
+        {/* Section 3: Experience */}
+        <section className="border-t border-gray-100 pt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-medium text-gray-900 mb-10 tracking-tight">Experience</h2>
+            <div className="bg-gray-50 rounded-3xl border border-gray-100 p-8 flex flex-col gap-0 text-left">
+              {/* Job 1 */}
+              <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
+                <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
+                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
                 </div>
-
-                {/* Point 2: Complexity */}
-                <div className="relative">
-                  <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
-                  <div className="space-y-4">
-                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
-                      Most of my work is in complex products. Enterprise cybersecurity, lots of edge cases, lots of constraints.
-                    </p>
-                    <p className="text-gray-800 text-lg md:text-xl font-medium">
-                      It’s not always fun. But I enjoy it.
-                    </p>
-                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
-                      For me, a good UI only matters if the logic underneath makes sense first.
-                    </p>
+                <div className="flex-1 w-full text-left">
+                  <div className="flex flex-col gap-1 mb-6">
+                    <h3 className="text-xl font-bold text-gray-900">Autobahn Security</h3>
+                    <span className="text-sm text-gray-500 font-medium">Full-time &bull; 4 yrs 5 mos</span>
+                    <span className="text-sm text-gray-400">Jakarta Metropolitan Area &bull; Hybrid</span>
                   </div>
-                </div>
 
-                {/* Point 3: The Triad */}
-                <div className="relative">
-                  <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
-                  <div className="space-y-4">
-                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
-                      The <span className="text-gray-900 font-bold">Lead Triad</span> was not a big strategy idea. It started from conversations between me and two lead engineers.
-                    </p>
-                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
-                      We were spending too much time reviewing designs that were not clear yet. So instead of reviewing visuals, we talked through the logic first.
-                    </p>
-                    <div className="flex flex-wrap gap-4 pt-2">
-                      <span className="bg-gray-100 border border-gray-200 px-3 py-1 rounded font-mono text-sm text-orange-accent/80">Before Figma</span>
-                      <span className="bg-gray-100 border border-gray-200 px-3 py-1 rounded font-mono text-sm text-orange-accent/80">Before Visuals</span>
-                    </div>
+                  <div className="mb-6 relative pl-4 border-l-2 border-gray-200">
+                    <h4 className="text-base font-semibold text-gray-900">Senior Product Designer</h4>
+                    <span className="text-sm text-gray-500 block mb-2">Jan 2025 - Present &bull; 1 yr 4 mos</span>
+                    <p className="text-base text-gray-600 leading-relaxed max-w-3xl">Lead design Triad for risk and threat modules, defining logic and edge cases before UI execution. Handling end-to-end complex workflows.</p>
                   </div>
-                </div>
 
-                {/* Point 4: The Result */}
-                <div className="relative">
-                  <div className="absolute -left-[38.5px] md:-left-[54.5px] top-3 w-3 h-3 rounded-full bg-orange-accent shadow-[0_0_12px_rgba(255,140,66,0.4)]" />
-                  <div className="space-y-6">
-                    <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
-                      It reduced confusion. It reduced rework. It made conversations easier.
-                    </p>
-                    <p className="text-gray-900 text-xl md:text-2xl font-bold border-l-2 border-orange-accent pl-6 py-2">
-                      I’m not interested in decorating features. I just want things to make sense.
-                    </p>
+                  <div className="mb-6 relative pl-4 border-l-2 border-gray-200">
+                    <h4 className="text-base font-semibold text-gray-900">Design Systems Manager</h4>
+                    <span className="text-sm text-gray-500 block mb-2">Sep 2023 - Dec 2024 &bull; 1 yr 4 mos</span>
+                    <p className="text-base text-gray-600 leading-relaxed max-w-3xl">Helped build and migrate to 'Fastlane', a more structured and reusable design system, working closely with engineering leads to ensure production consistency.</p>
+                  </div>
+
+                  <div className="relative pl-4 border-l-2 border-gray-200">
+                    <h4 className="text-base font-semibold text-gray-900">Senior User Interface Designer</h4>
+                    <span className="text-sm text-gray-500 block mb-2">Dec 2021 - Aug 2023 &bull; 1 yr 9 mos</span>
+                    <p className="text-base text-gray-600 leading-relaxed max-w-3xl">Focused on UI design across the product, translating complex security data requirements into clear screens and interactions.</p>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+
+              {/* Job 2 */}
+              <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
+                <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
+                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
+                </div>
+                <div className="flex-1 w-full text-left">
+                  <div className="flex flex-col gap-1 mb-3">
+                    <h3 className="text-xl font-bold text-gray-900">CodeLabs Indonesia</h3>
+                    <span className="text-sm text-gray-500 font-medium">Dec 2015 - Nov 2021 &bull; 6 yrs</span>
+                    <span className="text-sm text-gray-400">Jakarta Metropolitan Area &bull; Hybrid</span>
+                  </div>
+                  <p className="text-base font-semibold text-gray-700 mb-3">Sr. UI/UX Designer</p>
+                  <p className="text-base text-gray-600 leading-relaxed max-w-3xl">
+                    Championed user-centric design, systems thinking, and scalable interfaces for complex enterprise products over a 6-year tenure.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h4 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mt-20 mb-6 text-left">Extras & Early Career</h4>
+            <div className="bg-gray-50 rounded-3xl border border-gray-100 p-8 flex flex-col gap-0 text-left">
+              {/* Job 3 */}
+              <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
+                <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
+                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
+                </div>
+                <div className="flex-1 w-full text-left">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1 mb-1">
+                    <h3 className="text-xl font-bold text-gray-900">Garuda Indonesia (GMF AeroAsia)</h3>
+                    <p className="text-sm text-gray-500 font-medium">Jun 2018 - Dec 2018</p>
+                  </div>
+                  <p className="text-base font-semibold text-gray-700 mb-3">Creative Director (Freelance)</p>
+                  <p className="text-base text-gray-600 leading-relaxed max-w-3xl">
+                    Directed physical system design and production for 3 facilities. This pre-digital experience forged my foundation in handling real-world constraints and operational flows.
+                  </p>
+                </div>
+              </div>
+
+              {/* Job 4 */}
+              <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
+                <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
+                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
+                </div>
+                <div className="flex-1 w-full text-left">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1 mb-1">
+                    <h3 className="text-xl font-bold text-gray-900">PREMIER OIL NATUNA SEA B.V.</h3>
+                    <p className="text-sm text-gray-500 font-medium">May 2013 - Oct 2013</p>
+                  </div>
+                  <p className="text-base font-semibold text-gray-700 mb-3">Graphic Designer (Internship)</p>
+                  <p className="text-base text-gray-600 leading-relaxed max-w-3xl">
+                    Developed visual assets and supported digital imaging processes for corporate materials.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Section 4: Tool Stack */}
+        <section className="border-t border-gray-100 pt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-medium text-gray-900 mb-12 tracking-tight">Tools I Use</h2>
+            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-8">
+              {[
+                'Antigravity', 'Cursor', 'Gemini', 'Claude',
+                'Adobe', 'Figma', 'Lovable', 'Vercel',
+                'Supabase', 'Github', 'Atlassian', 'Slack',
+                'Microsoft 360', 'Miro', 'Webflow', 'Framer'
+              ].map((tool, idx) => (
+                <div key={idx} className="flex flex-col items-center gap-3 p-4 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:border-gray-200 transition-colors">
+                  <div className="w-12 h-12 bg-white rounded flex items-center justify-center border border-gray-100 shadow-sm">
+                    <span className="text-gray-300 text-[10px] font-mono">{tool.substring(0, 2).toUpperCase()}</span>
+                  </div>
+                  <span className="text-xs text-gray-500 font-medium text-center">{tool}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </section>
+      </div>
 
       {/* SECTION 6 — CTA */}
-      <section className="container mx-auto px-6 py-24 md:py-32">
+      <section className="container mx-auto px-6 pb-24 md:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -356,12 +231,12 @@ const AboutPage = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 max-w-4xl mx-auto mb-12 leading-[1.1] tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 max-w-4xl mx-auto mb-10 leading-[1.1] tracking-tight">
             If your product feels complex, let’s simplify it.
           </h2>
           <button
             onClick={openModal}
-            className="inline-block bg-orange-accent text-white px-12 py-5 rounded-full font-bold text-xl hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(255,140,66,0.3)] transition-all duration-300"
+            className="inline-block bg-orange-accent text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent/90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
           >
             Let’s Talk
           </button>
