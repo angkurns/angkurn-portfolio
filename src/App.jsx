@@ -10,6 +10,7 @@ import ArchivePage from '@/pages/ArchivePage';
 import TheBrainGarden from '@/pages/TheBrainGarden';
 import CaseStudyDetail from '@/pages/CaseStudyDetail';
 import BrainGardenDetail from '@/pages/BrainGardenDetail';
+import WorkPage from '@/pages/WorkPage';
 import { Toaster } from '@/components/ui/toaster';
 
 import { ContactModalProvider, useContactModal } from '@/context/ContactModalContext';
@@ -24,6 +25,7 @@ function AppContent() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/work" element={<WorkPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/archive" element={<ArchivePage />} />
           <Route path="/notes" element={<TheBrainGarden />} />

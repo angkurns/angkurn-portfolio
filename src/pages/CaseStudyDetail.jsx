@@ -41,7 +41,7 @@ const CaseStudyDetail = () => {
   if (loading) {
     return (
       <div className="bg-white min-h-screen flex items-center justify-center">
-        <Loader2 className="text-orange-accent animate-spin w-12 h-12" />
+        <Loader2 className="text-gray-400 animate-spin w-12 h-12" />
       </div>
     );
   }
@@ -51,8 +51,8 @@ const CaseStudyDetail = () => {
       <div className="bg-white min-h-screen flex flex-col items-center justify-center text-gray-900">
         <h2 className="text-2xl font-bold mb-4">System Not Found</h2>
         <p className="text-gray-500 mb-8">{error || "The logic for this system seems to be missing."}</p>
-        <Link to="/" className="text-orange-accent hover:text-orange-accent/80 flex items-center gap-2">
-          <ArrowLeft size={20} />
+        <Link to="/" className="text-gray-900 font-medium hover:underline flex items-center gap-1 transition-all">
+          <ArrowLeft size={18} />
           Back to Home
         </Link>
       </div>
@@ -66,10 +66,10 @@ const CaseStudyDetail = () => {
       <header className="container mx-auto px-6 py-12 md:py-24 max-w-[1100px]">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-orange-accent transition-colors mb-12"
+          className="inline-flex items-center gap-1 text-gray-900 font-medium hover:underline transition-all mb-12"
         >
           <ArrowLeft size={16} />
-          <span className="text-sm uppercase tracking-widest">Back to Systems</span>
+          <span className="text-sm">Back to Systems</span>
         </Link>
 
         <motion.div
@@ -80,7 +80,7 @@ const CaseStudyDetail = () => {
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
             {caseStudy.category?.split(',').map((tag, i) => (
-              <span key={i} className="bg-orange-accent/10 border border-orange-accent/20 text-orange-accent px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold">
+              <span key={i} className="bg-gray-50 border border-gray-100 text-gray-500 px-3 py-1 rounded-lg text-[10px] uppercase tracking-widest font-bold">
                 {tag.trim()}
               </span>
             ))}
@@ -130,7 +130,7 @@ const CaseStudyDetail = () => {
 
               <button
                 onClick={handleCopy}
-                className="text-gray-400 hover:text-gray-900 transition-all duration-300 p-2 rounded-md focus-visible:ring-1 focus-visible:ring-orange-accent/50 hover:scale-105"
+                className="text-gray-400 hover:text-gray-900 transition-all duration-300 p-2 rounded-lg focus-visible:ring-1 focus-visible:ring-gray-900/50 hover:scale-105"
                 aria-label="Copy case study link"
                 title="Copy link"
               >
@@ -154,7 +154,7 @@ const CaseStudyDetail = () => {
                     <a
                       key={section.id}
                       href={`#section-${section.Order}`}
-                      className="block text-sm text-neutral-500 hover:text-orange-400 transition-colors"
+                      className="block text-sm text-gray-400 hover:text-gray-900 transition-colors"
                     >
                       {formattedNumber} — {section.Title}
                     </a>
@@ -174,7 +174,7 @@ const CaseStudyDetail = () => {
                     className="space-y-4 scroll-mt-32"
                   >
                     <div className="flex items-baseline gap-4">
-                      <span className="text-sm text-orange-400 font-mono">
+                      <span className="text-sm text-gray-400 font-mono">
                         {formattedNumber} —
                       </span>
                       <h2 className="text-2xl font-semibold text-gray-900">
@@ -198,7 +198,7 @@ const CaseStudyDetail = () => {
       <footer className="container mx-auto px-6 py-24 border-t border-gray-100 text-center">
         <Link
           to="/"
-          className="inline-block bg-orange-accent text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent/80 transition-all duration-300 transform hover:scale-105"
+          className="inline-block bg-gray-900 text-white px-10 py-4 rounded-lg font-medium text-lg hover:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
         >
           View More Systems
         </Link>

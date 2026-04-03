@@ -29,7 +29,7 @@ const ImagePreviewModal = ({ src, onClose }) => {
           onClick={onClose}
           className="absolute -top-14 right-0 text-gray-500 hover:text-orange-accent p-2 transition-colors flex items-center gap-2 group"
         >
-          <span className="text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
+          <span className="text-[10px] uppercase tracking-widest font-medium opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
           <X className="w-6 h-6" />
         </button>
         <div className="rounded-xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] border border-white/5">
@@ -129,10 +129,10 @@ const HomePage = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full md:w-2/5 flex justify-center md:justify-end"
           >
-            <img 
-              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Angga%20Photo.webp" 
-              alt="Angga Kurnia Aryantika" 
-              className="w-full max-w-md rounded-2xl object-cover aspect-square border border-gray-100 shadow-sm" 
+            <img
+              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Angga%20Photo.webp"
+              alt="Angga Kurnia Aryantika"
+              className="w-full max-w-md rounded-2xl object-cover aspect-square border border-gray-100 shadow-sm"
             />
           </motion.div>
         </div>
@@ -140,7 +140,7 @@ const HomePage = () => {
 
       {/* Impact Metrics Section */}
       <section className="container mx-auto px-6 pt-16 pb-40 max-w-6xl">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -198,7 +198,7 @@ const HomePage = () => {
               </div>
             ) : (
               <div className="space-y-12 md:space-y-24">
-                <div className="flex flex-col space-y-8 md:space-y-12">
+                <div className="flex flex-col space-y-16 md:space-y-32">
                   {projects.length > 0 ? (
                     projects.map((project, index) => (
                       <motion.div
@@ -207,67 +207,58 @@ const HomePage = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="flex flex-col md:flex-row bg-white rounded-3xl md:rounded-[2.5rem] border border-neutral-200 shadow-sm overflow-hidden group min-h-[560px]"
+                        className="flex flex-col md:flex-row bg-white rounded-3xl md:rounded-[2.5rem] border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden group min-h-[560px]"
                       >
-                        {/* Left Column (Text & Context) */}
-                        <div className="w-full md:w-[35%] flex flex-col justify-center p-8 md:p-10 lg:p-12 shrink-0">
-                          {/* Category & Meta */}
-                          <div className="space-y-5 mb-6">
-                            {project.category && (
-                              <div className="flex flex-wrap gap-2">
-                                {project.category.split(',').map((cat, i) => (
-                                  <div key={i} className="w-fit px-4 py-1.5 bg-[#e6f4ea] text-[#1eb253] text-[13px] font-semibold rounded-full">
-                                    {cat.trim()}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
+                        {/* Left Column (Visual Evidence) */}
+                        <div className="relative w-full md:w-[60%] bg-[#f4f5f5] min-h-[360px] md:min-h-0">
+                          <img
+                            src={project.thumbnail_url}
+                            alt={project.title}
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                          />
+                        </div>
 
-                            <div className="flex flex-col">
-                              <div className="flex items-center gap-3 text-sm text-neutral-500 font-medium tracking-wide">
-                                <div className="w-6 h-6 shrink-0 rounded-full bg-[#ff4d4f] flex items-center justify-center shadow-sm">
-                                  <svg viewBox="0 0 24 24" fill="white" className="w-[14px] h-[14px]">
-                                    <path d="M12 2L4 20h3.5l1.5-3.5h6L16.5 20H20L12 2zm-1.5 10.5L12 7l1.5 4.5h-3z" />
-                                  </svg>
-                                </div>
-                                <span>Autobahn Security</span>
-                                <span className="text-neutral-300 font-light">|</span>
-                                <span>{project.read_time || '4 min'}</span>
-                              </div>
-                              {project.year && (
-                                <span className="text-neutral-400/80 text-[11px] font-bold tracking-widest uppercase pl-9 mt-1.5">
-                                  {project.year}
-                                </span>
-                              )}
+                        {/* Right Column (Text & Context) */}
+                        <div className="w-full md:w-[40%] flex flex-col justify-center p-8 md:p-12 lg:p-16 shrink-0 text-left">
+                          {/* Row 1: Logo & Company & Meta */}
+                          <div className="flex items-center gap-2 mb-4">
+                            <div className="w-6 h-6 shrink-0 rounded-full bg-[#ff4d4f] flex items-center justify-center shadow-sm">
+                              <svg viewBox="0 0 24 24" fill="white" className="w-[14px] h-[14px]">
+                                <path d="M12 2L4 20h3.5l1.5-3.5h6L16.5 20H20L12 2zm-1.5 10.5L12 7l1.5 4.5h-3z" />
+                              </svg>
                             </div>
+                            <span className="text-sm font-bold text-gray-900 tracking-tight">Autobahn Security</span>
+                            <span className="text-xs text-gray-300 mx-1">|</span>
+                            <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
+                              {project.read_time || '4 MIN'} {project.year && `• ${project.year}`}
+                            </span>
                           </div>
-                          
-                          <h3 className="text-[26px] md:text-3xl font-semibold text-neutral-900 mb-4 leading-snug group-hover:text-black transition-colors">
+
+                          {/* Row 2: Tags */}
+                          <div className="flex flex-wrap gap-2 mb-8">
+                            {project.category && project.category.split(',').map((cat, i) => (
+                              <div key={i} className="px-3 py-1 bg-gray-50 text-gray-500 text-[11px] font-bold uppercase tracking-wider rounded-md border border-gray-100">
+                                {cat.trim()}
+                              </div>
+                            ))}
+                          </div>
+
+                          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight tracking-tight">
                             {project.title}
                           </h3>
-                          
-                          <p className="text-neutral-500 text-[15px] md:text-base leading-[1.6] mb-8 max-w-md">
+
+                          <p className="text-base text-gray-600 leading-relaxed mb-6 max-w-md">
                             {project.short_description}
                           </p>
 
                           <div>
                             <Link
                               to={`/systems/${project.slug}`}
-                              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 hover:border-neutral-300 rounded-full text-sm font-semibold text-neutral-800 transition-all hover:bg-neutral-50"
+                              className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 text-base transition-all"
                             >
-                              View case study
-                              <span className="text-base text-neutral-500 leading-none transition-transform group-hover:translate-x-1">→</span>
+                              <span>View case study →</span>
                             </Link>
                           </div>
-                        </div>
-
-                        {/* Right Column (Visual Evidence) */}
-                        <div className="relative w-full md:w-[65%] bg-[#f4f5f5] min-h-[360px] md:min-h-0">
-                          <img
-                            src={project.thumbnail_url}
-                            alt={project.title}
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                          />
                         </div>
                       </motion.div>
                     ))
@@ -343,7 +334,7 @@ const HomePage = () => {
                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
                           <button
                             onClick={() => setIsSneakPeekOpen(true)}
-                            className="flex-1 sm:flex-none flex items-center justify-center gap-3 text-orange-accent hover:text-white border border-orange-accent hover:bg-orange-accent px-8 py-4 rounded-full font-bold text-base transition-all duration-300"
+                            className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-gray-900 text-white border border-transparent rounded-lg px-8 py-4 font-medium text-base hover:bg-gray-800 hover:shadow-sm transition-all duration-300"
                           >
                             <FileText className="w-4 h-4" />
                             <span>Sneak peek</span>
@@ -351,7 +342,7 @@ const HomePage = () => {
 
                           <button
                             disabled
-                            className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-transparent border border-gray-200 text-gray-400 px-8 py-4 rounded-full font-bold text-base cursor-not-allowed opacity-50"
+                            className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-white text-gray-400 border border-gray-200 rounded-lg px-8 py-4 font-medium text-base cursor-not-allowed"
                           >
                             <Download className="w-4 h-4" />
                             <span>Coming Soon</span>
@@ -370,9 +361,9 @@ const HomePage = () => {
       {/* Editorial Vertical List */}
       <section className="max-w-5xl mx-auto py-32 px-6">
         <div className="flex flex-col gap-16 md:gap-24">
-          
+
           {/* Block 1 */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -389,7 +380,7 @@ const HomePage = () => {
           </motion.div>
 
           {/* Block 2 */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -406,7 +397,7 @@ const HomePage = () => {
           </motion.div>
 
           {/* Block 3 */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -462,8 +453,8 @@ const HomePage = () => {
                     <p className="text-gray-700 mb-6 text-base line-clamp-2">
                       {post.summary || post.short_description}
                     </p>
-                    <span className="text-orange-accent font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                      Read note <span className="text-xl">→</span>
+                    <span className="text-gray-900 font-medium group-hover:underline inline-flex items-center gap-1 transition-all">
+                      Read note →
                     </span>
                   </Link>
                 </motion.div>
@@ -476,10 +467,9 @@ const HomePage = () => {
           <div className="flex justify-start">
             <Link
               to="/notes"
-              className="text-gray-600 font-semibold hover:text-orange-accent transition-colors flex items-center gap-2"
+              className="text-gray-900 font-medium hover:underline flex items-center gap-1 transition-all"
             >
-              View all notes
-              <span className="text-xl">→</span>
+              View all notes →
             </Link>
           </div>
         </motion.div>

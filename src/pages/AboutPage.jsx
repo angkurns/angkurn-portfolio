@@ -19,7 +19,7 @@ const AboutPage = () => {
   return (
     <div className="bg-white min-h-screen text-gray-900 font-inter">
       {/* Global Wrapper */}
-      <div className="max-w-6xl mx-auto py-24 px-6 flex flex-col gap-24">
+      <div className="max-w-6xl mx-auto py-24 px-6 flex flex-col gap-10">
 
         {/* Section 1: Hero */}
         <section>
@@ -32,16 +32,25 @@ const AboutPage = () => {
             {/* Left Column */}
             <div className="md:col-span-4 flex flex-col gap-6">
               <img
-                src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Angga%20Photo.webp"
+                src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Home/Angga-Imagination.webp"
                 alt="Angga Kurnia Aryantika"
-                className="w-48 h-48 rounded-2xl object-cover shadow-sm bg-gray-50 border border-gray-100"
+                className="w-120 h-120 rounded-2xl object-cover border border-gray-100 p-1 bg-white shadow-sm"
               />
-              <button
-                className="flex items-center justify-center gap-2.5 px-6 py-3 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors w-48 text-gray-700"
-              >
-                <Download className="w-4 h-4" />
-                Download CV
-              </button>
+
+              <div className="flex flex-row items-center gap-4 mt-6 pl-4">
+                <button
+                  className="flex items-center justify-center gap-2.5 px-6 py-3 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 hover:shadow-sm transition-all w-48"
+                >
+                  <Download className="w-4 h-4" />
+                  Download CV
+                </button>
+                <a href="https://www.linkedin.com/in/angkurn/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-all duration-300">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                </a>
+                <a href="https://www.instagram.com/angkurn/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-all duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path></svg>
+                </a>
+              </div>
             </div>
 
             {/* Right Column */}
@@ -50,64 +59,88 @@ const AboutPage = () => {
                 Hi, this is Angga.
               </p>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
-                I turn messy logic into buildable interfaces.
+                I care about the parts most people skip.
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mt-4">
-                I’m a Senior Product Designer with nearly 5 years in cybersecurity. I started out as an Art Director, focused on aesthetics, but I quickly learned that beautiful UI is useless if the underlying logic is broken. Now, I operate as a Triad Lead—collaborating directly with engineers to map edge cases, stress-test workflows, and build systems that don't fail in production.
+                I focus on edge cases, messy flows, and things that don’t show up in design reviews. Most products don’t fail in the main flow, they fail in the details no one thought through.
+                <br />
+                <br />
+                Over time, I moved from just executing UI to owning how things actually work, working closely with engineers to define logic, reduce assumptions, and make sure what we design holds up in production.
+                <br />
+                <i> Not easy. But necessary.</i>
               </p>
             </div>
           </motion.div>
         </section>
 
-        {/* Section 2: A Bit Of Context */}
-        <section className="border-t border-gray-100 pt-16">
+        {/* Bridge Statement */}
+        <div className="text-xl md:text-2xl text-gray-700 font-medium italic text-center py-16 md:py-20 mb-12 max-w-3xl mx-auto leading-relaxed">
+          Most problems don’t show up in design reviews. <br /> They show up in production.
+        </div>
+
+        {/* Section 2: Tool Stack */}
+        <section className="py-4 mt-2">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-6">
-              A BIT OF CONTEXT
-            </h3>
-            <div className="text-lg text-gray-700 leading-relaxed max-w-4xl space-y-6">
-              <p>
-                Design used to be mostly about execution for me. Now it’s about ownership.
-              </p>
-              <p>
-                In 2025, I found myself stepping into product decisions, system structure, and documentation clarity. Not because of title. But because it was needed.
-              </p>
-              <p>
-                I had to think further ahead.<br />
-                Less assumptions. More logic.<br />
-                Every decision needed to survive engineering review.
-              </p>
-              <p>
-                I worked closely with our backend and frontend leads.<br />
-                Refined the design system so it behaved properly in real use.<br />
-                Used AI to challenge edge cases before they reached production.
-              </p>
-              <p className="text-gray-900 font-bold">
-                Not easy. But necessary.
-              </p>
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 tracking-tight">My Toolkit</h2>
+            <p className="text-gray-400 mt-1 mb-4 text-left">Tools help me move fast, but they don’t replace thinking.</p>
+            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-3">
+              {[
+                { name: 'Microsoft', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/microsoft-color.svg' },
+                { name: 'Antigravity', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/antigravity-color.svg' },
+                { name: 'Gemini', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/gemini-color.svg' },
+                { name: 'Figma', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Figma.svg' },
+                { name: 'Lovable', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/lovable-logo-icon.svg' },
+                { name: 'Claude', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/claude-color.svg' },
+                { name: 'Adobe', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Adobe.svg' },
+                { name: 'Supabase', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/supabase-icon.svg' },
+                { name: 'Apple', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Apple.svg' },
+                { name: 'Cursor', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/cursor.svg' },
+                { name: 'Github', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/github.svg' },
+                { name: 'Notebooklm', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/notebooklm.svg' },
+                { name: 'ChatGPT', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/ChatGPT.svg' },
+                { name: 'Vercel', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/vercel.svg' },
+                { name: 'Atlassian', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Atlassian.svg' },
+                { name: 'Confluence', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Confluence.svg' },
+                { name: 'Jira', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Jira.svg' },
+                { name: 'Webflow', icon: 'https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Webflow.svg' },
+              ].map((item, idx) => (
+                <div key={idx} className="group relative aspect-square bg-white border border-gray-100 rounded-2xl flex flex-col items-center justify-center p-2 hover:-translate-y-1 hover:shadow-lg hover:border-blue-500 transition-all duration-300 cursor-default hover:z-50">
+                  {item.icon ? (
+                    <img src={item.icon} alt={item.name} className="w-8 h-8 md:w-10 md:h-10 object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
+                  ) : (
+                    <span className="text-gray-300 text-[10px] font-mono">{item.name.substring(0, 2).toUpperCase()}</span>
+                  )}
+                  {/* Tooltip Label */}
+                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20 font-medium shadow-sm">
+                    {item.name}
+                  </span>
+                </div>
+              ))}
             </div>
           </motion.div>
         </section>
 
         {/* Section 3: Experience */}
-        <section className="border-t border-gray-100 pt-16">
+        <section className="mt-24 md:mt-32">
+          {/* Section 3: Experience */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl font-medium text-gray-900 mb-10 tracking-tight">Experience</h2>
+            <h2 className="text-3xl font-medium text-gray-900 mb-4 tracking-tight">Experience</h2>
+            <p className="text-xl text-gray-600 mb-10 font-medium italic text-left">This is where the logic gets tested.</p>
             <div className="bg-gray-50 rounded-3xl border border-gray-100 p-8 flex flex-col gap-0 text-left">
               {/* Job 1 */}
               <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
                 <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
-                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
+                  <img src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Icon/Autobahn%20security.webp" alt="logo" className="w-10 h-10 object-contain" />
                 </div>
                 <div className="flex-1 w-full text-left">
                   <div className="flex flex-col gap-1 mb-6">
@@ -119,13 +152,16 @@ const AboutPage = () => {
                   <div className="mb-6 relative pl-4 border-l-2 border-gray-200">
                     <h4 className="text-base font-semibold text-gray-900">Senior Product Designer</h4>
                     <span className="text-sm text-gray-500 block mb-2">Jan 2025 - Present &bull; 1 yr 4 mos</span>
-                    <p className="text-base text-gray-600 leading-relaxed max-w-3xl">Lead design Triad for risk and threat modules, defining logic and edge cases before UI execution. Handling end-to-end complex workflows.</p>
+                    <p className="text-base text-gray-600 leading-relaxed max-w-3xl">Driving UI/UX decisions for risk modules with engineering and support. Defining logic early, maintaining the design system, and handling complex workflows end-to-end with AI as a thinking tool so engineers don't have to guess.</p>
                   </div>
 
                   <div className="mb-6 relative pl-4 border-l-2 border-gray-200">
-                    <h4 className="text-base font-semibold text-gray-900">Design Systems Manager</h4>
+                    <h4 className="text-base font-semibold text-gray-900">Design Systems Lead</h4>
                     <span className="text-sm text-gray-500 block mb-2">Sep 2023 - Dec 2024 &bull; 1 yr 4 mos</span>
-                    <p className="text-base text-gray-600 leading-relaxed max-w-3xl">Helped build and migrate to 'Fastlane', a more structured and reusable design system, working closely with engineering leads to ensure production consistency.</p>
+                    <p className="text-base text-gray-600 leading-relaxed max-w-3xl">
+                      Led the build of "Fastlane" end to end, aligning design and engineering through a shared token system and clear workflows. Worked directly with leadership to make sure the system actually held up in production.
+                      <a href="systems/building-a-design-system-engineers-use" className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 transition-all">View case study →</a>
+                    </p>
                   </div>
 
                   <div className="relative pl-4 border-l-2 border-gray-200">
@@ -139,7 +175,7 @@ const AboutPage = () => {
               {/* Job 2 */}
               <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
                 <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
-                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
+                  <img src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Icon/Codelabs%20indonesia.webp" alt="logo" className="w-10 h-10 object-contain" />
                 </div>
                 <div className="flex-1 w-full text-left">
                   <div className="flex flex-col gap-1 mb-3">
@@ -160,7 +196,7 @@ const AboutPage = () => {
               {/* Job 3 */}
               <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
                 <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
-                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
+                  <img src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Icon/Garuda%20indonesia.webp" alt="logo" className="w-10 h-10 object-contain" />
                 </div>
                 <div className="flex-1 w-full text-left">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1 mb-1">
@@ -177,11 +213,11 @@ const AboutPage = () => {
               {/* Job 4 */}
               <div className="flex flex-col md:flex-row gap-6 items-start py-8 first:pt-0 border-b border-gray-100 last:border-0 last:pb-0">
                 <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
-                  <img src="" alt="logo" className="w-full h-full object-cover opacity-0" />
+                  <img src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Icon/Multipolar.webp" alt="logo" className="w-10 h-10 object-contain" />
                 </div>
                 <div className="flex-1 w-full text-left">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1 mb-1">
-                    <h3 className="text-xl font-bold text-gray-900">PREMIER OIL NATUNA SEA B.V.</h3>
+                    <h3 className="text-xl font-bold text-gray-900">PT Multipolar Technology Tbk </h3>
                     <p className="text-sm text-gray-500 font-medium">May 2013 - Oct 2013</p>
                   </div>
                   <p className="text-base font-semibold text-gray-700 mb-3">Graphic Designer (Internship)</p>
@@ -193,50 +229,23 @@ const AboutPage = () => {
             </div>
           </motion.div>
         </section>
-
-        {/* Section 4: Tool Stack */}
-        <section className="border-t border-gray-100 pt-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl font-medium text-gray-900 mb-12 tracking-tight">Tools I Use</h2>
-            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-8">
-              {[
-                'Antigravity', 'Cursor', 'Gemini', 'Claude',
-                'Adobe', 'Figma', 'Lovable', 'Vercel',
-                'Supabase', 'Github', 'Atlassian', 'Slack',
-                'Microsoft 360', 'Miro', 'Webflow', 'Framer'
-              ].map((tool, idx) => (
-                <div key={idx} className="flex flex-col items-center gap-3 p-4 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:border-gray-200 transition-colors">
-                  <div className="w-12 h-12 bg-white rounded flex items-center justify-center border border-gray-100 shadow-sm">
-                    <span className="text-gray-300 text-[10px] font-mono">{tool.substring(0, 2).toUpperCase()}</span>
-                  </div>
-                  <span className="text-xs text-gray-500 font-medium text-center">{tool}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
       </div>
 
       {/* SECTION 6 — CTA */}
-      <section className="container mx-auto px-6 pb-24 md:pb-32">
+      <section className="container mx-auto px-6 pt-32 pb-24 md:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center"
+          className="flex flex-col items-center text-center"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 max-w-4xl mx-auto mb-10 leading-[1.1] tracking-tight">
-            If your product feels complex, let’s simplify it.
+            If your product doesn’t hold up in real use, let’s fix that.
           </h2>
           <button
             onClick={openModal}
-            className="inline-block bg-orange-accent text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-accent/90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+            className="inline-block bg-gray-900 text-white px-10 py-4 rounded-lg font-medium text-lg hover:bg-gray-800 hover:shadow-sm transition-all duration-300 transform hover:scale-[1.02]"
           >
             Let’s Talk
           </button>

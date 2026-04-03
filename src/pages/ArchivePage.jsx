@@ -24,7 +24,7 @@ const ImagePreviewModal = ({ src, onClose }) => {
           onClick={onClose}
           className="absolute -top-14 right-0 text-gray-500 hover:text-orange-accent p-2 transition-colors flex items-center gap-2 group"
         >
-          <span className="text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
+          <span className="text-[10px] uppercase tracking-widest font-medium opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
           <X className="w-6 h-6" />
         </button>
         <div className="rounded-xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.1)] border border-gray-100">

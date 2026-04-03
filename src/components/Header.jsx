@@ -35,9 +35,9 @@ const Header = () => {
                 About
               </NavLink>
               <span className="text-gray-200 px-1">▪</span>
-              <a href="/#work" className="px-4 py-2 rounded-full transition-all duration-300 text-gray-500 hover:text-gray-900">
+              <NavLink to="/work" className={navLinkStyles}>
                 Work
-              </a>
+              </NavLink>
               <span className="text-gray-200 px-1">▪</span>
               <NavLink to="/notes" className={navLinkStyles}>
                 Notes
@@ -54,7 +54,7 @@ const Header = () => {
             {/* Modal Trigger - Desktop */}
             <button
               onClick={openModal}
-              className="hidden md:block bg-orange-accent/90 text-white px-5 py-1.5 rounded-full text-sm font-bold hover:scale-105 hover:bg-orange-accent hover:shadow-lg transition-all duration-300"
+              className="hidden md:block bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 hover:shadow-sm transition-all duration-300"
             >
               Let’s Talk
             </button>
@@ -62,7 +62,7 @@ const Header = () => {
             {/* Modal Trigger - Mobile */}
             <button
               onClick={openModal}
-              className="md:hidden bg-orange-accent text-white px-4 py-1.5 rounded-full text-xs font-bold active:scale-95 transition-transform"
+              className="md:hidden bg-gray-900 text-white px-4 py-2 rounded-lg text-xs font-medium active:scale-95 transition-transform"
             >
               Let’s Talk
             </button>
@@ -108,7 +108,7 @@ const Header = () => {
 
                   {[
                     { label: 'About', to: '/about', index: '01' },
-                    { label: 'Work', href: '/#work', index: '02' },
+                    { label: 'Work', to: '/work', index: '02' },
                     { label: 'Notes', to: '/notes', index: '03' },
                     { label: 'Archive', to: '/archive', index: '04' }
                   ].map((item, idx) => (

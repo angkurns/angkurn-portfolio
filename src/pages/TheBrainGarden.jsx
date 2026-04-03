@@ -286,8 +286,8 @@ const TheBrainGarden = () => {
                             <span>·</span>
                             <span>{calculateReadingTime(article.content)} MIN</span>
                           </div>
-                          <span className="text-[10px] font-bold text-orange-accent group-hover:translate-x-1 transition-transform flex items-center gap-1 opacity-0 group-hover:opacity-100 uppercase tracking-wider">
-                            Read more <ArrowRight size={10} />
+                          <span className="text-sm font-medium text-gray-900 group-hover:underline flex items-center gap-1 transition-all">
+                            Read more →
                           </span>
                         </div>
                       </div>
