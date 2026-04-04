@@ -134,7 +134,7 @@ const WorkPage = () => {
                         to={`/systems/${project.slug}`}
                         className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 text-base transition-all"
                       >
-                        <span>View case study →</span>
+                        <span>See how it works →</span>
                       </Link>
                     </div>
                   </div>

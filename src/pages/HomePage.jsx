@@ -139,35 +139,35 @@ const HomePage = () => {
       </section>
 
       {/* Impact Metrics Section */}
-      <section className="container mx-auto px-6 pt-16 pb-40 max-w-6xl">
+      <section className="container mx-auto px-6 pt-12 pb-24 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4"
         >
           {/* Card 1 */}
-          <div className="p-8 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-5xl font-bold text-gray-900 tracking-tight">30% Drop</h3>
-            <p className="text-base text-gray-600 mt-4 leading-relaxed">
-              Cut support tickets by 30% by adding 'positive friction' and clearer error logic to prevent accidental data loss.
+          <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Reduced user errors by 30%</h3>
+            <p className="text-base text-gray-600 mt-2 leading-relaxed">
+              By adding small friction in the right places to prevent costly mistakes.
             </p>
           </div>
 
           {/* Card 2 */}
-          <div className="p-8 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-5xl font-bold text-gray-900 tracking-tight">2 Weeks</h3>
-            <p className="text-base text-gray-600 mt-4 leading-relaxed">
-              Saved 2 weeks of dev cycles per feature by defining edge cases and UX specs before any UI work.
+          <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Saved ~2 weeks per feature</h3>
+            <p className="text-base text-gray-600 mt-2 leading-relaxed">
+              By defining edge cases and product logic before any UI work begins.
             </p>
           </div>
 
           {/* Card 3 */}
-          <div className="p-8 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-5xl font-bold text-gray-900 tracking-tight">3.5M+ Rows</h3>
-            <p className="text-base text-gray-600 mt-4 leading-relaxed">
-              Designed enterprise tables handling 3.5M+ rows without breaking performance or user clarity.
+          <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Handled 3.5M+ rows without breaking UX</h3>
+            <p className="text-base text-gray-600 mt-2 leading-relaxed">
+              By designing with performance limits and real usage in mind.
             </p>
           </div>
         </motion.div>
@@ -256,7 +256,7 @@ const HomePage = () => {
                               to={`/systems/${project.slug}`}
                               className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 text-base transition-all"
                             >
-                              <span>View case study →</span>
+                              <span>See how it works →</span>
                             </Link>
                           </div>
                         </div>

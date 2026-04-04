@@ -160,7 +160,7 @@ const AboutPage = () => {
                     <span className="text-sm text-gray-500 block mb-2">Sep 2023 - Dec 2024 &bull; 1 yr 4 mos</span>
                     <p className="text-base text-gray-600 leading-relaxed max-w-3xl">
                       Led the build of "Fastlane" end to end, aligning design and engineering through a shared token system and clear workflows. Worked directly with leadership to make sure the system actually held up in production.
-                      <a href="systems/building-a-design-system-engineers-use" className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 transition-all">View case study →</a>
+                      <a href="systems/building-a-design-system-engineers-use" className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 transition-all">See how it works →</a>
                     </p>
                   </div>
 
