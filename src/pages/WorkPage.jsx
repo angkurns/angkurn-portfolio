@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
-import { fetchFeaturedCaseStudies } from '@/lib/api';
+import { fetchAllCaseStudies } from '@/lib/api';
 import { useContactModal } from '@/context/ContactModalContext';
 
 const WorkPage = () => {
@@ -15,7 +15,7 @@ const WorkPage = () => {
   useEffect(() => {
     const loadContent = async () => {
       try {
-        const caseStudiesData = await fetchFeaturedCaseStudies();
+        const caseStudiesData = await fetchAllCaseStudies();
         setProjects(caseStudiesData);
       } catch (error) {
         console.error("Failed to load content:", error);

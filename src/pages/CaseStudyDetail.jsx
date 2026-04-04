@@ -59,6 +59,8 @@ const CaseStudyDetail = () => {
     );
   }
 
+  console.log("Fetched Case Study Data:", caseStudy);
+
   return (
     <div className="bg-white min-h-screen text-gray-900 font-dm-sans">
 
@@ -141,6 +143,39 @@ const CaseStudyDetail = () => {
         </motion.div>
       </header>
 
+      {/* Independent Content HTML Area */}
+      <section className="w-full max-w-3xl mx-auto pt-12 md:pt-20 pb-12 px-4 md:px-0">
+        {caseStudy?.content_html ? (
+          <div className="relative">
+            <div
+              className="prose prose-lg prose-gray max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-a:text-gray-900 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:max-w-full prose-img:h-auto prose-p:text-gray-600 prose-p:leading-relaxed w-full"
+              dangerouslySetInnerHTML={{ __html: caseStudy.content_html }}
+            />
+            {/* Fade Effect */}
+            <div className="absolute bottom-[-10px] left-0 w-full h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
+          </div>
+        ) : (
+          <div className="p-4 bg-red-50 text-red-500 rounded-lg text-sm font-mono relative">
+            DEBUG: `content_html` is either null, undefined, or empty for this case study. Check the Supabase fetch query.
+          </div>
+        )}
+
+        {/* NDA Request Block */}
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-8 md:p-10 text-center max-w-2xl mx-auto mt-[-40px] relative z-10 shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Detailed Logic Restricted</h3>
+          <p className="text-sm text-gray-600 mb-8 max-w-md mx-auto leading-relaxed">
+            Due to NDA restrictions, the full technical documentation (PDFs, System Architectures, and Figma logic) is only available upon request.
+          </p>
+          <a
+            href="mailto:angkurns@gmail.com?subject=Requesting%20Access%20to%20Case%20Study"
+            className="inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-3.5 rounded-lg font-medium text-sm hover:bg-gray-800 hover:shadow-sm transition-all"
+          >
+            <span>Request Full Access</span>
+            <span className="text-base">🔒</span>
+          </a>
+        </div>
+      </section>
+
       {/* Main Content Area */}
       {caseStudy.sections && caseStudy.sections.length > 0 && (
         <main className="container mx-auto px-6 pb-32 max-w-[1100px]">
@@ -164,8 +199,9 @@ const CaseStudyDetail = () => {
             </aside>
 
             {/* Right Column: Case Study Sections */}
-            <div className="max-w-[720px] space-y-24">
-              {caseStudy.sections.map((section, index) => {
+            <div className="max-w-[720px]">
+              <div className="space-y-24">
+                {caseStudy.sections.map((section, index) => {
                 const formattedNumber = String(index + 1).padStart(2, '0');
                 return (
                   <section
@@ -189,6 +225,7 @@ const CaseStudyDetail = () => {
                   </section>
                 );
               })}
+              </div>
             </div>
           </div>
         </main>

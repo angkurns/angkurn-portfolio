@@ -8,7 +8,8 @@ export const fetchFeaturedCaseStudies = async () => {
       .from('case_studies')
       .select('*')
       .eq('featured', true)
-      .order('featured_order', { ascending: true });
+      .order('featured_order', { ascending: true })
+      .limit(3);
 
     if (error) {
       console.error('Error fetching featured case studies:', error);
@@ -22,13 +23,35 @@ export const fetchFeaturedCaseStudies = async () => {
   }
 };
 
+// Fetch all case studies for the work page gallery
+export const fetchAllCaseStudies = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('case_studies')
+      .select('*')
+      // Sort featured items first based on their order, then others. Nulls last to keep non-featured at the end.
+      .order('featured_order', { ascending: true, nullsFirst: false });
+
+    if (error) {
+      console.error('Error fetching all case studies:', error);
+      throw error;
+    }
+
+    return data || [];
+  } catch (err) {
+    console.error('Unexpected error in fetchAllCaseStudies:', err);
+    return [];
+  }
+};
+
+
 // Fetch single case study by slug (including its structured sections)
 export const fetchCaseStudyBySlug = async (slug) => {
   try {
     // 1. Get the base case study
     const { data: caseStudy, error: caseStudyError } = await supabase
       .from('case_studies')
-      .select('*')
+      .select('*, content_html')
       .eq('slug', slug)
       .single();
 
