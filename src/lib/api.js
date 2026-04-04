@@ -60,21 +60,7 @@ export const fetchCaseStudyBySlug = async (slug) => {
       return null;
     }
 
-    // 2. Fetch related sections
-    const { data: sections, error: sectionsError } = await supabase
-      .from('case_study_sections')
-      .select('*')
-      .eq('case_study_id', caseStudy.id)
-      .order('Order', { ascending: true });
-
-    if (sectionsError) {
-      console.error('Error fetching sections:', sectionsError);
-    }
-
-    return {
-      ...caseStudy,
-      sections: sections || []
-    };
+    return caseStudy;
   } catch (err) {
     console.error('Unexpected error in fetchCaseStudyBySlug:', err);
     return null;
