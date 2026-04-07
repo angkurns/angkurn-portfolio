@@ -79,13 +79,20 @@ const CaseStudyDetail = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {caseStudy.category?.split(',').map((tag, i) => (
-              <span key={i} className="bg-gray-50 border border-gray-100 text-gray-500 px-3 py-1 rounded-lg text-[10px] uppercase tracking-widest font-bold">
-                {tag.trim()}
-              </span>
-            ))}
+          {/* Case Study Meta Header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'sans-serif' }} className="mb-8">
+            <img 
+              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Autobahn%20logo.svg" 
+              alt="Autobahn Emblem" 
+              style={{ width: '24px', height: '24px', objectFit: 'contain' }} 
+            />
+            <span style={{ fontWeight: 700, color: '#0f172a', fontSize: '14px' }}>
+              Autobahn Security
+            </span>
+            <span style={{ color: '#cbd5e1', fontSize: '14px', paddingBottom: '2px' }}>|</span>
+            <span style={{ fontWeight: 600, color: '#64748b', fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              {caseStudy.reading_time ? `${caseStudy.reading_time} • ` : '5 MIN • '}{caseStudy.year}
+            </span>
           </div>
 
           <h1 className="text-4xl md:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
