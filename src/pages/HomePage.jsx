@@ -221,16 +221,18 @@ const HomePage = () => {
                         {/* Right Column (Text & Context) */}
                         <div className="w-full md:w-[40%] flex flex-col justify-center p-8 md:p-12 lg:p-16 shrink-0 text-left">
                           {/* Row 1: Logo & Company & Meta */}
-                          <div className="flex items-center gap-2 mb-4">
-                            <div className="w-6 h-6 shrink-0 rounded-full bg-[#ff4d4f] flex items-center justify-center shadow-sm">
-                              <svg viewBox="0 0 24 24" fill="white" className="w-[14px] h-[14px]">
-                                <path d="M12 2L4 20h3.5l1.5-3.5h6L16.5 20H20L12 2zm-1.5 10.5L12 7l1.5 4.5h-3z" />
-                              </svg>
-                            </div>
-                            <span className="text-sm font-bold text-gray-900 tracking-tight">Autobahn Security</span>
-                            <span className="text-xs text-gray-300 mx-1">|</span>
-                            <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
-                              {project.read_time || '4 MIN'} {project.year && `• ${project.year}`}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'sans-serif' }} className="mb-4">
+                            <img 
+                              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Autobahn%20logo.svg" 
+                              alt="Autobahn Emblem" 
+                              style={{ width: '24px', height: '24px', objectFit: 'contain' }} 
+                            />
+                            <span style={{ fontWeight: 700, color: '#0f172a', fontSize: '14px' }}>
+                              Autobahn Security
+                            </span>
+                            <span style={{ color: '#cbd5e1', fontSize: '14px', paddingBottom: '2px' }}>|</span>
+                            <span style={{ fontWeight: 600, color: '#64748b', fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                              {project.reading_time || project.read_time} • {project.year}
                             </span>
                           </div>
 

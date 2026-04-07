@@ -91,7 +91,7 @@ const CaseStudyDetail = () => {
             </span>
             <span style={{ color: '#cbd5e1', fontSize: '14px', paddingBottom: '2px' }}>|</span>
             <span style={{ fontWeight: 600, color: '#64748b', fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-              {caseStudy.reading_time ? `${caseStudy.reading_time} • ` : '5 MIN • '}{caseStudy.year}
+              {caseStudy.reading_time} • {caseStudy.year}
             </span>
           </div>
 
