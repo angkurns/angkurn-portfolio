@@ -118,7 +118,7 @@ const HomePage = () => {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mt-6 md:mt-8 max-w-2xl leading-relaxed">
-              <strong className="font-bold text-gray-900">Product Designer</strong> with nearly 5 years at <strong className="font-bold text-gray-900">Autobahn Security</strong>. Working with a <strong className="font-bold text-gray-900">global team</strong>, currently using AI to validate Logic before Handoff.
+              <strong className="font-bold text-gray-900">Product Designer</strong> with nearly 5 years at <strong className="font-bold text-gray-900">Autobahn Security</strong>. Working with a <strong className="font-bold text-gray-900">global team</strong>, currently using <strong className="font-bold text-gray-900">AI</strong> to anticipate edge cases before engineering handoff.
             </p>
           </motion.div>
 
@@ -222,10 +222,10 @@ const HomePage = () => {
                         <div className="w-full md:w-[40%] flex flex-col justify-center p-8 md:p-12 lg:p-16 shrink-0 text-left">
                           {/* Row 1: Logo & Company & Meta */}
                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'sans-serif' }} className="mb-4">
-                            <img 
-                              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Autobahn%20logo.svg" 
-                              alt="Autobahn Emblem" 
-                              style={{ width: '24px', height: '24px', objectFit: 'contain' }} 
+                            <img
+                              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Autobahn%20logo.svg"
+                              alt="Autobahn Emblem"
+                              style={{ width: '24px', height: '24px', objectFit: 'contain' }}
                             />
                             <span style={{ fontWeight: 700, color: '#0f172a', fontSize: '14px' }}>
                               Autobahn Security
