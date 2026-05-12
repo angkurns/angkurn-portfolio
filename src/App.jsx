@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import ScrollToTop from '@/components/ScrollToTop';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -48,6 +49,7 @@ function App() {
         <ScrollToTop />
         <AppContent />
         <Toaster />
+        <Analytics />
       </Router>
     </ContactModalProvider>
   );
