@@ -59,16 +59,14 @@ const CaseStudyDetail = () => {
     );
   }
 
-  console.log("Fetched Case Study Data:", caseStudy);
-
   return (
     <div className="bg-white min-h-screen text-gray-900 font-dm-sans">
 
       {/* Hero Section */}
-      <header className="container mx-auto px-6 py-12 md:py-24 max-w-[1100px]">
+      <header className="w-full max-w-3xl mx-auto px-6 md:px-0 pt-8 md:pt-12">
         <Link
           to="/"
-          className="inline-flex items-center gap-1 text-gray-900 font-medium hover:underline transition-all mb-12"
+          className="inline-flex items-center gap-1 text-gray-500 hover:text-gray-900 font-medium transition-colors mb-8"
         >
           <ArrowLeft size={16} />
           <span className="text-sm">Back to Systems</span>
@@ -79,51 +77,34 @@ const CaseStudyDetail = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Case Study Meta Header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'sans-serif' }} className="mb-8">
-            <img 
-              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Autobahn%20logo.svg" 
-              alt="Autobahn Emblem" 
-              style={{ width: '24px', height: '24px', objectFit: 'contain' }} 
-            />
-            <span style={{ fontWeight: 700, color: '#0f172a', fontSize: '14px' }}>
-              Autobahn Security
-            </span>
-            <span style={{ color: '#cbd5e1', fontSize: '14px', paddingBottom: '2px' }}>|</span>
-            <span style={{ fontWeight: 600, color: '#64748b', fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-              {caseStudy.reading_time} • {caseStudy.year}
-            </span>
-          </div>
+          <span className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
+            Autobahn Security · {caseStudy.reading_time} · {caseStudy.year}
+          </span>
 
-          <h1 className="text-4xl md:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-[1.1] tracking-tight">
             {caseStudy.title}
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-500 max-w-2xl leading-relaxed mb-12">
+          <p className="text-lg md:text-xl text-gray-500 leading-relaxed mb-6">
             {caseStudy.short_description}
           </p>
 
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-y border-gray-100 gap-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-grow">
-              <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Role</span>
-                <span className="text-base font-medium">{caseStudy.role}</span>
-              </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Platform</span>
-                <span className="text-base font-medium">{caseStudy.platform || caseStudy.environment || "Web & Mobile"}</span>
-              </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Focus</span>
-                <span className="text-base font-medium">{caseStudy.focus || "System Design"}</span>
-              </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">Year</span>
-                <span className="text-base font-medium">{caseStudy.year}</span>
-              </div>
-            </div>
+          <div className="flex items-start justify-between gap-6 py-4 border-y border-gray-100">
+            <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-3 flex-grow">
+              {[
+                ['Role', caseStudy.role],
+                ['Platform', caseStudy.platform || caseStudy.environment || 'Web & Mobile'],
+                ['Focus', caseStudy.focus || 'System Design'],
+                ['Year', caseStudy.year],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <dt className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-1">{label}</dt>
+                  <dd className="text-sm font-medium text-gray-900">{value}</dd>
+                </div>
+              ))}
+            </dl>
 
-            <div className="relative self-end md:self-auto">
+            <div className="relative shrink-0">
               <AnimatePresence>
                 {copied && (
                   <motion.div
@@ -139,11 +120,11 @@ const CaseStudyDetail = () => {
 
               <button
                 onClick={handleCopy}
-                className="text-gray-400 hover:text-gray-900 transition-all duration-300 p-2 rounded-lg focus-visible:ring-1 focus-visible:ring-gray-900/50 hover:scale-105"
+                className="text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-lg focus-visible:ring-1 focus-visible:ring-gray-900/50"
                 aria-label="Copy case study link"
                 title="Copy link"
               >
-                <LinkIcon className="w-4 h-4 md:w-[18px] md:h-[18px]" />
+                <LinkIcon className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -151,7 +132,7 @@ const CaseStudyDetail = () => {
       </header>
 
       {/* Independent Content HTML Area */}
-      <section className="w-full max-w-3xl mx-auto pt-12 md:pt-20 pb-12 px-4 md:px-0">
+      <section className="w-full max-w-3xl mx-auto pt-8 md:pt-10 pb-12 px-6 md:px-0">
         {caseStudy?.content_html ? (
           <>
             <div className="relative">
