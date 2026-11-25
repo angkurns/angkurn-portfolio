@@ -3,61 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Loader2, FileText, Download, X } from 'lucide-react';
-import ProjectCard from '@/components/ProjectCard';
-import FeaturedProjectCard from '@/components/FeaturedProjectCard';
 import { fetchFeaturedCaseStudies, fetchFeaturedNotes } from '@/lib/api';
-
-const ImagePreviewModal = ({ src, onClose }) => {
-  if (!src) return null;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/95 backdrop-blur-md p-4 md:p-12 cursor-zoom-out"
-    >
-      <motion.div
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative max-w-full max-h-full flex flex-col items-center"
-      >
-        <button
-          onClick={onClose}
-          className="absolute -top-14 right-0 text-gray-500 hover:text-orange-accent p-2 transition-colors flex items-center gap-2 group"
-        >
-          <span className="text-[10px] uppercase tracking-widest font-medium opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
-          <X className="w-6 h-6" />
-        </button>
-        <div className="rounded-xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] border border-white/5">
-          <img
-            src={src}
-            alt="Preview"
-            className="max-w-full max-h-[80vh] md:max-h-[85vh] object-contain"
-          />
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
 
 const HomePage = () => {
   const [projects, setProjects] = useState([]);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isSneakPeekOpen, setIsSneakPeekOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    if (isSneakPeekOpen || selectedImage) {
+    if (isSneakPeekOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-  }, [isSneakPeekOpen, selectedImage]);
+  }, [isSneakPeekOpen]);
 
   useEffect(() => {
     const loadContent = async () => {
@@ -77,24 +37,6 @@ const HomePage = () => {
 
     loadContent();
   }, []);
-
-  const operatingSystem = [
-    {
-      number: "01",
-      title: "Logic Before Canvas",
-      description: "I map out states, flows, and brutal edge cases before opening Figma. Engineers get exact logic, not guessing games."
-    },
-    {
-      number: "02",
-      title: "AI as a Sparring Partner",
-      description: "I do not use AI to generate UI. I use it to break my logic, find hidden edge cases, and challenge assumptions before development starts."
-    },
-    {
-      number: "03",
-      title: "Clear Documentation",
-      description: "I document flows, states, and decisions clearly so engineers can build without ambiguity. No guessing, no rework."
-    }
-  ];
 
   return (
     <div className="bg-white min-h-screen">
@@ -118,7 +60,10 @@ const HomePage = () => {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mt-6 md:mt-8 max-w-2xl leading-relaxed">
-              <strong className="font-bold text-gray-900">Product Designer</strong> with nearly 5 years at <strong className="font-bold text-gray-900">Autobahn Security</strong>. Working with a <strong className="font-bold text-gray-900">global team</strong>, currently using <strong className="font-bold text-gray-900">AI</strong> to anticipate edge cases before engineering handoff.
+              <strong className="font-bold text-gray-900">Product Designer</strong> at <strong className="font-bold text-gray-900">Autobahn Security</strong> for almost 5 years, and the only designer on the team. I design it, I build the <strong className="font-bold text-gray-900">frontend</strong>, and I look after the <strong className="font-bold text-gray-900">design system</strong> it runs on.
+            </p>
+            <p className="text-base md:text-lg text-gray-500 mt-4 max-w-2xl leading-relaxed">
+              Still a designer. I just got tired of writing tickets for things I could fix myself.
             </p>
           </motion.div>
 
@@ -149,25 +94,25 @@ const HomePage = () => {
         >
           {/* Card 1 */}
           <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Reduced user errors by 30%</h3>
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">2 weeks down to 1 to 4 days</h3>
             <p className="text-base text-gray-600 mt-2 leading-relaxed">
-              By adding small friction in the right places to prevent costly mistakes.
+              That's how long one page prototype takes me now, team review included. AI takes the boring parts, I keep the thinking.
             </p>
           </div>
 
           {/* Card 2 */}
           <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Saved ~2 weeks per feature</h3>
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">97 frontend tickets shipped</h3>
             <p className="text-base text-gray-600 mt-2 leading-relaxed">
-              By defining edge cases and product logic before any UI work begins.
+              Since April 2026. Features, polish and bug fixes, all live in production. Not bad for someone who "doesn't know code" back in June.
             </p>
           </div>
 
           {/* Card 3 */}
           <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Handled 3.5M+ rows without breaking UX</h3>
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Design System 1 is gone</h3>
             <p className="text-base text-gray-600 mt-2 leading-relaxed">
-              By designing with performance limits and real usage in mind.
+              I moved the product to our new design system. It's been live in production since November. Dark theme is next.
             </p>
           </div>
         </motion.div>
@@ -275,6 +220,64 @@ const HomePage = () => {
       </section>
 
 
+      {/* Editorial Vertical List */}
+      <section className="max-w-5xl mx-auto py-32 px-6">
+        <div className="flex flex-col gap-16 md:gap-24">
+
+          {/* Block 1 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div className="md:col-span-4">
+              <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mt-3">How I Think</h3>
+            </div>
+            <div className="md:col-span-8">
+              <h4 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Done means it's in production.</h4>
+              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">A nice frame in Figma isn't done. A handoff isn't done either. It's done when real users are using it. Until then, my weekly update says in progress.</p>
+            </div>
+          </motion.div>
+
+          {/* Block 2 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div className="md:col-span-4">
+              <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mt-3">How I Use AI</h3>
+            </div>
+            <div className="md:col-span-8">
+              <h4 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Use it to find mistakes.</h4>
+              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">Not to draw screens. I use it to poke holes in my logic and catch what I missed. And when it just keeps saying yes, I tell it to think twice.</p>
+            </div>
+          </motion.div>
+
+          {/* Block 3 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+          >
+            <div className="md:col-span-4">
+              <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mt-3">What Security Taught Me</h3>
+            </div>
+            <div className="md:col-span-8">
+              <h4 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Zero isn't empty.</h4>
+              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">Someone told me early on: in this industry, zero is not an empty state. Zero is a win. In Figma I would have designed it as nothing. Now I design it as good news.</p>
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
       {/* Featured Book Section */}
       <section id="retrospective" className="container mx-auto px-6 py-12 md:py-32">
         <motion.div
@@ -301,7 +304,7 @@ const HomePage = () => {
                 <div className="space-y-8">
                   <div>
                     <span className="text-gray-400 font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
-                      Apr 2026
+                      Mid 2027
                     </span>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mt-4">
                       {/* Image Column */}
@@ -325,7 +328,7 @@ const HomePage = () => {
                             For designers tired of just making things look good.
                           </h2>
                           <p className="text-gray-600 text-base md:text-lg leading-[1.8] max-w-xl font-medium">
-                            Over ten years of lessons, mistakes, and real-world work in cybersecurity. Built to help designers think in logic, not just visuals.
+                            Real lessons and real mistakes from designing for cyber security. Written to help designers think in logic, not just visuals.
                           </p>
                           <p className="text-gray-400 text-[10px] font-bold mt-4 uppercase tracking-widest">
                             Available in ID & EN.
@@ -347,7 +350,7 @@ const HomePage = () => {
                             className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-white text-gray-400 border border-gray-200 rounded-lg px-8 py-4 font-medium text-base cursor-not-allowed"
                           >
                             <Download className="w-4 h-4" />
-                            <span>Coming Soon</span>
+                            <span>Coming mid 2027</span>
                           </button>
                         </div>
                       </div>
@@ -358,64 +361,6 @@ const HomePage = () => {
             </div>
           </div>
         </motion.div>
-      </section>
-
-      {/* Editorial Vertical List */}
-      <section className="max-w-5xl mx-auto py-32 px-6">
-        <div className="flex flex-col gap-16 md:gap-24">
-
-          {/* Block 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
-          >
-            <div className="md:col-span-4">
-              <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mt-3">How I Think</h3>
-            </div>
-            <div className="md:col-span-8">
-              <h4 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Start with what can break.</h4>
-              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">I don’t open Figma first. I figure out edge cases and messy flows. If it breaks in production, the design is wrong.</p>
-            </div>
-          </motion.div>
-
-          {/* Block 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
-          >
-            <div className="md:col-span-4">
-              <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mt-3">How I Use AI</h3>
-            </div>
-            <div className="md:col-span-8">
-              <h4 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Use it to find mistakes.</h4>
-              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">Not for UI. I use AI to question my logic and catch what I missed.</p>
-            </div>
-          </motion.div>
-
-          {/* Block 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
-          >
-            <div className="md:col-span-4">
-              <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold mt-3">Problems I Solve</h3>
-            </div>
-            <div className="md:col-span-8">
-              <h4 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Turn messy systems into something usable.</h4>
-              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">Complex data, too many states, unclear flows. I make it work for both engineers and users.</p>
-            </div>
-          </motion.div>
-
-        </div>
       </section>
 
       {/* Preview of "Notes" Section */}
@@ -577,9 +522,6 @@ const HomePage = () => {
               </div>
             </motion.div>
           </div>
-        )}
-        {selectedImage && (
-          <ImagePreviewModal src={selectedImage} onClose={() => setSelectedImage(null)} />
         )}
       </AnimatePresence>
     </div >
