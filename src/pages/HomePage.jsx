@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Loader2, FileText, Download, X } from 'lucide-react';
+import { Loader2, FileText, Download, X, ArrowUpRight } from 'lucide-react';
 import { fetchFeaturedCaseStudies, fetchFeaturedNotes } from '@/lib/api';
+import CaseStudyCard from '@/components/CaseStudyCard';
 
 const HomePage = () => {
   const [projects, setProjects] = useState([]);
@@ -38,6 +39,36 @@ const HomePage = () => {
     loadContent();
   }, []);
 
+  // Keep this short and update it every month. Two work items max.
+  const nowItems = [
+    {
+      label: "Now",
+      active: true,
+      title: "Theming for our design system",
+      description: "Starting with dark mode, then custom colours so each team can match their own brand."
+    },
+    {
+      label: "Next",
+      active: false,
+      title: "Advanced table view",
+      description: "Big tables that are easier to scan, filter and actually work in."
+    }
+  ];
+
+  const sideProject = {
+    label: "Now",
+    title: "Viral Group",
+    url: "https://www.viralgroup.id/viralgroup/",
+    description: "A local media network I run with my wife, helping small local businesses grow.",
+    stats: [
+      { value: "5M+", label: "viewers" },
+      { value: "700+", label: "videos made" },
+      { value: "300+", label: "local businesses helped" },
+      { value: "20+", label: "crew" }
+    ],
+    areas: "Pamulang · South Tangerang · Bintaro · Sawangan · Sentul and more"
+  };
+
   return (
     <div className="bg-white min-h-screen">
 
@@ -60,7 +91,7 @@ const HomePage = () => {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mt-6 md:mt-8 max-w-2xl leading-relaxed">
-              <strong className="font-bold text-gray-900">Product Designer</strong> at <strong className="font-bold text-gray-900">Autobahn Security</strong> for almost 5 years, and the only designer on the team. I design it, I build the <strong className="font-bold text-gray-900">frontend</strong>, and I look after the <strong className="font-bold text-gray-900">design system</strong> it runs on.
+              <strong className="font-bold text-gray-900">Product Designer</strong> for over 10 years, the last 5+ at <strong className="font-bold text-gray-900">Autobahn Security</strong>, where I'm the only designer on the team. I design it, I build the <strong className="font-bold text-gray-900">frontend</strong>, and I look after the <strong className="font-bold text-gray-900">design system</strong> it runs on.
             </p>
             <p className="text-base md:text-lg text-gray-500 mt-4 max-w-2xl leading-relaxed">
               Still a designer. I just got tired of writing tickets for things I could fix myself.
@@ -84,7 +115,7 @@ const HomePage = () => {
       </section>
 
       {/* Impact Metrics Section */}
-      <section className="container mx-auto px-6 pt-12 pb-24 max-w-6xl">
+      <section className="container mx-auto px-6 pt-12 pb-16 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,45 +125,118 @@ const HomePage = () => {
         >
           {/* Card 1 */}
           <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">2 weeks down to 1 to 4 days</h3>
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">1 to 4 days</h3>
             <p className="text-base text-gray-600 mt-2 leading-relaxed">
-              That's how long one page prototype takes me now, team review included. AI takes the boring parts, I keep the thinking.
+              For a one page prototype, team review included. It used to take me two weeks. 7 of my last 8 got signed off.
             </p>
           </div>
 
           {/* Card 2 */}
           <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">97 frontend tickets shipped</h3>
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">216 pull requests</h3>
             <p className="text-base text-gray-600 mt-2 leading-relaxed">
-              Since April 2026. Features, polish and bug fixes, all live in production. Not bad for someone who "doesn't know code" back in June.
+              In one semester. Half on the design system, half on the product. Not bad for someone who said "I don't know code" in June.
             </p>
           </div>
 
           {/* Card 3 */}
           <div className="p-6 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col justify-start group hover:border-orange-accent/50 transition-colors">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">Design System 1 is gone</h3>
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">43 apps migrated</h3>
             <p className="text-base text-gray-600 mt-2 leading-relaxed">
-              I moved the product to our new design system. It's been live in production since November. Dark theme is next.
+              I wrote the plan and moved every app to our new design system. Pages got about 57% lighter. Now I'm adding theming.
             </p>
           </div>
         </motion.div>
       </section>
 
-      {/* Work Section */}
-      <section id="work" className="container mx-auto px-6 pt-0 pb-12 md:pb-32">
+      {/* Now Section */}
+      <section className="container mx-auto px-6 pb-12 md:pb-16 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto h-full"
+          className="border-t border-gray-100 pt-10"
         >
-          <div className="relative h-full pt-12 md:pt-24">
-            <div className="mb-6 md:mb-12">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
+          <div className="flex items-baseline justify-between mb-8">
+            <h2 className="text-sm uppercase tracking-widest text-gray-500 font-semibold">What I'm on</h2>
+            <span className="text-xs font-mono uppercase tracking-widest text-gray-400">Updated Nov 2026</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+            {/* At work */}
+            <div>
+              <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-5">At Autobahn</h3>
+              <div className="flex flex-col gap-6">
+                {nowItems.map((item) => (
+                  <div key={item.label} className="flex gap-4">
+                    <span className="relative flex h-2.5 w-2.5 mt-2 shrink-0">
+                      {item.active && (
+                        <span className="absolute inline-flex h-full w-full rounded-full bg-orange-accent opacity-60 animate-ping" />
+                      )}
+                      <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${item.active ? 'bg-orange-accent' : 'bg-gray-300'}`} />
+                    </span>
+                    <div>
+                      <span className="text-xs font-mono uppercase tracking-widest text-gray-400">{item.label}</span>
+                      <h4 className="text-xl font-bold text-gray-900 tracking-tight mt-1">{item.title}</h4>
+                      <p className="text-base text-gray-600 mt-1 leading-relaxed max-w-md">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* On the side */}
+            <div>
+              <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-5">On the side</h3>
+              <a
+                href={sideProject.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex gap-4"
+              >
+                <span className="relative flex h-2.5 w-2.5 mt-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-orange-accent opacity-60 animate-ping" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-orange-accent" />
+                </span>
+                <div>
+                  <span className="block text-xs font-mono uppercase tracking-widest text-gray-400">{sideProject.label}</span>
+                  <h4 className="text-xl font-bold text-gray-900 tracking-tight mt-1 inline-flex items-center gap-1.5 group-hover:underline">
+                    {sideProject.title}
+                    <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-gray-900 transition-colors" />
+                  </h4>
+                  <p className="text-base text-gray-600 mt-1 leading-relaxed max-w-md">{sideProject.description}</p>
+                  <dl className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-3 mt-4">
+                    {sideProject.stats.map((stat) => (
+                      <div key={stat.label}>
+                        <dt className="text-lg font-bold text-gray-900 leading-none">{stat.value}</dt>
+                        <dd className="text-xs text-gray-500 mt-1 leading-snug">{stat.label}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <p className="text-sm text-gray-500 mt-4">{sideProject.areas}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Work Section */}
+      <section id="work" className="container mx-auto px-6 pt-0 pb-16 md:pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-6xl mx-auto h-full"
+        >
+          <div className="relative h-full pt-8 md:pt-12">
+            <div className="mb-8 md:mb-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
                 Work
               </h2>
-              <p className="text-gray-500 text-lg md:text-2xl max-w-2xl leading-relaxed uppercase tracking-[0.2em] font-mono">
+              <p className="text-gray-500 text-sm md:text-base max-w-2xl leading-relaxed uppercase tracking-[0.2em] font-mono">
                 The Evidence of Logic
               </p>
             </div>
@@ -142,78 +246,15 @@ const HomePage = () => {
                 <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
               </div>
             ) : (
-              <div className="space-y-12 md:space-y-24">
-                <div className="flex flex-col space-y-16 md:space-y-32">
-                  {projects.length > 0 ? (
-                    projects.map((project, index) => (
-                      <motion.div
-                        key={project.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="flex flex-col md:flex-row bg-white rounded-3xl md:rounded-[2.5rem] border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden group min-h-[560px]"
-                      >
-                        {/* Left Column (Visual Evidence) */}
-                        <div className="relative w-full md:w-[60%] bg-[#f4f5f5] min-h-[360px] md:min-h-0">
-                          <img
-                            src={project.thumbnail_url}
-                            alt={project.title}
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                          />
-                        </div>
-
-                        {/* Right Column (Text & Context) */}
-                        <div className="w-full md:w-[40%] flex flex-col justify-center p-8 md:p-12 lg:p-16 shrink-0 text-left">
-                          {/* Row 1: Logo & Company & Meta */}
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'sans-serif' }} className="mb-4">
-                            <img
-                              src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Autobahn%20logo.svg"
-                              alt="Autobahn Emblem"
-                              style={{ width: '24px', height: '24px', objectFit: 'contain' }}
-                            />
-                            <span style={{ fontWeight: 700, color: '#0f172a', fontSize: '14px' }}>
-                              Autobahn Security
-                            </span>
-                            <span style={{ color: '#cbd5e1', fontSize: '14px', paddingBottom: '2px' }}>|</span>
-                            <span style={{ fontWeight: 600, color: '#64748b', fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                              {project.reading_time || project.read_time} • {project.year}
-                            </span>
-                          </div>
-
-                          {/* Row 2: Tags */}
-                          <div className="flex flex-wrap gap-2 mb-8">
-                            {project.category && project.category.split(',').map((cat, i) => (
-                              <div key={i} className="px-3 py-1 bg-gray-50 text-gray-500 text-[11px] font-bold uppercase tracking-wider rounded-md border border-gray-100">
-                                {cat.trim()}
-                              </div>
-                            ))}
-                          </div>
-
-                          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight tracking-tight">
-                            {project.title}
-                          </h3>
-
-                          <p className="text-base text-gray-600 leading-relaxed mb-6 max-w-md">
-                            {project.short_description}
-                          </p>
-
-                          <div>
-                            <Link
-                              to={`/systems/${project.slug}`}
-                              className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 text-base transition-all"
-                            >
-                              <span>See how it works →</span>
-                            </Link>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))
-                  ) : (
-                    <p className="text-gray-600">No systems found at the moment.</p>
-                  )}
+              projects.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {projects.map((project, index) => (
+                    <CaseStudyCard key={project.id} project={project} index={index} />
+                  ))}
                 </div>
-              </div>
+              ) : (
+                <p className="text-gray-600">No systems found at the moment.</p>
+              )
             )}
           </div>
         </motion.div>
@@ -289,7 +330,7 @@ const HomePage = () => {
         >
           <div className="relative pl-6 md:pl-12 border-l border-gray-100">
             <div className="mb-16 md:mb-24">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-2">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
                 The Book
               </h2>
               <p className="text-orange-accent font-mono text-sm tracking-widest uppercase opacity-80">
@@ -372,7 +413,7 @@ const HomePage = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="mb-10 md:mb-16">
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
               Notes
             </h2>
             <p className="text-gray-600 mt-4 text-lg md:text-xl max-w-2xl">

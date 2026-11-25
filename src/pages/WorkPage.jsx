@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { fetchAllCaseStudies } from '@/lib/api';
 import { useContactModal } from '@/context/ContactModalContext';
+import CaseStudyCard from '@/components/CaseStudyCard';
 
 const WorkPage = () => {
   const [projects, setProjects] = useState([]);
@@ -35,18 +35,18 @@ const WorkPage = () => {
 
   return (
     <div className="bg-white min-h-screen pt-24 pb-12">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="container mx-auto px-6 max-w-6xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-16 md:mb-24"
+          className="mb-10 md:mb-12"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
             Work
           </h1>
-          <p className="text-gray-500 text-lg md:text-2xl max-w-2xl leading-relaxed uppercase tracking-[0.2em] font-mono">
+          <p className="text-gray-500 text-sm md:text-base max-w-2xl leading-relaxed uppercase tracking-[0.2em] font-mono">
             The Evidence of Logic
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ const WorkPage = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="flex flex-wrap gap-4 mb-12 md:mb-16 border-b border-gray-100 pb-8"
+          className="flex flex-wrap gap-4 mb-8 md:mb-10 border-b border-gray-100 pb-6"
         >
           {filters.map((f) => (
             <button
@@ -76,83 +76,22 @@ const WorkPage = () => {
             <Loader2 className="text-orange-accent animate-spin w-10 h-10" />
           </div>
         ) : (
-          <div className="space-y-16 md:space-y-32">
-            {filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex flex-col md:flex-row bg-white rounded-3xl md:rounded-[2.5rem] border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden group min-h-[560px]"
-                >
-                  {/* Left Column (Visual Evidence) */}
-                  <div className="relative w-full md:w-[60%] bg-[#f4f5f5] min-h-[360px] md:min-h-0">
-                    <img
-                      src={project.thumbnail_url}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
-                  {/* Right Column (Text & Context) */}
-                  <div className="w-full md:w-[40%] flex flex-col justify-center p-8 md:p-12 lg:p-16 shrink-0 text-left">
-                    {/* Row 1: Logo & Company & Meta */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'sans-serif' }} className="mb-4">
-                      <img 
-                        src="https://ymbfvvbymmfdhmvafgsp.supabase.co/storage/v1/object/public/case-studies/Tookits/Autobahn%20logo.svg" 
-                        alt="Autobahn Emblem" 
-                        style={{ width: '24px', height: '24px', objectFit: 'contain' }} 
-                      />
-                      <span style={{ fontWeight: 700, color: '#0f172a', fontSize: '14px' }}>
-                        Autobahn Security
-                      </span>
-                      <span style={{ color: '#cbd5e1', fontSize: '14px', paddingBottom: '2px' }}>|</span>
-                      <span style={{ fontWeight: 600, color: '#64748b', fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                        {project.reading_time || project.read_time} • {project.year}
-                      </span>
-                    </div>
-
-                    {/* Row 2: Tags */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {project.category && project.category.split(',').map((cat, i) => (
-                        <div key={i} className="px-3 py-1 bg-gray-50 text-gray-500 text-[11px] font-bold uppercase tracking-wider rounded-md border border-gray-100">
-                          {cat.trim()}
-                        </div>
-                      ))}
-                    </div>
-
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight tracking-tight">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-base text-gray-600 leading-relaxed mb-6 max-w-md">
-                      {project.short_description}
-                    </p>
-
-                    <div>
-                      <Link
-                        to={`/systems/${project.slug}`}
-                        className="text-gray-900 font-medium hover:underline inline-flex items-center gap-1 text-base transition-all"
-                      >
-                        <span>See how it works →</span>
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))
-            ) : (
-              <p className="text-gray-500 text-center font-mono">No projects found in this category.</p>
-            )}
-          </div>
+          filteredProjects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project, index) => (
+                <CaseStudyCard key={project.id} project={project} index={index} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 text-center font-mono">No projects found in this category.</p>
+          )
         )}
 
-        <p className="text-sm text-gray-400 italic text-center mt-32 mb-20">More case studies in production.</p>
+        <p className="text-sm text-gray-400 italic text-center mt-16 mb-12">More case studies in production.</p>
       </div>
 
       {/* global-cta replacement section */}
-      <section className="container mx-auto px-6 pt-32 pb-24 md:pb-32 border-t border-gray-50">
+      <section className="container mx-auto px-6 pt-24 pb-24 md:pb-32 border-t border-gray-50">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
